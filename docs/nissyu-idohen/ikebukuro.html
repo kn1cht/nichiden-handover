@@ -1,0 +1,460 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>日周緯度変(Ikebukuro) &mdash; Nichiden 0.1 ドキュメント</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="検索" href="../search.html"/>
+    <link rel="top" title="Nichiden 0.1 ドキュメント" href="../index.html"/>
+        <link rel="next" title="日周緯度変(外部制御アプリ)" href="pc-software.html"/>
+        <link rel="prev" title="日周緯度変(さいたま)" href="saitama.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Nichiden
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">目次:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../main.html">東京大学地文研究会天文部 日電引き継ぎ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../management.html">プロジェクト マネジメント</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kikou.html">日周緯度変(日周緯度変換機構)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="saitama.html">日周緯度変(さいたま)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">日周緯度変(Ikebukuro)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#">概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#">沿革</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#">使い方</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#">電装</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#">通信方式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#">内部基板</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#">プロトコルとコマンド</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#">各コマンドに共通するフォーマット</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#">速度指定コマンド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#">角度指定コマンド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#">コマンド実例集</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pc">PC側のプログラム</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pc-software.html">日周緯度変(外部制御アプリ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pc-software-history.html">日周緯度変(外部制御アプリの歴史)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pc-software-code.html">日周緯度変(Ogoseの実装解説)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../buy_parts.html">部品の買い方</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Nichiden</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>日周緯度変(Ikebukuro)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/nissyu-idohen/ikebukuro.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ikebukuro">
+<span id="ikebukuro"></span><h1>日周緯度変(Ikebukuro)<a class="headerlink" href="#ikebukuro" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<ul class="simple">
+<li>書いた人: Kenichi Ito(nichiden_27)</li>
+<li>更新日時: 2017/02/26</li>
+<li>実行に必要な知識・技能: 電子回路</li>
+<li>タスクの重さ: 2: 数日かかる</li>
+<li>タスクの必須度: 3: 年による</li>
+<li>元資料<ul>
+<li><code class="docutils literal"><span class="pre">日周・緯度変資料.pdf</span></code> by 岩滝宗一郎(nichiden_22)</li>
+<li><code class="docutils literal"><span class="pre">saitama.pdf</span></code> by 荒田 実樹(nichiden_23)</li>
+</ul>
+</li>
+</ul>
+<div class="section" id="">
+<span id="id1"></span><h2>概要<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><img alt="" src="../_images/ikebukuro.jpg" /></p>
+<p>さいたま6號には、外部機器(PCなど)を接続して制御することが可能です。これをさいたまの「<strong>外部制御</strong>」と呼んでいます。</p>
+<p>埼玉6號の外部制御端子は<code class="docutils literal"><span class="pre">RS-485/Mini-DIN6</span></code>という規格・形状ですが、残念ながらこのままではPCに直接挿して外部制御することはできません。そこで、<code class="docutils literal"><span class="pre">RS-485/Mini-DIN6</span></code>と<code class="docutils literal"><span class="pre">USB</span></code>の変換を行うために製作されたのが、<strong>変換モジュール<code class="docutils literal"><span class="pre">Ikebukuro</span></code></strong> (埼玉と繋がっているかららしい...)です。</p>
+<p>実際に日周緯度変を動かす際に関わりの多い部分なので、使い方や構造などを解説します。</p>
+</div>
+<div class="section" id="">
+<span id="id2"></span><h2>沿革<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>外部制御は、埼玉6號を製作した22代の時点で既に仕様に盛り込まれていた。ただし使用はされておらず、テストもされていない状態だった。続く23代で<code class="docutils literal"><span class="pre">Ikebukuro</span></code>が導入され、<strong>PCを使用しての日周緯度変制御を初めて行った</strong>。</p>
+<p>その後の24〜27代では日周緯度変を操作するアプリの開発を行なっており、通信には<code class="docutils literal"><span class="pre">Ikebukuro</span></code>が使われ続けている。</p>
+</div>
+<div class="section" id="">
+<span id="id3"></span><h2>使い方<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>さいたま6號側面に通信用の端子(<code class="docutils literal"><span class="pre">Mini-DIN6</span></code>)があるので、ケーブルで<code class="docutils literal"><span class="pre">Ikebukuro</span></code>の同じ端子に接続する。次に、<code class="docutils literal"><span class="pre">Ikebukuro</span></code>のUSB端子(miniB)とPCのUSB端子をUSBケーブルで接続すれば準備完了である。</p>
+<p>さいたま6號の外部制御スイッチをONにすれば、PCからの信号を待ち受ける状態になる。あとは日周緯度変用のアプリなどを起動してシリアルポートに接続すれば良い。</p>
+</div>
+<div class="section" id="">
+<span id="id4"></span><h2>電装<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="">
+<span id="id5"></span><h3>通信方式<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>埼玉6號の外部制御端子は、電気的には<code class="docutils literal"><span class="pre">RS-485</span></code>という規格に従っている。
+<code class="docutils literal"><span class="pre">RS-485</span></code>では、3本の線(A,B,GND)で半二重通信(双方向の通信ができるが、同時に両方向の通信は不可)ができる。ノイズに強く、長距離にも耐えられるらしい。</p>
+<p>埼玉6號の側部にあるMini-DIN6コネクタのピンとの対応は、図のようになっている。</p>
+<p><img alt="外部制御端子の配線" src="../_images/ikebukuro-rs485.png" /></p>
+</div>
+<div class="section" id="">
+<span id="id6"></span><h3>内部基板<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">Ikebukuro</span></code>の中身は単なる変換モジュールであり、<code class="docutils literal"><span class="pre">RS-485</span></code>と<code class="docutils literal"><span class="pre">UART</span></code>の変換を行うIC(<code class="docutils literal"><span class="pre">LTC485</span></code>)と、USBとUARTの変換を行うモジュール(<code class="docutils literal"><span class="pre">AE-UM232R</span></code>)が載っているだけである。</p>
+<p><code class="docutils literal"><span class="pre">AE-UM232R</span></code>に搭載されているUSB-UART変換チップ(FTDI社の<code class="docutils literal"><span class="pre">FT232R</span></code>という、定番チップ)の関係で、利用するにはPC側にドライバが必要な場合がある。<a class="reference external" href="http://www.ftdichip.com/Drivers/VCP.htm">FTDI社のWebページ</a>から入手できるので、必要なら使用するPCにインストールしておこう。</p>
+<p>また、このチップは初期状態から設定が書き換えられており、<code class="docutils literal"><span class="pre">InvertRTS=1</span></code>となっている。この設計はFTDI社謹製の<code class="docutils literal"><span class="pre">FT_PROG</span></code>(Windows用)というツールで設定できる。</p>
+<p><code class="docutils literal"><span class="pre">RS-485</span></code>は半二重なので、通信方向の切り替えが必要である。これは、シリアルポートのRTSピンを使用して行っている。</p>
+<p><code class="docutils literal"><span class="pre">Ikebukuro</span></code>の基板の配線を図に載せる。なお、図には反映していないが、RTSの状態確認用にLEDを実装している。</p>
+<p><img alt="Ikebukuro基板の配線" src="../_images/ikebukuro-circuit.png" /></p>
+<p><code class="docutils literal"><span class="pre">AE-UM232R</span></code>はICソケットに差さっているので、容易に<code class="docutils literal"><span class="pre">Ikebukuro</span></code>から取り外すことができる。他の回路のテストでUSBシリアル変換モジュールを使いたい時は、<code class="docutils literal"><span class="pre">Ikebukuro</span></code>から<code class="docutils literal"><span class="pre">AE-UM232R</span></code>を取り外して使うと良いだろう(実際、23代で惑星投影機の基板のテストに利用した。最終的にはXBeeで通信するのだが、デバッグ時は「信頼と安定の」FT232Rを利用しようというわけだ)。</p>
+</div>
+</div>
+<div class="section" id="">
+<span id="id7"></span><h2>プロトコルとコマンド<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>外部制御モードではPCからさいたま6號に指令(コマンド)を送る。ここでは、コマンドを表す文字列のフォーマットを述べる。</p>
+<p>このフォーマットを変更したいと思ったら、さいたま側のプログラムの<code class="docutils literal"><span class="pre">main.c</span></code>とPC側のプログラムをいじればよい。</p>
+<div class="section" id="">
+<span id="id8"></span><h3>各コマンドに共通するフォーマット<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="9%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">位置</th>
+<th class="head">0</th>
+<th class="head">1</th>
+<th class="head">2</th>
+<th class="head">3</th>
+<th class="head">4</th>
+<th class="head">...</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>内容</td>
+<td><code class="docutils literal"><span class="pre">$</span></code></td>
+<td><code class="docutils literal"><span class="pre">W</span></code></td>
+<td><em>addr</em></td>
+<td><em>len</em></td>
+<td><em>cmd</em></td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<ul class="simple">
+<li><em>addr</em>: 機器のアドレス (16進1桁; ‘<code class="docutils literal"><span class="pre">0</span></code>’〜‘<code class="docutils literal"><span class="pre">9</span></code>’, ‘<code class="docutils literal"><span class="pre">A</span></code>’〜‘<code class="docutils literal"><span class="pre">F</span></code>’)<ul>
+<li>メイン基板上のディップスイッチで設定した値と一致させる</li>
+<li>現在は<code class="docutils literal"><span class="pre">0</span></code>が使われている</li>
+<li>複数の機器を繋いだ時用のアドレスだが、使うことはないだろう</li>
+</ul>
+</li>
+<li><em>len</em>: 以降のバイト数 (16進1桁; ‘<code class="docutils literal"><span class="pre">0</span></code>’〜‘<code class="docutils literal"><span class="pre">9</span></code>’, ‘<code class="docutils literal"><span class="pre">A</span></code>’〜‘<code class="docutils literal"><span class="pre">F</span></code>’)</li>
+<li><em>cmd</em>: コマンドの種類</li>
+</ul>
+</div>
+<div class="section" id="">
+<span id="id9"></span><h3>速度指定コマンド<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="9%" />
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="9%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">位置</th>
+<th class="head">...</th>
+<th class="head">3</th>
+<th class="head">4</th>
+<th class="head">5</th>
+<th class="head">6</th>
+<th class="head">7..10</th>
+<th class="head">...</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>内容</td>
+<td>...</td>
+<td><code class="docutils literal"><span class="pre">7</span></code></td>
+<td><code class="docutils literal"><span class="pre">V</span></code></td>
+<td><em>motor</em></td>
+<td><em>dir</em></td>
+<td><em>speed</em></td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<ul class="simple">
+<li><em>len</em>: 以降のバイト数 = &#8216;<code class="docutils literal"><span class="pre">7</span></code>&#8216; (7 byte)</li>
+<li><em>cmd</em>: コマンドの種類 = &#8216;<code class="docutils literal"><span class="pre">V</span></code>&#8216;</li>
+<li><em>motor</em>: モーター (日周:‘<code class="docutils literal"><span class="pre">D</span></code>’, 緯度:‘<code class="docutils literal"><span class="pre">L</span></code>’)</li>
+<li><em>dir</em>: 回転方向 (時計回り:‘<code class="docutils literal"><span class="pre">+</span></code>’, 反時計回り‘<code class="docutils literal"><span class="pre">-</span></code>’)</li>
+<li><em>speed</em>: 回転速度[deg/s] (16進4桁; ‘<code class="docutils literal"><span class="pre">0</span></code>’〜‘<code class="docutils literal"><span class="pre">9</span></code>’, ‘<code class="docutils literal"><span class="pre">A</span></code>’〜‘<code class="docutils literal"><span class="pre">F</span></code>’)</li>
+</ul>
+</div>
+<div class="section" id="">
+<span id="id10"></span><h3>角度指定コマンド<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="8%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">位置</th>
+<th class="head">...</th>
+<th class="head">3</th>
+<th class="head">4</th>
+<th class="head">5</th>
+<th class="head">6</th>
+<th class="head">7...12</th>
+<th class="head">13...16</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>内容</td>
+<td>...</td>
+<td><code class="docutils literal"><span class="pre">D</span></code></td>
+<td><code class="docutils literal"><span class="pre">P</span></code></td>
+<td><em>motor</em></td>
+<td><em>dir</em></td>
+<td><em>angle</em></td>
+<td><em>speed</em></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<ul class="simple">
+<li><em>len</em>: 以降のバイト数 = &#8216;<code class="docutils literal"><span class="pre">D</span></code>&#8216; (13 byte)</li>
+<li><em>cmd</em>: コマンドの種類 = &#8216;<code class="docutils literal"><span class="pre">P</span></code>&#8216;</li>
+<li><em>motor</em>   モーター (日周:‘<code class="docutils literal"><span class="pre">D</span></code>’, 緯度:‘<code class="docutils literal"><span class="pre">L</span></code>’)</li>
+<li><em>dir</em>     回転方向 (時計回り:‘<code class="docutils literal"><span class="pre">+</span></code>’, 反時計回り‘<code class="docutils literal"><span class="pre">-</span></code>’)</li>
+<li><em>angle</em>   回転角度[<span class="math">\(10^{-2}\)</span>deg] (16進6桁; ‘<code class="docutils literal"><span class="pre">0</span></code>’〜‘<code class="docutils literal"><span class="pre">9</span></code>’, ‘<code class="docutils literal"><span class="pre">A</span></code>〜‘<code class="docutils literal"><span class="pre">F</span></code>’)</li>
+<li><em>speed</em>   回転速度[deg/s] (16進4桁; ‘<code class="docutils literal"><span class="pre">0</span></code>’〜‘<code class="docutils literal"><span class="pre">9</span></code>’, ‘<code class="docutils literal"><span class="pre">A</span></code>’〜‘<code class="docutils literal"><span class="pre">F</span></code>’)</li>
+</ul>
+</div>
+<div class="section" id="">
+<span id="id11"></span><h3>コマンド実例集<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>以上がさいたま外部制御コマンドの仕様だが、これだけでは少々分かりにくいはずなのでいくつか実例を挙げておく。</p>
+<ul class="simple">
+<li>緯度モーターを3000deg/sで時計回りに回す -&gt; <code class="docutils literal"><span class="pre">$W07VL+0BB8</span></code></li>
+<li>日周モーターを1800deg/sで時計回りに90000deg回す -&gt; <code class="docutils literal"><span class="pre">$W0DPD+8954400708</span></code></li>
+</ul>
+</div>
+<div class="section" id="pc">
+<span id="pc"></span><h3>PC側のプログラム<a class="headerlink" href="#pc" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>PC側からは、Ikebukuroが仮想COMポートに見えるので、そのCOMポートに対して上に述べたコマンドを書き込めば良い。この辺りの具体的な話は<a class="reference internal" href="pc-software.html"><span class="doc">外部制御アプリの資料</span></a>に譲る。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pc-software.html" class="btn btn-neutral float-right" title="日周緯度変(外部制御アプリ)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="saitama.html" class="btn btn-neutral" title="日周緯度変(さいたま)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Kenichi Ito.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

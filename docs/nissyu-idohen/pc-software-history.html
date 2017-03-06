@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>日周緯度変(外部制御アプリの歴史) &mdash; Nichiden 0.1 ドキュメント</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="検索" href="../search.html"/>
+    <link rel="top" title="Nichiden 0.1 ドキュメント" href="../index.html"/>
+        <link rel="next" title="日周緯度変(Ogoseの実装解説)" href="pc-software-code.html"/>
+        <link rel="prev" title="日周緯度変(外部制御アプリ)" href="pc-software.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Nichiden
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">目次:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../main.html">東京大学地文研究会天文部 日電引き継ぎ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../management.html">プロジェクト マネジメント</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kikou.html">日周緯度変(日周緯度変換機構)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="saitama.html">日周緯度変(さいたま)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ikebukuro.html">日周緯度変(Ikebukuro)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pc-software.html">日周緯度変(外部制御アプリ)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">日周緯度変(外部制御アプリの歴史)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#">概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tokyo-terminal-2012">Tokyo Terminal(2012)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nisshuidohencontroller2-2012">NisshuidohenController2(2012)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fujisawa-2013">Fujisawa(2013)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#chichibu-2014">Chichibu(2014)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ogose-2016">Ogose(2016)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pc-software-code.html">日周緯度変(Ogoseの実装解説)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../buy_parts.html">部品の買い方</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Nichiden</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>日周緯度変(外部制御アプリの歴史)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/nissyu-idohen/pc-software-history.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="">
+<span id="id1"></span><h1>日周緯度変(外部制御アプリの歴史)<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<ul class="simple">
+<li>書いた人: Kenichi Ito(nichiden_27)</li>
+<li>更新日時: 2017/03/04</li>
+<li>実行に必要な知識・技能: 特になし</li>
+<li>難易度: 2: 少しやれば可能</li>
+<li>情報の必須度: 2: 知ってると楽</li>
+<li>元資料<ul>
+<li><code class="docutils literal"><span class="pre">引き継ぎと技術的補足：日周緯度変外部制御ユーザインタフェース.docx</span></code> by 紺野雄介(nichiden_23)</li>
+<li><code class="docutils literal"><span class="pre">ふじさわreadme.docx</span></code> by 池下 氏(nichiden_24)</li>
+<li><code class="docutils literal"><span class="pre">25の日周・緯度変について.docx</span></code> by 伊藤太陽(nichiden_25)</li>
+</ul>
+</li>
+</ul>
+<div class="section" id="">
+<span id="id2"></span><h2>概要<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><a class="reference internal" href="pc-software.html"><span class="doc">日周緯度変(外部制御アプリ)</span></a>から歴代外部制御アプリケーションの紹介を分離した記事です。</p>
+<p>現在は実装されていない機能があったりと、それぞれに特徴があるので、把握しておくと今後の改善に繋がるかもしれません。</p>
+</div>
+<div class="section" id="tokyo-terminal-2012">
+<span id="tokyo-terminal-2012"></span><h2>Tokyo Terminal(2012)<a class="headerlink" href="#tokyo-terminal-2012" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><img alt="Tokyo Terminalの画面" src="../_images/tokyoterminal.png" /></p>
+<p>23代荒田氏が制作した。外部制御は23代で初使用されたが、<code class="docutils literal"><span class="pre">Tokyo</span> <span class="pre">Terminal</span></code>はそのテスト用に書かれたものである。</p>
+<p>氏の環境がMac OSだったため、Macでしか動作しない。23代の作業データの<code class="docutils literal"><span class="pre">日周緯度変外部制御/Saitama6Brain/</span></code>以下にソースファイルやアプリ本体があるが、最新のMac OSでは対応していない旨が表示され起動しなかった。</p>
+<p>これ以降の外部制御アプリは全てWindows向けに開発されたものだ。Mac向けに開発する必要に迫られることがもしあれば、<code class="docutils literal"><span class="pre">Tokyo</span> <span class="pre">Terminal</span></code>のコードが参考になるかもしれない(Mac開発の経験があれば一から書いた方が早い可能性も大いにあるが...)。</p>
+</div>
+<div class="section" id="nisshuidohencontroller2-2012">
+<span id="nisshuidohencontroller2-2012"></span><h2>NisshuidohenController2(2012)<a class="headerlink" href="#nisshuidohencontroller2-2012" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><img alt="NisshuidohenController2の画面" src="../_images/nisshuidohencontroller2.png" /></p>
+<p>23代紺野氏の作。<code class="docutils literal"><span class="pre">Tokyo</span> <span class="pre">Terminal</span></code>がMac専用だったため、Windows版として開発された。開発言語はC#で、Windows Formアプリケーション(<code class="docutils literal"><span class="pre">System.Windows.Forms</span></code>名前空間を使用)である。</p>
+<p><code class="docutils literal"><span class="pre">Tokyo</span> <span class="pre">Terminal</span></code>と共通の機能が多いが、大きな違いは<strong>操作の記録・再生ができる</strong> ことである。「速度指定」か「角度指定」かを選択して「記録」ボタンを押すと右のスペースに送るコマンドが表示され、同時に<code class="docutils literal"><span class="pre">Instruction.txt</span></code>というファイルにも保存される。</p>
+<p>あらかじめ必要なコマンドを記録しておいて面倒な操作なしに再実行できる画期的な機能である...と言いたいところだが、<strong>表示されるのはコマンドだけ</strong>(数値は16進数)なので、肝心の再生部分が手軽に利用できるとは言い難い。</p>
+<p>「高速」「低速」のボタンで出る角速度は以下の数値に固定されている。なお、上半分で入力する角速度はモーターのもの、以下の角速度はギアによる減速後のかごしいのものなので注意。</p>
+<ul class="simple">
+<li>日周高速ボタン: 4 deg/s</li>
+<li>日周低速ボタン: 1 deg/s</li>
+<li>緯度高速ボタン: 1 deg/s</li>
+<li>緯度低速ボタン: 0.5 deg/s</li>
+</ul>
+<p>この数値は後発の<code class="docutils literal"><span class="pre">Fujisawa</span></code>、<code class="docutils literal"><span class="pre">Chichibu</span></code>でも同じものが使われている。</p>
+<p>当時の日周緯度変は相応のスキルのある日電員が操作しており、自分たちで使うための最小限の機能を盛り込んだという印象だ。実際、本番中に使用したのは「高速」などのボタンだけだったという。</p>
+<p>将来これを使うことはなさそうだが、速度・角度・方向に対応するコマンドを表示してくれるので、デバッグ用の計算機にはなるかもしれない。</p>
+</div>
+<div class="section" id="fujisawa-2013">
+<span id="fujisawa-2013"></span><h2>Fujisawa(2013)<a class="headerlink" href="#fujisawa-2013" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><img alt="Fujisawaの画面" src="../_images/fujisawa.png" /></p>
+<p>24池下氏によるもの。引き続きC#によるWindowsアプリだが、UIのフレームワークに<code class="docutils literal"><span class="pre">Windows</span> <span class="pre">Presentation</span> <span class="pre">Foundation(WPF)</span></code>を使用している。</p>
+<p>WPFの詳細についてはググって欲しいが、デザインとコードを分けて書くことができるというのが大きな利点である。つまり、内部の動作を崩さずに見た目だけをいじり倒せるのだ。その甲斐あってか、23のUIに比べデザイン面が大きく改善した。コマンド文字列を生成するコードは<code class="docutils literal"><span class="pre">fujisawa/NisshuidohenController.cs</span></code>でクラスにまとめて定義されている。</p>
+<p>日周緯度変にPCを使うとき、一番問題になるのは画面が光ることだ。PCは画面も大きいし、そのために星がかき消されてしまいかねない。<code class="docutils literal"><span class="pre">Fujisawa</span></code>は、<strong>黒基調の画面</strong> にすることでPCの光害を抑制している。</p>
+<p>使い方は見れば分かると思うが、「びゅーん」が高速回転、「のろのろ」が低速回転だ。また、本番で画面を暗くしているとマウス操作が大変なので、日周はキーボードでも操作できる。<code class="docutils literal"><span class="pre">C</span></code>: 高速逆転、<code class="docutils literal"><span class="pre">V</span></code>: 低速逆転、<code class="docutils literal"><span class="pre">B</span></code>: 停止、<code class="docutils literal"><span class="pre">N</span></code>: 低速順回転、<code class="docutils literal"><span class="pre">M</span></code>: 高速順回転 である。</p>
+<p>総じて24日電の雰囲気がよく出ており大変分かりやすいものの、回転方向が少し把握しにくい。なお、アプリ名称は往時の天文部の「備品などに駅名をつける」習慣に則ったもので、「ふじさわ」は制作者の地元であるらしい。</p>
+</div>
+<div class="section" id="chichibu-2014">
+<span id="chichibu-2014"></span><h2>Chichibu(2014)<a class="headerlink" href="#chichibu-2014" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><img alt="Chichibuの画面" src="../_images/chichibu.png" /></p>
+<p>25伊藤氏が開発したアプリ。他にない特色として、25ソフト専用のモードが用意され、ボタンを押すだけでシナリオで要求された動きを実現できることがある。</p>
+<p>また、23の<code class="docutils literal"><span class="pre">NisshuidohenController2</span></code>と24の<code class="docutils literal"><span class="pre">Fujisawa</span></code>の画面もそのまま移植され、それぞれの機能が利用できる。本番でも、ライブ解説時には<code class="docutils literal"><span class="pre">Fujisawa</span></code>を使っていたようだ。</p>
+<p><img alt="Chichibuに移植されたNisshuidohenController2" src="../_images/chichibu_2.png" /></p>
+<p>フルスクリーン状態で起動することで、以前より更に画面の光漏れを抑えている。ただし、ソフト内に終了ボタンがないうえタイトルバーも見えないので、プログラムを終了させる際は<code class="docutils literal"><span class="pre">Alt</span></code>+<code class="docutils literal"><span class="pre">F4</span></code>を押すなどショートカットキーを使うしかない。</p>
+</div>
+<div class="section" id="ogose-2016">
+<span id="ogose-2016"></span><h2>Ogose(2016)<a class="headerlink" href="#ogose-2016" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><img alt="Ogoseの画面" src="../_images/ogose.png" /></p>
+<p>27日電の伊東が開発した。これまでのUIの問題点を洗い出した上で、改善すべく様々な変更を加えている。デザイン部分(<code class="docutils literal"><span class="pre">MainWindow.xaml</span></code>)は一から作り直したが、コマンド文字列生成は<code class="docutils literal"><span class="pre">NisshuidohenController.cs</span></code>を継続使用した。</p>
+<p>指定できる速度が各軸4段階に増えたことで、多彩な演出が可能となった。また、速度指定のボタンを回転スタート/ストップボタンとは別に用意したため、回転を止めずとも速度を変更できる。</p>
+<p>ウィンドウモードとフルスクリーンモードをボタンで切り替えられる機能も実装した。また、フルスクリーンボタンの横にある「公演モード」ボタンは、使用できる機能を「日周進める」に限定し誤操作を防止する機能である。キーボード操作などにより意図しない状態になるバグが存在するので注意。</p>
+<p>思いがけないことに、ボタンを十字に配置したことで、ゲームコントローラーのボタンと同様の配置となった。本番ではゲームコントローラーを実際に使用し、慣れていない人でも操作ができるという恩恵があった。</p>
+<p>実装についてなど、詳細は<a class="reference internal" href="pc-software.html"><span class="doc">外部制御アプリの記事</span></a>に示すこととする。</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pc-software-code.html" class="btn btn-neutral float-right" title="日周緯度変(Ogoseの実装解説)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pc-software.html" class="btn btn-neutral" title="日周緯度変(外部制御アプリ)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Kenichi Ito.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
