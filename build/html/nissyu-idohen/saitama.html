@@ -1,0 +1,423 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>日周緯度変(さいたま) &mdash; Nichiden 0.1 ドキュメント</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="検索" href="../search.html"/>
+    <link rel="top" title="Nichiden 0.1 ドキュメント" href="../index.html"/>
+        <link rel="next" title="日周緯度変(Ikebukuro)" href="ikebukuro.html"/>
+        <link rel="prev" title="日周緯度変(日周緯度変換機構)" href="kikou.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Nichiden
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">目次:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../main.html">東京大学地文研究会天文部 日電引き継ぎ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../management.html">プロジェクト マネジメント</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kikou.html">日周緯度変(日周緯度変換機構)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">日周緯度変(さいたま)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#">概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#">沿革</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#">使い方</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#">電装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#">プログラム</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#main-c">main.c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#motordrive-c">motordrive.c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uart-c">uart.c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#timer-c">timer.c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#">コンパイルするには</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#">今後の展望</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ikebukuro.html">日周緯度変(Ikebukuro)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pc-software.html">日周緯度変(外部制御アプリ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pc-software-history.html">日周緯度変(外部制御アプリの歴史)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pc-software-code.html">日周緯度変(Ogoseの実装解説)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../buy_parts.html">部品の買い方</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Nichiden</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>日周緯度変(さいたま)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/nissyu-idohen/saitama.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="">
+<span id="id1"></span><h1>日周緯度変(さいたま)<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<ul class="simple">
+<li>書いた人: Kenichi Ito(nichiden_27)</li>
+<li>更新日時: 2017/02/26</li>
+<li>実行に必要な知識・技能: AVRマイコン、電子回路</li>
+<li>タスクの重さ: 3: 数週間</li>
+<li>タスクの必須度: 3: 年による</li>
+<li>元資料<ul>
+<li><code class="docutils literal"><span class="pre">日周・緯度変資料.pdf</span></code> by 岩滝宗一郎(nichiden_22)</li>
+<li><code class="docutils literal"><span class="pre">saitama.pdf</span></code> by 荒田 実樹(nichiden_23)</li>
+</ul>
+</li>
+</ul>
+<div class="section" id="">
+<span id="id2"></span><h2>概要<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div style="font-family:IPAMonaPGothic,'ＭＳ Ｐゴシック',sans-serif;">
+　　　　　　　　　　　　　　　　＼　│　／<br>
+　　　　　　　　　　　　　　　　　／￣＼　　 ／￣￣￣￣￣￣￣￣￣<br>
+　　　　　　　　　　　　　　　─（ ﾟ ∀ ﾟ ）＜　さいたまさいたま！<br>
+　　　　　　　　　　　　　　　　　＼＿／　　 ＼＿＿＿＿＿＿＿＿＿<br>
+　　　　　　　　　　　　　　　　／　│　＼<br>
+　　　　　　　　　　　　　　　　　　　 ∩ ∧　∧　　／￣￣￣￣￣￣￣￣￣￣<br>
+￣￣￣￣￣￣￣￣＼∩ ∧　∧　＼（ ﾟ∀ﾟ）＜　さいたまさいたまさいたま！<br>
+さいたま～～～！ 　 ＞（ ﾟ∀ﾟ ）/ ｜　　　　/　＼＿＿＿＿＿＿＿＿＿＿<br>
+＿＿＿＿＿＿＿＿／ ｜　　　 〈　｜　　　｜<br>
+　　　　　　　　　　　　　 /　／＼\_」　/　／＼」<br>
+  　　　　　　　　　　　　　 ￣　　　　 / ／
+</div><p>日周緯度変コントローラ「さいたま」の使い方や仕組みなどを説明します。壊れて部品交換が必要になった・新しいさいたまを作りたい際に参照してください。</p>
+</div>
+<div class="section" id="">
+<span id="id3"></span><h2>沿革<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>日周緯度変のステッピングモーターを回すには、モータドライバという回路が必要になる。駒場祭プラネではモータドライバと制御基板を内蔵した専用コントローラーを使っており、2002年の<a class="reference external" href="http://twitter.com/fujita_d_h/status/254087988882046976">13日周以降</a>今日に至るまで<strong>「さいたま」</strong> と呼ばれている。</p>
+<p>「さいたま」や他の回路に使用するマイコンは長らくPICであったが、22日電で<strong>AVR</strong> が採用され、23日電、24日電でもこれを踏襲した。PIC時代はほとんどのプログラムがアセンブラで書かれていたが、AVRを使うようになってからはC言語が使われるようになった。</p>
+<p>さいたまはたびたび作り変えられてきたが、現在使用しているのは22が製作した<strong>さいたま6號</strong> である。23は、さいたまをPCから制御するための装置「Ikebukuro」を導入した(Ikebukuroの資料参照)。24では基板を作り直し、その際マイコンを<strong>ATmega</strong> に変更したようだ。</p>
+</div>
+<div class="section" id="">
+<span id="id4"></span><h2>使い方<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><img alt="alt さいたま6號と電源装置を接続している様子" src="../_images/saitama_connection.jpg" /></p>
+<p>背面に日周・緯度用に二つのコネクタがあるので、専用ケーブル※を使ってそれぞれのモータに繋ぐ。次に、モータの電力を確保するため、電源装置から<strong>24V</strong> を右面のDCジャックから供給しよう。</p>
+<p>※コネクタはELコネクタ(日本圧着)6極、ケーブルはVCTF0.5sq 5芯</p>
+<p><img alt="alt さいたま6號のボタン配置図" src="../_images/saitama_buttons.png" /></p>
+<p>コントローラ前面には6つのスイッチがある。現在では<a class="reference internal" href="ikebukuro.html"><span class="doc">外部制御</span></a>でPCから動かす方がはるかに便利だが、PCが使えない緊急時や急いでいるときはこのスイッチを使えばよい。</p>
+<p>ラベルを参照すれば大体の意味は分かることだろう。回転のON/OFFと方向はそれぞれの軸で独立しているが、回転速度は2軸で変えることはできない。<code class="docutils literal"><span class="pre">外部制御ON/OFF</span></code>スイッチは、PCから操作したい場合にONにする。これがONになっているときは、さいたま側のスイッチに反応しなくなるので気をつけよう。</p>
+</div>
+<div class="section" id="">
+<span id="id5"></span><h2>電装<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ケースの両側に付いているねじを全て外すと、さいたまの中身を確認できる。</p>
+<p><img alt="alt さいたま6號の内部" src="../_images/saitama_internal.jpg" /></p>
+<ul class="simple">
+<li>メイン基板<ul>
+<li><strong>画像は23引き継ぎのものだが、この翌年に作り変えられているので注意</strong></li>
+<li>マイコンがスイッチの状態を読取り、モータードライバにCW・CCWパルスを送信する</li>
+<li>スイッチはあまり重要でなかったため、基板作り変えの際取り除かれた模様</li>
+<li>2×3のピンヘッダは、AVRマイコンにプログラムを書き込むためのもの</li>
+</ul>
+</li>
+<li>モータードライバ基板<ul>
+<li>CW・CCWパルスに応じてステッピングモータに電流を流す</li>
+<li>既製品。割と高価だが、部室に未使用の買い置きがある</li>
+</ul>
+</li>
+<li>スイッチ基板<ul>
+<li>トグルスイッチが配置されている</li>
+<li>普通に使っている場合一番壊れやすい部分なのでたまに異常がないか見てあげよう</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="">
+<span id="id6"></span><h2>プログラム<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>23代が<code class="docutils literal"><span class="pre">nissyuido</span></code>ディレクトリ以下に使用したソースコードを残している。<code class="docutils literal"><span class="pre">WinAVR</span></code>環境があれば<code class="docutils literal"><span class="pre">default</span></code>ディレクトリに移動して<code class="docutils literal"><span class="pre">$</span> <span class="pre">make</span></code>コマンドを打てばビルドされるとのことだ。</p>
+<p>ただし、前述の通り<strong>24代でマイコンを<code class="docutils literal"><span class="pre">ATmega328P</span></code>に変更</strong> しており、以前のコードを使用できるかは定かでない。作り変えをする際は、24代の方に問い合わせてみることも検討されたい。</p>
+<p>以下のプログラム解説は、23荒田氏の作成されたドキュメントと同内容である。必要なら氏のPDFや、コード中のコメントなども併せて確認すると良いだろう。</p>
+<div class="section" id="main-c">
+<span id="main-c"></span><h3>main.c<a class="headerlink" href="#main-c" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><img alt="プログラムの流れ&gt;" src="../_images/saitama_program_flow.png" /></p>
+<p>プログラムの起点となる <code class="docutils literal"><span class="pre">main</span></code> 関数が入っている。
+プログラムの大まかな流れは図を参照。</p>
+<p>プログラムは初期化(<code class="docutils literal"><span class="pre">main.c</span></code> の <code class="docutils literal"><span class="pre">init</span></code>関数)の後、メインループ(無限ループ)に入る。ただ、初期化の時にタイマ割り込みを設定しているため、100マイクロ秒ごとに現在メインループで実行されている内容に関係なく「タイマ割り込み」の内容が実行される。</p>
+<p>メインループの処理内容は <code class="docutils literal"><span class="pre">main.c</span></code> を、「タイマ割り込み」の処理内容は
+<code class="docutils literal"><span class="pre">motordrive.c</span></code> を参照されたい。</p>
+<p>外部制御コマンドのフォーマットはここで処理している。</p>
+</div>
+<div class="section" id="motordrive-c">
+<span id="motordrive-c"></span><h3>motordrive.c<a class="headerlink" href="#motordrive-c" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ここが最も重要な部分である。
+ステッピングモーターのドライブ回路に定期的にパルスを送り、指定した速度でモーターを回す。</p>
+<p>モーターを角速度<span class="math">\(Speed\)</span>(コード中では<code class="docutils literal"><span class="pre">m-&gt;current_speed</span></code> <span class="math">\([deg/s]\)</span>)で回すにはどうすればよいか考えてみよう。一回のパルスでモーターが回転する角度はモーターとドライブ回路によって決まっており、<span class="math">\(\mathrm{MotorStep}=0.72 \mathrm{deg}\)</span>(コード中では<code class="docutils literal"><span class="pre">MOTOR_STEP</span></code> <span class="math">\([10^{-2}deg]\)</span>)である。</p>
+<p>AVRのタイマ機能により、<code class="docutils literal"><span class="pre">motordrive</span></code>関数は<span class="math">\(\mathrm{ControlPeriod}=100 \mu\mathrm{s}\)</span> (コード中では<code class="docutils literal"><span class="pre">CONTROL_PERIOD</span></code> <span class="math">\([\mu\mathrm{s}]\)</span>)間隔で呼ばれる。 前回パルスを送ってからの経過時間を<span class="math">\(n\cdot\mathrm{ControlPeriod}\)</span>とする(前回パルスを送ってから<span class="math">\(n\)</span>回目の<code class="docutils literal"><span class="pre">motordrive</span></code>の呼び出し; <span class="math">\(n\)</span>はコード中では<code class="docutils literal"><span class="pre">m-&gt;count</span></code>)。</p>
+<p>このとき、簡単な考察により、<span class="math">\(n\cdot\mathrm{ControlPeriod}\cdot\mathrm{Speed}\ge\mathrm{MotorStep}\)</span>の時に次のパルスを送ればよいことが分かる。</p>
+<p>実際には、速度指定モード・角度指定モードがあったり、速度を徐々に変化させる処理を行っているので、もう少し複雑なプログラムになっている。</p>
+<p>「速度を徐々に変化させる処理」であるが、今のところ、現在の速度と目標速度が一致しなければ一定の加速度を加えるという、比較的単純な制御になっている。
+時間と速度をグラフで表すと図のようになる。赤線が指定した速度、青線が実際の速度である。このように速度を徐々に変化させるようにプログラムの改修を行ったので、もはや<strong>「一旦回転を停止してから回転方向を変更する」必要はない。</strong></p>
+<p><img alt="速度変化" src="../_images/saitama_program_speed.png" /></p>
+<p>角度指定モードの、速度を下げ始めるタイミングについて。</p>
+<p>プログラムが実行されている時点を時刻<span class="math">\(t_0\)</span>とし、時刻<span class="math">\(t_1\)</span>にモーターが停止するとする。 モーターの<span class="math">\(t_0\)</span>における角速度を<span class="math">\(\omega_0\)</span>とする。単位時間当たりのモーターの角速度の変化を <span class="math">\(\alpha\)</span>とする。現在のプログラムでは、<code class="docutils literal"><span class="pre">motordrive</span></code>が呼ばれるたびに速度を<span class="math">\(1 \mathrm{deg/s}\)</span>ずつ増減するので、</p>
+<div class="math">
+\[\alpha=\pm\frac{1 \mathrm{deg/s}}{\mathrm{ControlPeriod}}
+\]</div>
+<p>である。モーターの時刻<span class="math">\(t\)</span>における角度(位置)を<span class="math">\(\theta(t)\)</span>とする。</p>
+<p>時刻<span class="math">\(t\)</span>におけるモーターの角速度と角度はそれぞれ</p>
+<div class="math">
+\[\begin{split}\begin{aligned}
+\omega(t)&amp;=\omega_0+\alpha(t-t_0) \\
+\theta(t)&amp;=\theta(t_0)+\omega_0(t-t_0)+\frac{1}{2}\alpha(t-t_0)^2\end{aligned}
+\end{split}\]</div>
+<p>となる。 時刻<span class="math">\(t_1\)</span>にモーターが停止、すなわち<span class="math">\(\omega(t_1)=0\)</span>より、</p>
+<div class="math">
+\[t_1-t_0=-\frac{\omega_0}{\alpha}
+\]</div>
+<p>である。これを<span class="math">\(\theta(t_1)\)</span>に代入すると、</p>
+<div class="math">
+\[\begin{split}\begin{aligned}
+\theta(t_1)&amp;=\theta(t_0)-\frac{\omega_0^2}{\alpha}
++\frac{1}{2}\alpha\left(-\frac{\omega_0}{\alpha}\right)^2 \\
+%&amp;=\theta(t_0)+\left(-\frac{1}{\alpha}+\frac{1}{2\alpha}\right)\omega_0^2 \\
+&amp;=\theta(t_0)-\frac{1}{2\alpha}\omega_0^2\end{aligned}
+\end{split}\]</div>
+<p>を得る。</p>
+<p>求めたい量は、現在角がどういう値になったら速度を下げ始めるか、その角度である。
+つまり、<span class="math">\(\theta(t_1)-\theta(t_0)\)</span>の値である:</p>
+<div class="math">
+\[\begin{split}\begin{aligned}
+\theta(t_1)-\theta(t_0)&amp;=-\frac{1}{2\alpha}\omega_0^2 \\
+&amp;=\frac{1}{2\left(\frac{1 \mathrm{deg/s}}{\mathrm{ControlPeriod}}\right)}\omega_0^2 \\
+&amp;=\frac{\mathrm{ControlPeriod}}{2(1 \mathrm{deg/s})}\omega_0^2\end{aligned}
+\end{split}\]</div>
+<p>ステップ数に換算するために両辺を<span class="math">\(\mathrm{MotorStep}\)</span>で割ると、</p>
+<div class="math">
+\[\frac{\theta(t_1)-\theta(t_0)}{\mathrm{MotorStep}}
+=\frac{\mathrm{ControlPeriod}}{2(1 \mathrm{deg/s})\mathrm{MotorStep}}\omega_0^2
+\]</div>
+<p>を得る。</p>
+<p>なお、コード中では<span class="math">\(\frac{\mathrm{MotorStep}}{\mathrm{ControlPeriod}}\)</span>に<code class="docutils literal"><span class="pre">MOTOR_MAX_SPEED</span></code>という名前を与えている。</p>
+</div>
+<div class="section" id="uart-c">
+<span id="uart-c"></span><h3>uart.c<a class="headerlink" href="#uart-c" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>外部とシリアル通信するための関数が記述されている。通信データのバッファリングを行っているが、この仕組みが正常に動いているかは検討の余地がある。</p>
+</div>
+<div class="section" id="timer-c">
+<span id="timer-c"></span><h3>timer.c<a class="headerlink" href="#timer-c" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">motordrive</span></code>関数を<span class="math">\(100\mu s\)</span>間隔で呼び出すための設定を行う。
+ぶっちゃけ、<code class="docutils literal"><span class="pre">motordrive</span></code>関数をそのままタイマ割り込みハンドラにし
+ても良い気がする。</p>
+</div>
+<div class="section" id="">
+<span id="id7"></span><h3>コンパイルするには<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ソースコードを編集したら、書き込む前にコンパイルする必要がある。<code class="docutils literal"><span class="pre">default</span></code>ディレクトリ以下に<code class="docutils literal"><span class="pre">Makefile</span></code>が入っているので、<code class="docutils literal"><span class="pre">Makefile</span></code>の意味が分かる人は利用すると良いだろう。</p>
+<p>Makefileの意味が分からない人は、Atmel Studioだか何だか知らないが、適当にプロジェクトを作ってファイルを放り込んでコンパイルすればよろしい。その際、</p>
+<ul class="simple">
+<li>マイコンの種類は ATmega328P</li>
+<li>クロック周波数は 16MHz: プリプロセッサの設定をいじって、<code class="docutils literal"><span class="pre">F_CPU=16000000UL</span></code>がpredefinedになるようにする。(コンパイラオプションとして<code class="docutils literal"><span class="pre">-DF_CPU=16000000UL</span></code>が渡されればOK)</li>
+<li>言語規格はC99+GNU拡張(コンパイラオプションとして<code class="docutils literal"><span class="pre">-std=gnu99</span></code>が渡されればOK)</li>
+</ul>
+<p>となるように注意する。</p>
+</div>
+</div>
+<div class="section" id="">
+<span id="id8"></span><h2>今後の展望<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>もしもさいたまを作り替えるようなら、もう少し強力なマイコンを搭載すること、センサー(後述)対応にすること、<strong>通信経路</strong> についてもっとしっかり考えること(<code class="docutils literal"><span class="pre">RS-485</span></code>にするのか、全部<code class="docutils literal"><span class="pre">RS-232</span></code>とUSBシリアル通信で統一するのか)が望ましい。</p>
+<p>23代で相対角度指定が実装されたが(現在使われていない)、<strong>絶対角度指定</strong> があると良いだろう。つまり、投影される星空を見ながら日周緯度変を操作するのではなく、「緯度は何度、日周は何月何日何時」という形で指定できるようにする。</p>
+<p>絶対角度指定のためには、角度センサーを設置して現在位置を取得するか、一ヶ所にフォトインタラプタなどを設置して初期位置を判別できるようにして、後はステッピングモーターのステップ数で現在位置を把握する、などの方法が考えられる。</p>
+<p>いずれにせよ、さいたまを作り直す際に日周緯度変に設置したセンサーを接続することを考慮しておくとよいだろう。</p>
+<p>PC側のソフトウエアだが、PCで操作する以上何らかのメリットが欲しい。
+速度を柔軟に調節できるようにはなったが、操作性にはまだまだ改善の余地がある。
+リアルタイムで操作するには、マウスよりもキーボード、欲を言えばタッチパネルでの操作の方がいい。いろいろ工夫してみると良いだろう。</p>
+<p>もう一つの方向性として、操作の記録・再生が考えられる。
+ボタン一つで一本のソフトをまるまる上映できると楽だろう。ただし、ソフトウエアを実装する手間、操作を記録しておく手間に見合うメリットがあるかよく考える必要がある。</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ikebukuro.html" class="btn btn-neutral float-right" title="日周緯度変(Ikebukuro)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="kikou.html" class="btn btn-neutral" title="日周緯度変(日周緯度変換機構)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Kenichi Ito.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

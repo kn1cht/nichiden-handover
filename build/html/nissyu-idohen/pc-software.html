@@ -1,0 +1,391 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>日周緯度変(外部制御アプリ) &mdash; Nichiden 0.1 ドキュメント</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="検索" href="../search.html"/>
+    <link rel="top" title="Nichiden 0.1 ドキュメント" href="../index.html"/>
+        <link rel="next" title="日周緯度変(外部制御アプリの歴史)" href="pc-software-history.html"/>
+        <link rel="prev" title="日周緯度変(Ikebukuro)" href="ikebukuro.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Nichiden
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">目次:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../main.html">東京大学地文研究会天文部 日電引き継ぎ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../management.html">プロジェクト マネジメント</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kikou.html">日周緯度変(日周緯度変換機構)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="saitama.html">日周緯度変(さいたま)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ikebukuro.html">日周緯度変(Ikebukuro)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">日周緯度変(外部制御アプリ)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#">概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#">沿革</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ogose">Ogoseの特徴と使い方</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#">基本操作</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#">通信プログラム</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#">シリアル通信の基本</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#net">.Netでのシリアル通信</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#">他の言語でのシリアル通信</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#">ユーザインターフェース</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#">今後の展望</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pc-software-history.html">日周緯度変(外部制御アプリの歴史)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pc-software-code.html">日周緯度変(Ogoseの実装解説)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../buy_parts.html">部品の買い方</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Nichiden</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>日周緯度変(外部制御アプリ)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/nissyu-idohen/pc-software.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="">
+<span id="id1"></span><h1>日周緯度変(外部制御アプリ)<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<ul class="simple">
+<li>書いた人: Kenichi Ito(nichiden_27)</li>
+<li>更新日時: 2017/03/04</li>
+<li>実行に必要な知識・技能: シリアル通信、C#</li>
+<li>タスクの重さ: 3: 数週間</li>
+<li>タスクの必須度: 4: 毎年やるべき</li>
+</ul>
+<div class="section" id="">
+<span id="id2"></span><h2>概要<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>日周緯度変の<a class="reference internal" href="ikebukuro.html"><span class="doc">外部制御</span></a>には、大きな可能性があります。PCを使える以上かなり複雑な操作も自動化できるためです。</p>
+<p>ただし、本番で日周緯度変を動かすのは人間である部員たち。
+それも、プログラムの挙動を知っている日電員だけが操作するとは限りません(26・27と、かごしいにも日周緯度変操作を手伝って貰っています)。</p>
+<p>誰にでも使いやすい日周緯度変外部制御アプリを作るために注意すべきことを書きます。</p>
+</div>
+<div class="section" id="">
+<span id="id3"></span><h2>沿革<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><strong>過去に開発されたアプリケーションが多数にのぼるため、<a class="reference internal" href="pc-software-history.html"><span class="doc">外部制御アプリの歴史</span></a>に分離する。</strong></p>
+</div>
+<div class="section" id="ogose">
+<span id="ogose"></span><h2>Ogoseの特徴と使い方<a class="headerlink" href="#ogose" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">Ogose</span></code>は、27代日電で作成した、2017/03/01現在最新の外部制御アプリである。</p>
+<p>特徴は<a class="reference internal" href="pc-software-history.html"><span class="doc">沿革</span></a>の方に文章で書いたので、ここでは簡単に箇条書きするにとどめる。</p>
+<p><img alt="Ogoseの画面" src="../_images/ogose.png" /></p>
+<ul class="simple">
+<li>各軸4段階で速度を指定</li>
+<li>回転中の速度変更が可能</li>
+<li>回転の開始/停止はトグルボタン(押すたびにON/OFFが切り替わる)</li>
+<li>フルスクリーン切り替えボタン</li>
+<li>誤操作防止用の「公演モード」</li>
+<li>キーボードでも操作可能</li>
+<li>フリーソフトを使ってゲームコントローラに操作を割り当て可能</li>
+</ul>
+<div class="section" id="">
+<span id="id4"></span><h3>基本操作<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>起動したら、まずは最上部からシリアルポートを選んで<strong>接続ボタン</strong> を押す。
+さいたまを<code class="docutils literal"><span class="pre">Ikebukuro</span></code>を介して繋いだだけの状態ならポートは一つしか出ないことがほとんどだが、複数出たとしても一つずつ試してモーターが動くかどうかで判断すればよい。</p>
+<p>未接続のままコマンドを送る操作をした場合は、エラーメッセージとともに送信するコマンドが表示される。
+接続していないことに気づけるようにする一方、わざと未接続にすることでコマンド送信のデバッグも可能だ。</p>
+<p>実際に日周緯度変を動かすときは、左側と上側にある<strong>速度切り替えボタン</strong> から速度を選び、動かしたい方向のボタンをクリックする。
+起動後に一度も速度を選んでいないときは、各軸とも「速い」速度が選択される。</p>
+<p>回転開始ボタンは押すと「停止」に表示が切り替わり、再度押すと回転が停止する。
+反対方向のボタンは「停止」するまでグレーアウトしてクリックに反応しない。これは、ボタンの表示がおかしくなるのを防ぐためである。</p>
+<p><strong>フルスクリーンボタン</strong> にチェックするとフルスクリーンになる。
+画面全体が黒背景になるので、本番中はフルスクリーンが望ましい。
+<strong>公演モード</strong> ボタンは、ONにすると警告が表示され日周を進めることしかできなくなる。</p>
+<p>モーターの回転はキーボード操作でもできる。</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">W</span></code>: 緯度+</li>
+<li><code class="docutils literal"><span class="pre">A</span></code>: 日周戻す</li>
+<li><code class="docutils literal"><span class="pre">S</span></code>: 緯度-</li>
+<li><code class="docutils literal"><span class="pre">D</span></code>: 日周進める</li>
+</ul>
+<p>と対応している。PCゲーマーには馴染みのある配置かと思う。</p>
+<p><code class="docutils literal"><span class="pre">Ogose</span></code>のコードの解説は、たいへん長いので別記事とする。</p>
+<p>-&gt; <a class="reference internal" href="pc-software-code.html"><span class="doc">Ogoseの実装解説</span></a></p>
+</div>
+</div>
+<div class="section" id="">
+<span id="id5"></span><h2>通信プログラム<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="">
+<span id="id6"></span><h3>シリアル通信の基本<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><a class="reference external" href="ikebukuro.md"><code class="docutils literal"><span class="pre">Ikebukuro</span></code>の記事</a>にある通り、パソコン側からは｀はシリアルポートとして見える。
+よって、シリアルポートにアクセスするプログラムを書けばよい。</p>
+<p>ポート名は、Windowsであれば<code class="docutils literal"><span class="pre">COM1</span></code>や<code class="docutils literal"><span class="pre">COM4</span></code>のように、「&#8217;<code class="docutils literal"><span class="pre">COM</span></code>&#8216;+数字」の形式である。
+Mac OS XやLinuxのようなUNIX環境であれば、<code class="docutils literal"><span class="pre">/dev/tty.usbserial-A5017ABT</span></code>である。</p>
+<p>シリアルポートの設定は、さいたま6號側のプログラム中に記述してある設定と一致させなければならない。
+現時点での設定は、</p>
+<ul class="simple">
+<li>baud rate: 2400</li>
+<li>parity: none</li>
+<li>char bits: 8</li>
+<li>stopbit: 1</li>
+</ul>
+<p>である。baud rateはこの値である必然性はないので、変えても良い(さいたま6號のプログラムも一緒に変更すること！)。</p>
+<p>通信経路の途中で<code class="docutils literal"><span class="pre">RS485</span></code>を使っている関係上、シリアルポートには読み取りと書き込みのいずれか一方しかできない。</p>
+<p><code class="docutils literal"><span class="pre">RS485</span></code>の通信方向の切り替えには、シリアルポートのRTS端子を使う。
+RTSが<code class="docutils literal"><span class="pre">HIGH</span></code>になるとパソコン側から日周緯度変側への通信ができ、<code class="docutils literal"><span class="pre">LOW</span></code>になると逆方向の通信ができる。
+コマンドを送信する直前にRTSを<code class="docutils literal"><span class="pre">HIGH</span></code>にし、終了したら<code class="docutils literal"><span class="pre">LOW</span></code>に戻すといいだろう。</p>
+</div>
+<div class="section" id="net">
+<span id="net"></span><h3>.Netでのシリアル通信<a class="headerlink" href="#net" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">.Net</span> <span class="pre">Framework</span></code>を使う場合は、<code class="docutils literal"><span class="pre">System.IO.Ports</span></code>名前空間以下にある<code class="docutils literal"><span class="pre">SerialPort</span></code>クラスを利用すると便利である。
+Mac OS XやLinuxでは<code class="docutils literal"><span class="pre">.Net</span></code>のオープンソース実装である<code class="docutils literal"><span class="pre">Mono</span></code>を利用できるが、<code class="docutils literal"><span class="pre">Mono</span></code>においても同様である。</p>
+<p>以下ではC#のコード例を示す。</p>
+<p>まず、ソースコードの冒頭に以下の文を書いておくと便利であろう:</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System.IO.Ports</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>通信を開始する前に、まずポートを開く：</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="n">SerialPort</span> <span class="n">port</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SerialPort</span><span class="p">(</span>
+  <span class="n">portName</span><span class="p">:</span><span class="n">portName</span><span class="p">,</span>
+  <span class="n">baudRate</span><span class="p">:</span><span class="m">2400</span><span class="p">,</span>
+  <span class="n">parity</span><span class="p">:</span><span class="n">Parity</span><span class="p">.</span><span class="n">None</span><span class="p">,</span>
+  <span class="n">dataBits</span><span class="p">:</span><span class="m">8</span><span class="p">,</span>
+  <span class="n">stopBits</span><span class="p">:</span><span class="n">StopBits</span><span class="p">.</span><span class="n">One</span>
+<span class="p">);</span>
+<span class="n">port</span><span class="p">.</span><span class="n">Open</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>この後、<code class="docutils literal"><span class="pre">port.IsOpen</span></code>により、ポートを開くのに成功したか確認しておこう。</p>
+<p>実際に通信するには<code class="docutils literal"><span class="pre">SerialPort.Write</span></code>メソッドを使う。プログラムを終了する際には、<code class="docutils literal"><span class="pre">port.Close()</span></code>によりポートを閉じておく。</p>
+</div>
+<div class="section" id="">
+<span id="id7"></span><h3>他の言語でのシリアル通信<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>日電では23からC#で外部制御アプリを開発してきたが、他の各種の言語でもシリアル通信を扱えるので記しておく。</p>
+<ul class="simple">
+<li>C, Lua: <a class="reference external" href="https://github.com/ynezz/librs232/"><code class="docutils literal"><span class="pre">librs232</span></code></a></li>
+<li>Lua: <code class="docutils literal"><span class="pre">LuaSys</span></code></li>
+<li>Python: <a class="reference external" href="http://pyserial.sourceforge.net/"><code class="docutils literal"><span class="pre">pySerial</span></code></a></li>
+<li>Ruby: <a class="reference external" href="http://ruby-serialport.rubyforge.org/"><code class="docutils literal"><span class="pre">ruby-serialport</span></code></a></li>
+<li>Java: <code class="docutils literal"><span class="pre">Java</span> <span class="pre">Communications</span> <span class="pre">API</span></code> / <code class="docutils literal"><span class="pre">RXTX</span></code>(Windows)</li>
+<li>JavaScript(Node.js): <a class="reference external" href="https://www.npmjs.com/package/serialport"><code class="docutils literal"><span class="pre">serialport</span></code></a></li>
+</ul>
+<p>それぞれの使い方やインストール方法についてはググって欲しい。</p>
+</div>
+<div class="section" id="">
+<span id="id8"></span><h3>ユーザインターフェース<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>日周緯度変をある程度誰でも動かせるようにするには、GUIは欠かせない。歴代日電では、GUI開発にWindows FormアプリケーションやWPFを用いてきた。
+もちろん他にもGUIのフレームワークは星の数ほどあるが、時間も限られている以上、定番で枯れた技術を使うのが無難ではなかろうか。</p>
+<p>一つの可能性としては、最近イケイケのWebアプリがある。
+ChromeとJavaScriptをベースにデスクトップアプリを実現する<code class="docutils literal"><span class="pre">Electron</span></code>など、ここ最近急速にシェアを伸ばしている技術もある。
+もしあなたがそういった技術を得意としているなら、乗り換える価値はあるかもしれない。</p>
+</div>
+</div>
+<div class="section" id="">
+<span id="id9"></span><h2>今後の展望<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><strong>コントロールの操作性</strong> にはまだまだ改善の余地がある。
+本番でリアルタイムの操作をするには、マウスよりもキーボードがいいし、タッチパネルやゲームコントローラーといった馴染みのある操作系も役に立つだろう。
+ゲームコントローラーは27ではフリーソフトでキー操作と無理やり関連付けしたが、<code class="docutils literal"><span class="pre">DirectInput</span></code>を使えば自前でも利用できる。</p>
+<p>さらなる方向性として、<strong>操作の記録・再生</strong> が考えられる。
+23や25で行ってきたことを発展させ、ボタン一つで一本のソフトをまるまる上映できるようになれば楽だろう。</p>
+<p>ただし、当然ソフトの指示は毎年変わるので、開発の負担は増加する。
+ライブ解説ではタイミングを人力で判断せねばならず、想定外の事態も起こりうる以上、全自動化への道は平坦ではない。
+コストに見合うメリットが得られるような仕組みを、ぜひ考案してほしい。</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pc-software-history.html" class="btn btn-neutral float-right" title="日周緯度変(外部制御アプリの歴史)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ikebukuro.html" class="btn btn-neutral" title="日周緯度変(Ikebukuro)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Kenichi Ito.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

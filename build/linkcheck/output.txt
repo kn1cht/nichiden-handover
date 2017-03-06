@@ -1,0 +1,6 @@
+buy_parts.md:36: [redirected permanently] http://akizukidenshi.com/ to http://akizukidenshi.com/catalog/default.aspx
+buy_parts.md:41: [redirected permanently] http://akizukidenshi.com/ to http://akizukidenshi.com/catalog/default.aspx
+buy_parts.md:86: [redirected permanently] http://akizukidenshi.com/ to http://akizukidenshi.com/catalog/default.aspx
+buy_parts.md:109: [redirected permanently] http://www.maxonjapan.co.jp/ to http://www.maxonjapan.co.jp/maxon/view/content/index
+nissyu-idohen/pc-software.md:65: [local] ikebukuro.md
+nissyu-idohen/saitama.md:29: [redirected permanently] http://twitter.com/fujita_d_h/status/254087988882046976 to https://twitter.com/fujita_d_h/status/254087988882046976
