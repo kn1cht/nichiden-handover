@@ -11,7 +11,7 @@
 `Ogose`のソースコードを読む、あるいは書き換える際に参考にしてください。
 
 ## ファイル構成
-`Ogose`のソースファイル等は、`Ogose`フォルダ内に入っている。いかにファイル・ディレクトリ構成の抜粋を示す。
+`Ogose`のソースファイル等は、`Ogose`フォルダ内に入っている。以下にファイル・ディレクトリ構成の抜粋を示す。
 ```
 Ogose
 ├── Ogose
@@ -37,7 +37,7 @@ Ogose
 └── Ogose.sln
 ```
 
-見た目には複雑で身構えてしまうかもしれない。
+一見複雑で身構えてしまうかもしれない。
 ただ、`Visual Studio(以下VS)`でプロジェクトを作成すると自動で生成されるファイルがほとんどで、実際に開発者が触るべきファイルは多くない。
 
 `Ogose`直下には`Ogose.sln`がある。これは「ソリューション(開発プロジェクトをまとめたもの)」の状態を管理している。
@@ -53,7 +53,7 @@ slnファイルをダブルクリックするか、VS内の読み込みメニュ
 
 ## App.xaml
 `App.xaml`や`App.xaml.cs`の内容は、GUIのみならずアプリケーション全体に適用される。
-何も書かなくても問題ないが、`Ogose`では画面デザインに関する記述を全てこちらに分離した。[MainWindow.xaml](#mainwindow-xaml)が長くなりすぎないようにするのが目的である。
+何も書かなくても問題ないが、`Ogose`ではコントロールの外見に関する記述をこちらに分離した。[MainWindow.xaml](#mainwindow-xaml)が長くなりすぎないようにするのが目的である。
 
 XAML(ざむる)は、XMLをベースとしたGUIの記述言語である。XMLのタグを用いて階層状に指示を書けるようになっている。
 なお、`<>`で囲まれた単位は「タグ」とも「要素」とも言うが、GUIの要素と混同する危険があるので、ここでは「タグ」に統一する。
@@ -285,7 +285,7 @@ WPFのレイアウト要素はいくつかあるが、`Ogose`では`<Grid>`タ�
 #### コマンドの使い方
 コマンドは高機能の代わりに難解なので、使い始めるときは[この記事](http://techoh.net/wpf-make-command-in-5steps/)あたりを参考にした。
 
-①まず、`RoutedCommand`クラスを宣言する。絶賛コピペなので意味はよく知らない。
+まず、`RoutedCommand`クラスを宣言する。絶賛コピペなので意味はよく知らない。
 `diurnalPlus`は日周を進めるという意味だ。
 
 ```c#
@@ -293,7 +293,7 @@ WPFのレイアウト要素はいくつかあるが、`Ogose`では`<Grid>`タ�
 public readonly static RoutedCommand diurnalPlusButtonCommand = new RoutedCommand("diurnalPlusButtonCommand", typeof(MainWindow));
 ```
 
-②この状態ではまだコマンドとボタン・処理が結びついていない。
+この状態ではまだコマンドとボタン・処理が結びついていない。
 CommandBindingという操作でこれらを紐付けする。これもコピペ。
 
 ```c#
@@ -331,7 +331,7 @@ private void toggleButton_CanExecuted(object sender, CanExecuteRoutedEventArgs e
 上手い方法が全然思いつかなかったので、`isEnabled`という連想配列を作っておいて、呼び出し元ボタンの名前をもとに参照するようにした。
 呼び出し元は、引数`sender`に与えられて、`ToggleButton`など元々のクラスに型変換するとプロパティを見たりできる。
 
-③さて、`private void initCommandBindings()`をプログラム開始時に実行しなければバインディングが適用されない。
+さて、`private void initCommandBindings()`をプログラム開始時に実行しなければバインディングが適用されない。
 `MainWindow`のコンストラクタ内で呼び出しておく。
 ```c#
 public MainWindow()
@@ -343,7 +343,7 @@ public MainWindow()
 
 考えてみれば大したことはしてないので、コンストラクタの中に直接書いてしまっても良かったかもしれない。
 
-④あとはXAML側でコマンドを呼び出せるようにするだけである。
+あとはXAML側でコマンドを呼び出せるようにするだけである。
 `<Window>`タグ内にローカルの名前空間(`xmlns:local="clr-namespace:Ogose"`)がなければ追加しておこう。
 各コントロールの`Command`プロパティにコマンドをコピペする。
 
@@ -357,7 +357,7 @@ public MainWindow()
 
 #### キー操作でコマンドを実行する
 ここまできたら、キー操作でもコマンドが実行されるようにしたい。
-XAMLで`<KeyBinding>`タグを使えば実現できるのだが、なんとこれではボタンがsenderにならない。
+XAMLで`<KeyBinding>`タグを使えば実現できるのだが、なんとこれではボタンが`sender`にならない。
 色々調べても対処法が見つからないので、結局キー操作イベントから無理やりコマンドを実行させるしかなかった。
 
 ```c#
@@ -387,7 +387,7 @@ private void Window_KeyDown(object sender, KeyEventArgs e)
 `e.Parameter`というのは、仕様では「コマンドに固有の情報を渡す」とされていて、要は自由に使っていいようだ。
 キーボード操作によるものかどうか、コマンドの処理で判定するために"KeyDown"という文字列(勝手に決めた)を渡している。
 
-#### コマンドごとの処理
+#### コマンドで呼ばれる処理
 最後に、CommandBindingでコマンドと紐付けた関数について書く。
 日周を進めるボタンのものは以下のようになっている。
 
@@ -411,10 +411,232 @@ private void diurnalPlusButtonCommand_Executed(object sender, ExecutedRoutedEven
 ```
 
 どうしてこのような汚いコードになったのか弁解しておこう。
+この関数は、三箇所から呼び出される可能性がある。
 
-### イベントハンドラ
-コマンド関連以外の残りのコードの大部分は、GUIおなじみのイベントハンドラである。
-どんな時にどの関数が呼ばれるかは`MainWindow.xaml`を見れば書いてあるので、ここでは触れない。
+まず、対応するボタンがクリックされた場合。
+クリックした時点でボタンの`IsChecked`プロパティが反転するので、falseならモータを停止させ、trueなら動かせば良い。
 
-### NisshuidohenController.cs
-TODO
+ところが、キー操作イベントから呼ばれた場合、ボタンの状態は変わらない。
+最初のif文で、`e.Parameter.ToString() == "KeyDown"`であるときだけ、ボタンの`IsChecked`を反転させることで対応した。
+
+もう一つの可能性は、速度を切り替えたときだ。
+日周の速度を管理している`diurnalRadioButton`がクリックされたとき実行されるコードを見てみよう。
+
+```c#
+private void diurnalRadioButton_Checked(object sender, RoutedEventArgs e)
+{
+    var radioButton = (RadioButton)sender;
+    if (radioButton.Name == "diurnalRadioButton1") diurnal_speed = SPEED_DIURNAL["very_high"];
+    else if (radioButton.Name == "diurnalRadioButton2") diurnal_speed = SPEED_DIURNAL["high"];
+    else if (radioButton.Name == "diurnalRadioButton3") diurnal_speed = SPEED_DIURNAL["low"];
+    else if (radioButton.Name == "diurnalRadioButton4") diurnal_speed = SPEED_DIURNAL["very_low"];
+
+    if (diurnalPlusButton.IsChecked == true)
+        diurnalPlusButtonCommand.Execute(null, diurnalPlusButton);
+    if (diurnalMinusButton.IsChecked == true)
+        diurnalMinusButtonCommand.Execute(null, diurnalMinusButton);
+}
+```
+
+前半は、`sender`がどの項目かによって速度を変更しているだけなので問題ないだろう。
+後半で、「日周進める」か「日周戻す」がCheckedになっていれば、新しい設定をさいたまに送るためコマンドを実行している。
+
+このときボタンの`IsChecked`プロパティはすでにtrueなので、二重に変更されないよう`e.Parameter`をnullとしている。
+だが、考えてみればさいたまと通信さえすればいいので、**ボタンなど経由せず直接`emitCommand()`(さいたまにコマンドを送る関数)を呼べばいいだけである。**
+
+総じて、コマンドを使うことにこだわりすぎて酷いコードになってしまった。
+バグの原因になっている可能性もあるので、後任の方は綺麗に書き直してやって頂きたい。
+
+### シリアル通信
+`MainWindow.xaml.cs`のうちシリアル通信に関する記述の大部分は、24の`Fujisawa`から受け継いでいる。
+この項では、通信を行うためのコードを読み、必要に応じて解説を加える。
+
+#### ポート一覧の取得
+```c#
+/// <summary>
+/// シリアルポート名を取得し前回接続したものがあればそれを使用 ボーレートの設定
+/// </summary>
+/// <param name="ports[]">取得したシリアルポート名の配列</param>
+/// <param name="port">ports[]の要素</param>
+private void Window_Loaded(object sender, RoutedEventArgs e)
+{
+    var ports = SerialPort.GetPortNames();
+    foreach (var port in ports)
+    {
+        portComboBox.Items.Add(new SerialPortItem { Name = port });
+    }
+    if (portComboBox.Items.Count > 0)
+    {
+        if (ports.Contains(Settings.Default.LastConnectedPort))
+            portComboBox.SelectedIndex = Array.IndexOf(ports, Settings.Default.LastConnectedPort);
+        else
+            portComboBox.SelectedIndex = 0;
+    }
+    serialPort = new SerialPort
+    {
+        BaudRate = 2400
+    };
+}
+```
+
+`Window_Loaded`は、ウィンドウが描画されるタイミングで実行される。  
+処理としては、シリアルポート一覧を取得して`portComboBox`に候補として追加し、さらに前回の接続先と照合するというものだ。
+また、`SerialPort`クラスのオブジェクト`serialPort`を宣言し、ボーレートを2400に設定している。
+
+foreach文の中で使用している`SerialPortItem`は自作クラスで、`ToString()`をオーバーライドしている。
+何の為のものかは理解していないので、興味があればソースコードを確認してほしい。
+
+#### ポートへの接続
+接続ボタンがクリックされると、`ConnectButton_IsCheckedChanged()`が呼ばれる。
+その中身はこうだ。
+
+```c#
+    /// <summary>
+    /// PortComboBoxが空でなくConnectButtonがチェックされている時にシリアルポートの開閉を行う シリアルポートの開閉時に誤動作が発生しないよう回避している
+    /// </summary>
+    private void ConnectButton_IsCheckedChanged(object sender, RoutedEventArgs e)
+    {
+        var item = portComboBox.SelectedItem as SerialPortItem;
+        if (item != null && ConnectButton.IsChecked.HasValue)
+        {
+            bool connecting = ConnectButton.IsChecked.Value;
+            ConnectButton.Checked -= ConnectButton_IsCheckedChanged;
+            ConnectButton.Unchecked -= ConnectButton_IsCheckedChanged;
+            ConnectButton.IsChecked = null;
+
+            if (serialPort.IsOpen) serialPort.Close();
+            if (connecting)
+            {
+                serialPort.PortName = item.Name;
+                try
+                {
+                    serialPort.WriteTimeout = 500;
+                    serialPort.Open();
+                }
+                catch (IOException ex)
+                {
+                    ConnectButton.IsChecked = false;
+                    MessageBox.Show(ex.ToString(), ex.GetType().Name);
+                    return;
+                }
+                catch (UnauthorizedAccessException ex)
+                {
+                    ConnectButton.IsChecked = false;
+                    MessageBox.Show(ex.ToString(), ex.GetType().Name);
+                    return;
+                }
+                Settings.Default.LastConnectedPort = item.Name;
+                Settings.Default.Save();
+            }
+
+            ConnectButton.IsChecked = connecting;
+            ConnectButton.Checked += ConnectButton_IsCheckedChanged;
+            ConnectButton.Unchecked += ConnectButton_IsCheckedChanged;
+            portComboBox.IsEnabled = !connecting;
+        }
+        else
+        {
+            ConnectButton.IsChecked = false;
+        }
+    }
+```
+
+かなり長いが、順番に見ていこう。
+最初のif文はポートが選択されているかチェックしているだけだ。
+`bool connecting`はポートを開くのか閉じるのかの分岐に使われている。
+後はtry-catch文でポートを開き、エラーが出れば警告を出すのだが、このブロックの上下に変な記述がある。
+
+```c#
+ConnectButton.Checked -= ConnectButton_IsCheckedChanged;
+ConnectButton.Unchecked -= ConnectButton_IsCheckedChanged;
+ConnectButton.IsChecked = null;
+/// (省略)
+ConnectButton.IsChecked = connecting;
+ConnectButton.Checked += ConnectButton_IsCheckedChanged;
+ConnectButton.Unchecked += ConnectButton_IsCheckedChanged;
+```
+
+これはおそらくコメントの言う「シリアルポートの開閉時に誤動作が発生しないよう回避している」部分であろう。
+`MainWindow.xaml`の、`ConnectButton`に関する部分を見てみよう。
+
+```xml
+<!-- MainWindow.xaml -->
+<ToggleButton x:Name="ConnectButton" Checked="ConnectButton_IsCheckedChanged" Unchecked="ConnectButton_IsCheckedChanged" Margin="0">
+```
+
+`Checked`と`Unchecked`は、いずれもボタンがクリックされた時に発生するイベントだ。
+`ConnectButton.Checked -= ConnectButton_IsCheckedChanged;`などとしておくことで、ポートへの接続を試行している間ボタンのクリックを無効化しているようだ。
+このコードを削除した状態でボタンを連打しても特に問題はなかったので効果のほどは分からないが、あっても害にはならないだろう。
+
+
+#### ポート一覧の更新
+ポート一覧のコンボボックスは、開くたびにシリアルポートを取得し直している。
+`portComboBox_DropDownOpened()`に処理が書かれているが、`Window_Loaded()`と同じようなことをしているだけなので省略する。
+
+#### コマンド送信
+`emitCommand()`は、コマンド文字列を与えて実行すると接続しているポートに送信してくれる。
+`serialPort.IsOpen`がfalseの時は、警告とともにコマンド文字列をMessageBoxに表示する。
+
+```c#
+/// <summary>
+/// シリアルポートが開いている時にコマンドcmdをシリアルポートに書き込み閉じている時はMassageBoxを表示する
+/// </summary>
+/// <param name="cmd"></param>
+private void emitCommand(string cmd)
+{
+    if (serialPort.IsOpen)
+    {
+        var bytes = Encoding.ASCII.GetBytes(cmd);
+        serialPort.RtsEnable = true;
+        serialPort.Write(bytes, 0, bytes.Length);
+        Thread.Sleep(100);
+        serialPort.RtsEnable = false;
+    }
+
+    else
+    {
+        MessageBox.Show("Error: コントローラと接続して下さい\ncommand: "+ cmd, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+    }
+}
+```
+
+### 公演モード(誤操作防止モード)
+`checkBox2`は公演モードのON/OFFを管理している。
+公演モードは、日周を進める以外の機能を制限して誤操作を防ぐ為のものだ。
+ただ、これもかなり直前になって放り込んだため無理やりな実装になっている。
+
+```c#
+private void checkBox2_Changed(object sender, RoutedEventArgs e)
+{
+    var result = new MessageBoxResult();
+    isPerfMode = (bool)(((CheckBox)sender).IsChecked);
+    if(isPerfMode)
+    {
+      result = MessageBox.Show("公演モードに切り替えます。\n日周を進める以外の動作はロックされます。よろしいですか？", "Changing Mode", MessageBoxButton.YesNo);
+    }
+    else
+    {
+      result = MessageBox.Show("公演モードを解除します。\nよろしいですか？", "Changing Mode", MessageBoxButton.YesNo);
+    }
+    if(result == MessageBoxResult.No) return;
+    List<string> keyList = new List<string>(isEnabled.Keys); // isEnabled.Keysを直接見に行くとループで書き換えてるので実行時エラーになる
+    foreach (string key in keyList)
+    {
+        if(key != "diurnalMinusButton") isEnabled[key] = !isPerfMode;
+    }
+    latitudeRadioButton1.IsEnabled = latitudeRadioButton2.IsEnabled = latitudeRadioButton3.IsEnabled = latitudeRadioButton4.IsEnabled = !isPerfMode;
+}
+```
+
+他の関数等で公演モードかどうかいちいち判定する必要が出てきたので、`isPerfMode`というbool値に記録するようにした。
+たいへん紛らわしいが、`diurnalMinusButton`が「日周進める」ボタンである。
+実機で運用した際に、かごしいの実際の動きを合わせてラベルだけ交換したため逆になっている。
+
+## NisshuidohenController.cs
+さいたまに送るコマンド文字列を生成するための`NisshuidohenController`クラスが実装されている。
+27では、24が書いたものをほぼそのまま利用した。
+一点のみ、日周・緯度のギヤ比の換算もこちらでやってしまうように変更した。
+これで、クラスの外側からはかごしいを回したい角速度(1 deg/sなど)を指定すればいいようになった。
+
+使うだけなら`RotateDiurnalBySpeed()`や`RotateLatitudeBySpeed()`をブラックボックスとして利用するだけでいいだろう。
+ただし、23や25が使っていた角度指定メソッドは残してあるだけで一切触っていないので、使いたい場合はしっかりデバッグしてほしい。
