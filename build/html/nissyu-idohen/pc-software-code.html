@@ -34,7 +34,7 @@
               href="../genindex.html"/>
         <link rel="search" title="検索" href="../search.html"/>
     <link rel="top" title="Nichiden 0.1 ドキュメント" href="../index.html"/>
-        <link rel="next" title="部品の買い方" href="../buy_parts.html"/>
+        <link rel="next" title="配線" href="../haisen.html"/>
         <link rel="prev" title="日周緯度変(外部制御アプリの歴史)" href="pc-software-history.html"/> 
 
   
@@ -95,43 +95,44 @@
 <li class="toctree-l1"><a class="reference internal" href="pc-software.html">日周緯度変(外部制御アプリ)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pc-software-history.html">日周緯度変(外部制御アプリの歴史)</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">日周緯度変(Ogoseの実装解説)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#">概要</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#">ファイル構成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">ファイル構成</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#app-xaml">App.xaml</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#">ブラシ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#">コントロールテンプレート</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#">スタイル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">ブラシ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">コントロールテンプレート</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">スタイル</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#mainwindow-xaml">MainWindow.xaml</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#">編集方法について</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#">グリッド</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#">グリッドの使い方</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">編集方法について</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">グリッド</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">グリッドの使い方</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#ui">UI要素</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#mainwindow-xaml-cs">MainWindow.xaml.cs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#">コマンド</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#">コマンドの使い方</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#">キー操作でコマンドを実行する</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#">コマンドで呼ばれる処理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">コマンド</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id10">コマンドの使い方</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">キー操作でコマンドを実行する</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">コマンドで呼ばれる処理</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#">シリアル通信</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#">ポート一覧の取得</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#">ポートへの接続</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#">ポート一覧の更新</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#">コマンド送信</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">シリアル通信</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id14">ポート一覧の取得</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15">ポートへの接続</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id16">ポート一覧の更新</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id17">コマンド送信</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#">公演モード(誤操作防止モード)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">公演モード(誤操作防止モード)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#nisshuidohencontroller-cs">NisshuidohenController.cs</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../haisen.html">配線</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../buy_parts.html">部品の買い方</a></li>
 </ul>
 
@@ -183,7 +184,7 @@
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/nissyu-idohen/pc-software-code.md.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/nissyu-idohen/pc-software-code.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -197,7 +198,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="ogose">
-<span id="ogose"></span><h1>日周緯度変(Ogoseの実装解説)<a class="headerlink" href="#ogose" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h1>日周緯度変(Ogoseの実装解説)<a class="headerlink" href="#ogose" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <ul class="simple">
 <li>書いた人: Kenichi Ito(nichiden_27)</li>
 <li>更新日時: 2017/03/06</li>
@@ -205,13 +206,13 @@
 <li>難易度: 3: 練習・勉強が必要</li>
 <li>情報の必須度: 3: 必要な場合がある</li>
 </ul>
-<div class="section" id="">
-<span id="id1"></span><h2>概要<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference internal" href="pc-software.html"><span class="doc">日周緯度変(外部制御アプリ)</span></a>から<code class="docutils literal"><span class="pre">Ogose</span></code>の実装解説を分離した記事です。</p>
+<div class="section" id="id1">
+<h2>概要<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><a class="reference external" href="pc-software.html">日周緯度変(外部制御アプリ)</a>から<code class="docutils literal"><span class="pre">Ogose</span></code>の実装解説を分離した記事です。</p>
 <p><code class="docutils literal"><span class="pre">Ogose</span></code>のソースコードを読む、あるいは書き換える際に参考にしてください。</p>
 </div>
-<div class="section" id="">
-<span id="id2"></span><h2>ファイル構成<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id2">
+<h2>ファイル構成<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><code class="docutils literal"><span class="pre">Ogose</span></code>のソースファイル等は、<code class="docutils literal"><span class="pre">Ogose</span></code>フォルダ内に入っている。以下にファイル・ディレクトリ構成の抜粋を示す。</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>Ogose
 ├── Ogose
@@ -242,201 +243,133 @@
 <p><code class="docutils literal"><span class="pre">Ogose</span></code>直下には<code class="docutils literal"><span class="pre">Ogose.sln</span></code>がある。これは「ソリューション(開発プロジェクトをまとめたもの)」の状態を管理している。
 slnファイルをダブルクリックするか、VS内の読み込みメニューで選択してあげれば<code class="docutils literal"><span class="pre">Ogose</span></code>の各ファイルを閲覧できる。</p>
 <p><code class="docutils literal"><span class="pre">Ogose</span></code>の下に更に<code class="docutils literal"><span class="pre">Ogose</span></code>ディレクトリがあり、この中にソースコードなどが収められている。
-このうち、開発で実際に触ったのは<code class="docutils literal"><span class="pre">App.xaml</span></code> <code class="docutils literal"><span class="pre">MainWindow.xaml</span></code> <code class="docutils literal"><span class="pre">MainWindow.xaml.cs</span></code> <code class="docutils literal"><span class="pre">NisshuidohenController.cs</span></code>の四つのみである。</p>
+このうち、開発で実際に触ったのは<code class="docutils literal"><span class="pre">App.xaml</span></code> <code class="docutils literal"><span class="pre">MainWindow.xaml</span></code>
+<code class="docutils literal"><span class="pre">MainWindow.xaml.cs</span></code> <code class="docutils literal"><span class="pre">NisshuidohenController.cs</span></code>の四つのみである。</p>
 <p><code class="docutils literal"><span class="pre">Ogose/Ogose/bin/</span></code>以下には、ビルドで生成された<code class="docutils literal"><span class="pre">.exe</span></code>ファイルが格納される。
 <code class="docutils literal"><span class="pre">Debug</span></code>と<code class="docutils literal"><span class="pre">Release</span></code>は適当に使い分ければいい。exeの他にも様々なファイルが吐き出されるが、基本的には<code class="docutils literal"><span class="pre">Ogose.exe</span></code>単体で動作する。</p>
 <p>以下、ソースコードを簡単に解説する。WPF開発の基本的な知識全てに触れるとは限らないので、よく理解できない部分はググるなどして補完してもらいたい。</p>
 </div>
 <div class="section" id="app-xaml">
-<span id="app-xaml"></span><h2>App.xaml<a class="headerlink" href="#app-xaml" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>App.xaml<a class="headerlink" href="#app-xaml" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><code class="docutils literal"><span class="pre">App.xaml</span></code>や<code class="docutils literal"><span class="pre">App.xaml.cs</span></code>の内容は、GUIのみならずアプリケーション全体に適用される。
 何も書かなくても問題ないが、<code class="docutils literal"><span class="pre">Ogose</span></code>ではコントロールの外見に関する記述をこちらに分離した。<a class="reference external" href="#mainwindow-xaml">MainWindow.xaml</a>が長くなりすぎないようにするのが目的である。</p>
 <p>XAML(ざむる)は、XMLをベースとしたGUIの記述言語である。XMLのタグを用いて階層状に指示を書けるようになっている。
 なお、<code class="docutils literal"><span class="pre">&lt;&gt;</span></code>で囲まれた単位は「タグ」とも「要素」とも言うが、GUIの要素と混同する危険があるので、ここでは「タグ」に統一する。</p>
 <p><code class="docutils literal"><span class="pre">&lt;Application&gt;</span></code>タグには色々とおまじないが書いてあるが、気にする必要はない。その下の<code class="docutils literal"><span class="pre">&lt;Application.Resources&gt;</span></code>内からがコードの本番だ。</p>
-<div class="section" id="">
-<span id="id3"></span><h3>ブラシ<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!--  App.xaml --&gt;</span>
-<span class="nt">&lt;SolidColorBrush</span> <span class="na">x:Key=</span><span class="s">&quot;WindowBackground&quot;</span> <span class="na">Color=</span><span class="s">&quot;#FF111111&quot;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;SolidColorBrush</span> <span class="na">x:Key=</span><span class="s">&quot;ButtonNormalBackground&quot;</span> <span class="na">Color=</span><span class="s">&quot;#AA444444&quot;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;SolidColorBrush</span> <span class="na">x:Key=</span><span class="s">&quot;ButtonHoverBackground&quot;</span> <span class="na">Color=</span><span class="s">&quot;#FF334433&quot;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;SolidColorBrush</span> <span class="na">x:Key=</span><span class="s">&quot;ButtonNormalForeground&quot;</span> <span class="na">Color=</span><span class="s">&quot;White&quot;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;SolidColorBrush</span> <span class="na">x:Key=</span><span class="s">&quot;ButtonDisableBackground&quot;</span> <span class="na">Color=</span><span class="s">&quot;#AA222222&quot;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;SolidColorBrush</span> <span class="na">x:Key=</span><span class="s">&quot;ButtonDisableForeground&quot;</span> <span class="na">Color=</span><span class="s">&quot;SlateGray&quot;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;SolidColorBrush</span> <span class="na">x:Key=</span><span class="s">&quot;ButtonNormalBorder&quot;</span> <span class="na">Color=</span><span class="s">&quot;#FF707070&quot;</span><span class="nt">/&gt;</span>
-
-<span class="nt">&lt;LinearGradientBrush</span> <span class="na">x:Key=</span><span class="s">&quot;TextBoxBorder&quot;</span> <span class="na">EndPoint=</span><span class="s">&quot;0,20&quot;</span> <span class="na">MappingMode=</span><span class="s">&quot;Absolute&quot;</span> <span class="na">StartPoint=</span><span class="s">&quot;0,0&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;GradientStop</span> <span class="na">Color=</span><span class="s">&quot;#ABADB3&quot;</span> <span class="na">Offset=</span><span class="s">&quot;0.05&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;GradientStop</span> <span class="na">Color=</span><span class="s">&quot;#E2E3EA&quot;</span> <span class="na">Offset=</span><span class="s">&quot;0.07&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;GradientStop</span> <span class="na">Color=</span><span class="s">&quot;#E3E9EF&quot;</span> <span class="na">Offset=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;/LinearGradientBrush&gt;</span>
-</pre></div>
-</div>
-<p><strong>ブラシ</strong> は、色などのデザインに名前(<code class="docutils literal"><span class="pre">x:Key</span></code>)をつけて使い回せるようにしたものである。各色の役割が明確になるし、後からの変更も楽なので積極的に利用した。
+<div class="section" id="id3">
+<h3>ブラシ<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><strong>ブラシ</strong>
+は、色などのデザインに名前(<code class="docutils literal"><span class="pre">x:Key</span></code>)をつけて使い回せるようにしたものである。各色の役割が明確になるし、後からの変更も楽なので積極的に利用した。
 <code class="docutils literal"><span class="pre">SolidColorBrush</span></code>は単色のブラシ、<code class="docutils literal"><span class="pre">LinearGradientBrush</span></code>はグラデーションのブラシである。</p>
 <p>配色が気に入らなければ、ここの色指定を変えれば良い。
 色は名称で指定しても良いし(<a class="reference external" href="http://www.atmarkit.co.jp/fdotnet/dotnettips/1071colorname/colorname.html#colorsample">色一覧</a>)、Webなどでお馴染みの16進数で更に細かく決めることもできる。
-ここでは<code class="docutils literal"><span class="pre">ARGB</span></code>というRGBに加えアルファ値(透過度)も指定する方式で書いているので注意。例えば<code class="docutils literal"><span class="pre">#FF111111</span></code>なら、不透明で{R,G,B} =　{17,17,17}の色を指す。</p>
+ここでは<code class="docutils literal"><span class="pre">ARGB</span></code>というRGBに加えアルファ値(透過度)も指定する方式で書いているので注意。例えば<code class="docutils literal"><span class="pre">#FF111111</span></code>なら、不透明で{R,G,B}
+=　{17,17,17}の色を指す。</p>
 </div>
-<div class="section" id="">
-<span id="id4"></span><h3>コントロールテンプレート<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><strong>コントロールテンプレート</strong> は、コントロール(ボタンやテキストエリアなど)のテンプレートである。
+<div class="section" id="id4">
+<h3>コントロールテンプレート<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><strong>コントロールテンプレート</strong>
+は、コントロール(ボタンやテキストエリアなど)のテンプレートである。
 この中にボタンなどの見た目を書いておくと使い回しが効く。今あるコントロールテンプレートとその用途は以下の通り。</p>
 <ul class="simple">
 <li>&#8220;NormalToggleButton&#8221; ... 日周緯度変回転用のトグルボタン</li>
-<li>&#8220;ComboBoxToggleButton&#8221; ... 接続するシリアルポートを選択するコンボボックス</li>
+<li>&#8220;ComboBoxToggleButton&#8221; ...
+接続するシリアルポートを選択するコンボボックス</li>
 </ul>
 <p>また、<code class="docutils literal"><span class="pre">&lt;ControlTemplate.Triggers&gt;</span></code>タグ内で「トリガー」を指定できる。
 トリガーは、特定のイベントが起きたら動的にコントロールの見た目を変更する機能だ。
 マウスでポイントした時やクリックした時に色が変わると、操作の結果がユーザーに視覚的に伝わる。</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!--  App.xaml --&gt;</span>
-<span class="nt">&lt;ControlTemplate.Triggers&gt;</span>
-    <span class="nt">&lt;Trigger</span> <span class="na">Property=</span><span class="s">&quot;IsMouseOver&quot;</span> <span class="na">Value=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;Setter</span> <span class="na">TargetName=</span><span class="s">&quot;InnerBackground&quot;</span>  <span class="na">Property=</span><span class="s">&quot;Fill&quot;</span> <span class="na">Value=</span><span class="s">&quot;#FF222288&quot;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;/Trigger&gt;</span>
-    <span class="nt">&lt;Trigger</span> <span class="na">Property=</span><span class="s">&quot;IsChecked&quot;</span>  <span class="na">Value=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;Setter</span> <span class="na">Property=</span><span class="s">&quot;Content&quot;</span> <span class="na">Value=</span><span class="s">&quot;停止&quot;</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;Setter</span> <span class="na">TargetName=</span><span class="s">&quot;InnerBackground&quot;</span>  <span class="na">Property=</span><span class="s">&quot;Fill&quot;</span> <span class="na">Value=</span><span class="s">&quot;#FF111144&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/Trigger&gt;</span>
-    <span class="nt">&lt;Trigger</span> <span class="na">Property=</span><span class="s">&quot;IsEnabled&quot;</span> <span class="na">Value=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;Setter</span> <span class="na">TargetName=</span><span class="s">&quot;Content&quot;</span> <span class="na">Property=</span><span class="s">&quot;TextBlock.Foreground&quot;</span> <span class="na">Value=</span><span class="s">&quot;{StaticResource ButtonDisableForeground}&quot;</span>  <span class="nt">/&gt;</span>
-        <span class="nt">&lt;Setter</span> <span class="na">TargetName=</span><span class="s">&quot;InnerBackground&quot;</span> <span class="na">Property=</span><span class="s">&quot;Fill&quot;</span> <span class="na">Value=</span><span class="s">&quot;{StaticResource ButtonDisableBackground}&quot;</span>  <span class="nt">/&gt;</span>
-    <span class="nt">&lt;/Trigger&gt;</span>
-<span class="nt">&lt;/ControlTemplate.Triggers&gt;</span>
-</pre></div>
-</div>
 <p>例として、<code class="docutils literal"><span class="pre">&quot;NormalToggleButton&quot;</span></code>のトリガー定義を紹介する。
 マウスポインタが乗った時、Checked(ON)状態になった時でそれぞれ&#8221;InnerBackground&#8221;の色を変更するようになっている。
 <code class="docutils literal"><span class="pre">Property=&quot;IsEnabled&quot;</span></code>は、ボタンが有効(=操作できる)かを示しており、これが<code class="docutils literal"><span class="pre">false</span></code>の時は、文字・背景の色をグレー調にしてクリックできないことをアピールする。</p>
 </div>
-<div class="section" id="">
-<span id="id5"></span><h3>スタイル<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id5">
+<h3>スタイル<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><strong>スタイル</strong> には、要素の外観を定義できる。
 前項のコントロールテンプレートに比べ機能が制限され、より個別の要素に対して用いる。</p>
-<p>スタイルの適用の仕方はいくつかある。<strong><code class="docutils literal"><span class="pre">TargetType</span></code>に要素の種類を入れると、同じ種類の要素全てに適用される</strong>。
+<p>スタイルの適用の仕方はいくつかある。<code class="docutils literal"><span class="pre">TargetType</span></code><strong>に要素の種類を入れると、同じ種類の要素全てに適用される</strong>。
 以下は<code class="docutils literal"><span class="pre">Window</span></code>の見た目を指定している例。</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!--  App.xaml --&gt;</span>
-<span class="nt">&lt;Style</span> <span class="na">TargetType=</span><span class="s">&quot;Window&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;Setter</span> <span class="na">Property=</span><span class="s">&quot;Background&quot;</span> <span class="na">Value=</span><span class="s">&quot;{StaticResource WindowBackground}&quot;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;Setter</span> <span class="na">Property=</span><span class="s">&quot;Height&quot;</span> <span class="na">Value=</span><span class="s">&quot;600&quot;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;Setter</span> <span class="na">Property=</span><span class="s">&quot;MinHeight&quot;</span> <span class="na">Value=</span><span class="s">&quot;600&quot;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;Setter</span> <span class="na">Property=</span><span class="s">&quot;Width&quot;</span> <span class="na">Value=</span><span class="s">&quot;700&quot;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;Setter</span> <span class="na">Property=</span><span class="s">&quot;MinWidth&quot;</span> <span class="na">Value=</span><span class="s">&quot;700&quot;</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;/Style&gt;</span>
-</pre></div>
-</div>
 <p><code class="docutils literal"><span class="pre">&lt;Setter&gt;</span></code>タグはプロパティを操作するために使う。<code class="docutils literal"><span class="pre">Property</span></code>にプロパティの名前、<code class="docutils literal"><span class="pre">Value</span></code>に値を入れるだけである。
 <code class="docutils literal"><span class="pre">Value</span></code>は実際の値でもいいし、ブラシなど他で定義したリソースを与えてもよい。</p>
 <p><code class="docutils literal"><span class="pre">&lt;Setter&gt;</span></code>の中には更に様々な機能を持ったタグを入れられる。<code class="docutils literal"><span class="pre">&lt;ControlTemplate&gt;</span></code>が入っていることもあるし、<code class="docutils literal"><span class="pre">&lt;Style.Triggers&gt;</span></code>タグでトリガーを設定することもできる。
 複雑な使い方は筆者もよく把握していないので、頑張ってググって貰いたい。</p>
-<p>もう一つのスタイル適用方法は、<strong><code class="docutils literal"><span class="pre">x:Key</span></code>プロパティ</strong> を用いることだ。<code class="docutils literal"><span class="pre">&lt;Style&gt;</span></code>タグに<code class="docutils literal"><span class="pre">x:Key=&quot;hogefuga&quot;</span></code>のように分かりやすい名前をつけておく。</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!--  App.xaml --&gt;</span>
-<span class="nt">&lt;Style</span> <span class="na">x:Key=</span><span class="s">&quot;DiurnalPlusButton&quot;</span> <span class="na">TargetType=</span><span class="s">&quot;ToggleButton&quot;</span> <span class="na">BasedOn=</span><span class="s">&quot;{StaticResource ToggleButton}&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;Setter</span> <span class="na">Property=</span><span class="s">&quot;Content&quot;</span> <span class="na">Value=</span><span class="s">&quot;日周戻す&quot;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;Setter</span> <span class="na">Property=</span><span class="s">&quot;FontSize&quot;</span> <span class="na">Value=</span><span class="s">&quot;18&quot;</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;/Style&gt;</span>
-
-<span class="nt">&lt;Style</span> <span class="na">x:Key=</span><span class="s">&quot;DiurnalMinusButton&quot;</span> <span class="na">TargetType=</span><span class="s">&quot;ToggleButton&quot;</span> <span class="na">BasedOn=</span><span class="s">&quot;{StaticResource DiurnalPlusButton}&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;Setter</span> <span class="na">Property=</span><span class="s">&quot;Content&quot;</span> <span class="na">Value=</span><span class="s">&quot;日周進める&quot;</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;/Style&gt;</span>
-</pre></div>
-</div>
+<p>もう一つのスタイル適用方法は、<code class="docutils literal"><span class="pre">x:Key</span></code><strong>プロパティ</strong>
+を用いることだ。<code class="docutils literal"><span class="pre">&lt;Style&gt;</span></code>タグに<code class="docutils literal"><span class="pre">x:Key=&quot;hogefuga&quot;</span></code>のように分かりやすい名前をつけておく。</p>
 <p>そして、適用したいボタンなどに<code class="docutils literal"><span class="pre">Style=&quot;{StaticResource</span> <span class="pre">hogefuga}&quot;</span></code>などと指定すれば該当する<code class="docutils literal"><span class="pre">x:Key</span></code>を持つスタイルが適用される。</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!--  MainWindow.xaml --&gt;</span>
-<span class="nt">&lt;ToggleButton</span> <span class="na">x:Name=</span><span class="s">&quot;diurnalPlusButton&quot;</span> <span class="na">Style=</span><span class="s">&quot;{StaticResource DiurnalPlusButton}&quot;</span> <span class="na">Grid.Row=</span><span class="s">&quot;2&quot;</span> <span class="na">Grid.Column=</span><span class="s">&quot;0&quot;</span>
-               <span class="na">Command=</span><span class="s">&quot;{x:Static local:MainWindow.diurnalPlusButtonCommand}&quot;</span> <span class="nt">/&gt;</span>
-</pre></div>
-</div>
-<p>上の<code class="docutils literal"><span class="pre">App.xaml</span></code>のコードでは、<strong>スタイルの継承</strong> という機能も活用している。
+<p>上の<code class="docutils literal"><span class="pre">App.xaml</span></code>のコードでは、<strong>スタイルの継承</strong>
+という機能も活用している。
 <code class="docutils literal"><span class="pre">BasedOn</span></code>プロパティに基にしたいスタイルの<code class="docutils literal"><span class="pre">x:Key</span></code>を指定すると、そのスタイルの中身を引き継いだり、部分的に書き換えたりできる。</p>
 <p>例えば、<code class="docutils literal"><span class="pre">&quot;DiurnalMinusButton&quot;</span></code>スタイルは<code class="docutils literal"><span class="pre">&quot;DiurnalPlusButton&quot;</span></code>スタイルを継承したので、<code class="docutils literal"><span class="pre">FontSize</span></code>について再度記述する必要がない。
 一方で、ボタンに表示する文字は変更したいので、<code class="docutils literal"><span class="pre">Content</span></code>を書き換えている。</p>
 </div>
 </div>
 <div class="section" id="mainwindow-xaml">
-<span id="mainwindow-xaml"></span><h2>MainWindow.xaml<a class="headerlink" href="#mainwindow-xaml" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>MainWindow.xaml<a class="headerlink" href="#mainwindow-xaml" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>メインのウィンドウの構造を記述する。
 といっても<code class="docutils literal"><span class="pre">Ogose</span></code>には一つしかウィンドウがないので、配置を変えたい場合はこれを編集すればいい。
 UIのデザインについてもこの中に書けるが、たいへん長いので<a class="reference external" href="#app-xaml">App.xaml</a>に移した。</p>
-<div class="section" id="">
-<span id="id6"></span><h3>編集方法について<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id6">
+<h3>編集方法について<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ウィンドウの見た目はXAMLのコードだけで自在に操れるが、VSではより便利に、実際の画面をプレビューしながらドラッグ&amp;ドロップで編集することもできる。</p>
-<p><img alt="" src="../_images/mainwindow-xaml.png" /></p>
+<div class="figure" id="id19">
+<img alt="Visual Studioの画面プレビュー編集" src="../_images/mainwindow-xaml.png" />
+<p class="caption"><span class="caption-text">Visual Studioの画面プレビュー編集</span></p>
+</div>
 <p>GUIでの編集は手軽で初心者にも扱いやすいが、コードが自動生成されるので手で書くよりも読みにくくなりがちだ。
 また、数値を細かく決めたい場合はコードを直接編集した方が早い。
 図のように画面プレビューとコードは並べて表示できるので、双方の利点を使い分けるとよかろう。</p>
 </div>
-<div class="section" id="">
-<span id="id7"></span><h3>グリッド<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id7">
+<h3>グリッド<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>WPFのレイアウト要素はいくつかあるが、<code class="docutils literal"><span class="pre">Ogose</span></code>では<code class="docutils literal"><span class="pre">&lt;Grid&gt;</span></code>タグを使ってレイアウトしている。
-<strong>グリッド</strong> は、画面を格子状に分割してその中に要素を配置していくことができる。
+<strong>グリッド</strong>
+は、画面を格子状に分割してその中に要素を配置していくことができる。
 いちいち行や列を定義せねばならず面倒だが、サイズを相対的に決められるので、ウィンドウを大きくしたときボタンも拡大されるというメリットがある。</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- MainWindow.xaml --&gt;</span>
-<span class="nt">&lt;Grid</span> <span class="na">x:Name=</span><span class="s">&quot;MainGrid&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;Grid.RowDefinitions&gt;</span>
-        <span class="nt">&lt;RowDefinition</span> <span class="na">Height=</span><span class="s">&quot;1*&quot;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;RowDefinition</span> <span class="na">Height=</span><span class="s">&quot;30&quot;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;RowDefinition</span> <span class="na">Height=</span><span class="s">&quot;40*&quot;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;RowDefinition</span> <span class="na">Height=</span><span class="s">&quot;2*&quot;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;RowDefinition</span> <span class="na">Height=</span><span class="s">&quot;1*&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/Grid.RowDefinitions&gt;</span>
-    <span class="nt">&lt;Grid.ColumnDefinitions&gt;</span>
-        <span class="nt">&lt;ColumnDefinition</span> <span class="na">Width=</span><span class="s">&quot;1*&quot;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;ColumnDefinition</span> <span class="na">Width=</span><span class="s">&quot;60*&quot;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;ColumnDefinition</span> <span class="na">Width=</span><span class="s">&quot;20*&quot;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;ColumnDefinition</span> <span class="na">Width=</span><span class="s">&quot;20*&quot;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;ColumnDefinition</span> <span class="na">Width=</span><span class="s">&quot;1*&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/Grid.ColumnDefinitions&gt;</span>
-    <span class="nt">&lt;Grid</span> <span class="na">x:Name=</span><span class="s">&quot;HeaderGrid&quot;</span> <span class="na">Grid.Row=</span><span class="s">&quot;1&quot;</span> <span class="na">Grid.Column=</span><span class="s">&quot;1&quot;</span> <span class="na">Grid.ColumnSpan=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;Grid.ColumnDefinitions&gt;</span>
-            <span class="nt">&lt;ColumnDefinition</span> <span class="na">Width=</span><span class="s">&quot;9*&quot;</span><span class="nt">/&gt;</span>
-            <span class="nt">&lt;ColumnDefinition</span> <span class="na">Width=</span><span class="s">&quot;1*&quot;</span><span class="nt">/&gt;</span>
-            <span class="nt">&lt;ColumnDefinition</span> <span class="na">Width=</span><span class="s">&quot;13*&quot;</span><span class="nt">/&gt;</span>
-            <span class="nt">&lt;ColumnDefinition</span> <span class="na">Width=</span><span class="s">&quot;7*&quot;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;/Grid.ColumnDefinitions&gt;</span>
-</pre></div>
-</div>
 <p>上のコード片は、グリッドを定義している例である。
 一意の<code class="docutils literal"><span class="pre">x:Name</span></code>を付けて<code class="docutils literal"><span class="pre">&lt;Grid&gt;</span></code>を宣言したら、<code class="docutils literal"><span class="pre">&lt;Grid.RowDefinitions&gt;</span></code>で行を、<code class="docutils literal"><span class="pre">&lt;Grid.ColumnDefinitions&gt;</span></code>で列を定義する。</p>
-<div class="section" id="">
-<span id="id8"></span><h4>グリッドの使い方<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>それぞれの中に行・列を欲しいだけ並べれば良いのだが、<strong>高さや幅の指定</strong> にポイントがある。
+<div class="section" id="id8">
+<h4>グリッドの使い方<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>それぞれの中に行・列を欲しいだけ並べれば良いのだが、<strong>高さや幅の指定</strong>
+にポイントがある。
 数値のみを書くとピクセル数を表すが、<code class="docutils literal"><span class="pre">数値*</span></code>とすると相対サイズを表せるのだ。
 例えば、<code class="docutils literal"><span class="pre">Height=&quot;1*&quot;</span></code>の行と<code class="docutils literal"><span class="pre">Height=&quot;2*&quot;</span></code>の行だけがある場合、グリッドは1:2の比率で分割される。</p>
 <p>また、コード例では使っていないが<code class="docutils literal"><span class="pre">Auto</span></code>を指定すると、中に配置した子要素のサイズに合わせてくれる。
 ピクセル指定、相対指定、Auto指定は混ぜて書いても問題ない。
 画面プレビューで行や列を分割した場合、サイズが単純な数値にならないので適宜コード側で修正するといいだろう。</p>
-<p><strong>グリッドの中に要素を置く</strong> 時は、画面プレビュー上で設置したい場所に動かすだけで良い。
+<p><strong>グリッドの中に要素を置く</strong>
+時は、画面プレビュー上で設置したい場所に動かすだけで良い。
 ただし、グリッドは入れ子にすることもでき(コード例では<code class="docutils literal"><span class="pre">MainGrid</span></code>の下に<code class="docutils literal"><span class="pre">HeaderGrid</span></code>を入れてある)、意図した階層に置けないことも多々ある。
 その場合は、望みの階層に要素の定義をコピペした上で、<code class="docutils literal"><span class="pre">Grid.Row</span></code>と<code class="docutils literal"><span class="pre">Grid.Column</span></code>プロパティに何行何列目かを指定する。
-両プロパティは<strong>0始まり</strong> なので要注意。<code class="docutils literal"><span class="pre">Grid.Row=&quot;1&quot;</span> <span class="pre">Grid.Column=&quot;1&quot;</span></code>なら2行2列目だ。</p>
-<p>要素が横に長く、<strong>複数の列に渡って配置</strong> したいーそんな時は、<code class="docutils literal"><span class="pre">Grid.RowSpan</span></code>や<code class="docutils literal"><span class="pre">Grid.ColumnSpan</span></code>を使おう。
+両プロパティは<strong>0始まり</strong>
+なので要注意。<code class="docutils literal"><span class="pre">Grid.Row=&quot;1&quot;</span> <span class="pre">Grid.Column=&quot;1&quot;</span></code>なら2行2列目だ。</p>
+<p>要素が横に長く、<strong>複数の列に渡って配置</strong>
+したいーそんな時は、<code class="docutils literal"><span class="pre">Grid.RowSpan</span></code>や<code class="docutils literal"><span class="pre">Grid.ColumnSpan</span></code>を使おう。
 それぞれに指定した数だけ要素が占める場所が下方向・右方向に伸びる。
 これは、画面プレビューで操作している時に勝手に追加されていることもあるので、やはりコード側で直してあげよう。</p>
 </div>
 </div>
 <div class="section" id="ui">
-<span id="ui"></span><h3>UI要素<a class="headerlink" href="#ui" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>UI要素<a class="headerlink" href="#ui" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>個別のUI要素については実際にコードを見ていただく方が早い。
 <code class="docutils literal"><span class="pre">Ogose</span></code>では<code class="docutils literal"><span class="pre">ComboBox</span></code>、<code class="docutils literal"><span class="pre">ToggleButton</span></code>、<code class="docutils literal"><span class="pre">RadioButton</span></code>、<code class="docutils literal"><span class="pre">CheckBox</span></code>などを使い分けている。
 それぞれの動作を規定するコードについては、<a class="reference external" href="#mainwindow-xaml-cs">MainWindow.xaml.cs</a>の項で扱う。</p>
-<p>少し説明が必要なのは、<code class="docutils literal"><span class="pre">RadioButton</span></code>についてだ。
-<strong>ラジオボタン</strong> というと、<br>
-◎ 選択肢1<br>
-◎ 選択肢2<br>
-のようなデザインが普通だ。</p>
-<p>しかし、<code class="docutils literal"><span class="pre">Ogose</span></code>では縦に並べたり横に並べたりするので、横の二重丸がなく/普通のボタンと同じ見た目で/全体がクリック可能 である方が都合がよい。
-実は、これには複雑なコーディングは必要なく、トグルボタン用のスタイルを適用してやるだけで済む。</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!--  App.xaml --&gt;</span>
-<span class="nt">&lt;Style</span> <span class="na">TargetType=</span><span class="s">&quot;RadioButton&quot;</span> <span class="na">BasedOn=</span><span class="s">&quot;{StaticResource ToggleButton}&quot;</span><span class="nt">&gt;</span>
+<p>少し説明が必要なのは、<code class="docutils literal"><span class="pre">RadioButton</span></code>についてだ。 <strong>ラジオボタン</strong>
+というと、</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>◎ 選択肢1
+◎ 選択肢2
 </pre></div>
 </div>
+<p>のようなデザインが普通だ。</p>
+<p>しかし、<code class="docutils literal"><span class="pre">Ogose</span></code>では縦に並べたり横に並べたりするので、横の二重丸がなく/普通のボタンと同じ見た目で/全体がクリック可能
+である方が都合がよい。
+実は、これには複雑なコーディングは必要なく、トグルボタン用のスタイルを適用してやるだけで済む。</p>
 <p>これは、<code class="docutils literal"><span class="pre">RadioButton</span></code>クラスが<code class="docutils literal"><span class="pre">ToggleButton</span></code>クラスを継承しているため、共通のスタイル指定が使えることによる
-(参考にした記事: <a class="reference external" href="http://neareal.net/index.php?Programming%2F.NetFramework%2FWPF%2FRadioToggleButton">RadioButtonなToggleButtonを実現する</a>)。</p>
+(参考にした記事:
+<a class="reference external" href="http://neareal.net/index.php?Programming%2F.NetFramework%2FWPF%2FRadioToggleButton">RadioButtonなToggleButtonを実現する</a>)。</p>
 </div>
 </div>
 <div class="section" id="mainwindow-xaml-cs">
-<span id="mainwindow-xaml-cs"></span><h2>MainWindow.xaml.cs<a class="headerlink" href="#mainwindow-xaml-cs" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>MainWindow.xaml.cs<a class="headerlink" href="#mainwindow-xaml-cs" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p><code class="docutils literal"><span class="pre">MainWindow.xaml</span></code>のコードビハインドである。C#で書かれている。
 日電のWindowsアプリケーションは代々C#なので、宗教上やむを得ない事情がなければC#を読み書きできるようになろう。</p>
 <p>とはいえ、VSのコード補完(<code class="docutils literal"><span class="pre">IntelliSense</span></code>)が凄く優秀なので、コードを書いていて苦労することはあまりなさそうだ。
@@ -444,8 +377,8 @@ UIのデザインについてもこの中に書けるが、たいへん長いの
 <p>コード中にやたら<code class="docutils literal"><span class="pre">&lt;summary&gt;&lt;/summary&gt;</span></code>で囲まれたコメントを目にすると思うが、これはVSのドキュメント自動生成機能の推奨XMLタグらしい。
 ドキュメントを作るかは別として、面倒でなければこの形式のコメントにして損はなさそうだ。</p>
 <p>400行近いコードの全てを解説することはしないので、コードだけでは分かりにくいと思われる項目のみを以下に掲載する。</p>
-<div class="section" id="">
-<span id="id9"></span><h3>コマンド<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id9">
+<h3>コマンド<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><strong>コマンド</strong> とは、ユーザの操作を抽象化したものである。
 例えば、Wordで編集していてペースト操作をしたいとき、どうするか考えてみよう。
 ショートカットキーを知っていれば<code class="docutils literal"><span class="pre">Ctrl(Command)</span></code>+<code class="docutils literal"><span class="pre">V</span></code>を叩くだろうし、右クリックしてペーストを選ぶ人もいるだろう。
@@ -458,120 +391,40 @@ UIのデザインについてもこの中に書けるが、たいへん長いの
 <p>そこで、<code class="docutils literal"><span class="pre">ICommand</span></code>を使うようにプログラムを書き直した。
 時間がない中でやったので、かなり汚いコードになってしまった。
 今後書き換える際はぜひ何とかして欲しい。</p>
-<div class="section" id="">
-<span id="id10"></span><h4>コマンドの使い方<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id10">
+<h4>コマンドの使い方<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>コマンドは高機能の代わりに難解なので、使い始めるときは<a class="reference external" href="http://techoh.net/wpf-make-command-in-5steps/">この記事</a>あたりを参考にした。</p>
 <p>まず、<code class="docutils literal"><span class="pre">RoutedCommand</span></code>クラスを宣言する。絶賛コピペなので意味はよく知らない。
 <code class="docutils literal"><span class="pre">diurnalPlus</span></code>は日周を進めるという意味だ。</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="c1">/// &lt;summary&gt; RoutedCommand &lt;/summary&gt;</span>
-<span class="k">public</span> <span class="k">readonly</span> <span class="k">static</span> <span class="n">RoutedCommand</span> <span class="n">diurnalPlusButtonCommand</span> <span class="p">=</span> <span class="k">new</span> <span class="n">RoutedCommand</span><span class="p">(</span><span class="s">&quot;diurnalPlusButtonCommand&quot;</span><span class="p">,</span> <span class="k">typeof</span><span class="p">(</span><span class="n">MainWindow</span><span class="p">));</span>
-</pre></div>
-</div>
 <p>この状態ではまだコマンドとボタン・処理が結びついていない。
 CommandBindingという操作でこれらを紐付けする。これもコピペ。</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="c1">/// &lt;summary&gt;</span>
-<span class="c1">/// MainWindowに必要なコマンドを追加する。コンストラクタで呼び出して下さい</span>
-<span class="c1">/// &lt;/summary&gt;</span>
-<span class="k">private</span> <span class="k">void</span> <span class="nf">initCommandBindings</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">diurnalPlusButton</span><span class="p">.</span><span class="n">CommandBindings</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">CommandBinding</span><span class="p">(</span><span class="n">diurnalPlusButtonCommand</span><span class="p">,</span> <span class="n">diurnalPlusButtonCommand_Executed</span><span class="p">,</span> <span class="n">toggleButton_CanExecuted</span><span class="p">));</span>
-    <span class="c1">/// (省略)</span>
-<span class="p">}</span>
-</pre></div>
-</div>
 <p>これをボタンの数だけ書き連ねる。
 <code class="docutils literal"><span class="pre">new</span> <span class="pre">CommandBinding()</span></code>に与えている引数は順に、コマンド・実行する関数・実行可能かを与える関数である。
 三番目のコマンド実行可否は、コマンドを実行されては困る時のための仕組みだ。</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="c1">/// &lt;summary&gt; 各ボタンが操作できるかどうかを記憶 &lt;/summary&gt;</span>
-<span class="k">private</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">bool</span><span class="p">&gt;</span> <span class="n">isEnabled</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">bool</span><span class="p">&gt;()</span>
-<span class="p">{</span>
-    <span class="p">{</span><span class="s">&quot;diurnalPlusButton&quot;</span><span class="p">,</span> <span class="k">true</span><span class="p">},</span>
-    <span class="p">{</span><span class="s">&quot;diurnalMinusButton&quot;</span><span class="p">,</span> <span class="k">true</span><span class="p">},</span>
-    <span class="p">{</span><span class="s">&quot;latitudePlusButton&quot;</span><span class="p">,</span> <span class="k">true</span><span class="p">},</span>
-    <span class="p">{</span><span class="s">&quot;latitudeMinusButton&quot;</span><span class="p">,</span> <span class="k">true</span><span class="p">}</span>
-<span class="p">};</span>
-</pre></div>
-</div>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">private</span> <span class="k">void</span> <span class="nf">toggleButton_CanExecuted</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">CanExecuteRoutedEventArgs</span> <span class="n">e</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">e</span><span class="p">.</span><span class="n">CanExecute</span> <span class="p">=</span> <span class="n">isEnabled</span><span class="p">[((</span><span class="n">ToggleButton</span><span class="p">)</span><span class="n">sender</span><span class="p">).</span><span class="n">Name</span><span class="p">];</span>
-<span class="p">}</span>
-</pre></div>
-</div>
 <p>上手い方法が全然思いつかなかったので、<code class="docutils literal"><span class="pre">isEnabled</span></code>という連想配列を作っておいて、呼び出し元ボタンの名前をもとに参照するようにした。
 呼び出し元は、引数<code class="docutils literal"><span class="pre">sender</span></code>に与えられて、<code class="docutils literal"><span class="pre">ToggleButton</span></code>など元々のクラスに型変換するとプロパティを見たりできる。</p>
 <p>さて、<code class="docutils literal"><span class="pre">private</span> <span class="pre">void</span> <span class="pre">initCommandBindings()</span></code>をプログラム開始時に実行しなければバインディングが適用されない。
 <code class="docutils literal"><span class="pre">MainWindow</span></code>のコンストラクタ内で呼び出しておく。</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nf">MainWindow</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">InitializeComponent</span><span class="p">();</span>
-    <span class="n">initCommandBindings</span><span class="p">();</span>
-<span class="p">}</span>
-</pre></div>
-</div>
 <p>考えてみれば大したことはしてないので、コンストラクタの中に直接書いてしまっても良かったかもしれない。</p>
 <p>あとはXAML側でコマンドを呼び出せるようにするだけである。
 <code class="docutils literal"><span class="pre">&lt;Window&gt;</span></code>タグ内にローカルの名前空間(<code class="docutils literal"><span class="pre">xmlns:local=&quot;clr-namespace:Ogose&quot;</span></code>)がなければ追加しておこう。
 各コントロールの<code class="docutils literal"><span class="pre">Command</span></code>プロパティにコマンドをコピペする。</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- MainWindow.xaml --&gt;</span>
-<span class="nt">&lt;ToggleButton</span> <span class="na">x:Name=</span><span class="s">&quot;diurnalPlusButton&quot;</span> <span class="na">Style=</span><span class="s">&quot;{StaticResource DiurnalPlusButton}&quot;</span> <span class="na">Grid.Row=</span><span class="s">&quot;2&quot;</span> <span class="na">Grid.Column=</span><span class="s">&quot;0&quot;</span>
-               <span class="na">Command=</span><span class="s">&quot;{x:Static local:MainWindow.diurnalPlusButtonCommand}&quot;</span> <span class="nt">/&gt;</span>
-</pre></div>
-</div>
 <p>これでクリック操作でコマンドが使えるようになる。</p>
 </div>
-<div class="section" id="">
-<span id="id11"></span><h4>キー操作でコマンドを実行する<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id11">
+<h4>キー操作でコマンドを実行する<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>ここまできたら、キー操作でもコマンドが実行されるようにしたい。
 XAMLで<code class="docutils literal"><span class="pre">&lt;KeyBinding&gt;</span></code>タグを使えば実現できるのだが、なんとこれではボタンが<code class="docutils literal"><span class="pre">sender</span></code>にならない。
 色々調べても対処法が見つからないので、結局キー操作イベントから無理やりコマンドを実行させるしかなかった。</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">private</span> <span class="k">void</span> <span class="nf">Window_KeyDown</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">KeyEventArgs</span> <span class="n">e</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="kt">var</span> <span class="n">target</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ToggleButton</span><span class="p">();</span>
-    <span class="k">switch</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Key</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">case</span> <span class="n">Key</span><span class="p">.</span><span class="n">W</span><span class="p">:</span>
-            <span class="n">latitudePlusButtonCommand</span><span class="p">.</span><span class="n">Execute</span><span class="p">(</span><span class="s">&quot;KeyDown&quot;</span><span class="p">,</span> <span class="n">latitudePlusButton</span><span class="p">);</span>
-            <span class="k">break</span><span class="p">;</span>
-        <span class="k">case</span> <span class="n">Key</span><span class="p">.</span><span class="n">A</span><span class="p">:</span>
-            <span class="n">diurnalPlusButtonCommand</span><span class="p">.</span><span class="n">Execute</span><span class="p">(</span><span class="s">&quot;KeyDown&quot;</span><span class="p">,</span> <span class="n">diurnalPlusButton</span><span class="p">);</span>
-            <span class="k">break</span><span class="p">;</span>
-        <span class="k">case</span> <span class="n">Key</span><span class="p">.</span><span class="n">S</span><span class="p">:</span>
-            <span class="n">latitudeMinusButtonCommand</span><span class="p">.</span><span class="n">Execute</span><span class="p">(</span><span class="s">&quot;KeyDown&quot;</span><span class="p">,</span> <span class="n">latitudeMinusButton</span><span class="p">);</span>
-            <span class="k">break</span><span class="p">;</span>
-        <span class="k">case</span> <span class="n">Key</span><span class="p">.</span><span class="n">D</span><span class="p">:</span>
-            <span class="n">diurnalMinusButtonCommand</span><span class="p">.</span><span class="n">Execute</span><span class="p">(</span><span class="s">&quot;KeyDown&quot;</span><span class="p">,</span> <span class="n">diurnalMinusButton</span><span class="p">);</span>
-            <span class="k">break</span><span class="p">;</span>
-    <span class="p">}</span>
-</pre></div>
-</div>
 <p><code class="docutils literal"><span class="pre">(コマンド名).Execute()</span></code>メソッドの第一引数は<code class="docutils literal"><span class="pre">ExecutedRoutedEventArgs</span> <span class="pre">e</span></code>の<code class="docutils literal"><span class="pre">Parameter</span></code>、第二引数は<code class="docutils literal"><span class="pre">object</span> <span class="pre">sender</span></code>として渡される。
 結局、<code class="docutils literal"><span class="pre">sender</span></code>は第二引数に人力で指定した。</p>
 <p><code class="docutils literal"><span class="pre">e.Parameter</span></code>というのは、仕様では「コマンドに固有の情報を渡す」とされていて、要は自由に使っていいようだ。
 キーボード操作によるものかどうか、コマンドの処理で判定するために&#8221;KeyDown&#8221;という文字列(勝手に決めた)を渡している。</p>
 </div>
-<div class="section" id="">
-<span id="id12"></span><h4>コマンドで呼ばれる処理<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id12">
+<h4>コマンドで呼ばれる処理<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>最後に、CommandBindingでコマンドと紐付けた関数について書く。
 日周を進めるボタンのものは以下のようになっている。</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">private</span> <span class="k">void</span> <span class="nf">diurnalPlusButtonCommand_Executed</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">ExecutedRoutedEventArgs</span> <span class="n">e</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Parameter</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="n">e</span><span class="p">.</span><span class="n">Parameter</span><span class="p">.</span><span class="n">ToString</span><span class="p">()</span> <span class="p">==</span> <span class="s">&quot;KeyDown&quot;</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="p">((</span><span class="n">ToggleButton</span><span class="p">)</span><span class="n">sender</span><span class="p">).</span><span class="n">IsChecked</span> <span class="p">=</span> <span class="p">!((</span><span class="n">ToggleButton</span><span class="p">)</span><span class="n">sender</span><span class="p">).</span><span class="n">IsChecked</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">sender</span> <span class="k">as</span> <span class="n">ToggleButton</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="p">((</span><span class="n">ToggleButton</span><span class="p">)</span><span class="n">sender</span><span class="p">).</span><span class="n">IsChecked</span> <span class="p">==</span> <span class="k">false</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">emitCommand</span><span class="p">(</span><span class="n">nisshuidohenController</span><span class="p">.</span><span class="n">RotateDiurnalBySpeed</span><span class="p">(</span><span class="m">0</span><span class="p">));</span>
-    <span class="p">}</span>
-    <span class="k">else</span>
-    <span class="p">{</span>
-        <span class="n">emitCommand</span><span class="p">(</span><span class="n">nisshuidohenController</span><span class="p">.</span><span class="n">RotateDiurnalBySpeed</span><span class="p">(</span><span class="n">diurnal_speed</span><span class="p">));</span>
-    <span class="p">}</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">sender</span> <span class="k">as</span> <span class="n">ToggleButton</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="n">toggleOppositeButton</span><span class="p">((</span><span class="n">ToggleButton</span><span class="p">)</span><span class="n">sender</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-</div>
 <p>どうしてこのような汚いコードになったのか弁解しておこう。
 この関数は、三箇所から呼び出される可能性がある。</p>
 <p>まず、対応するボタンがクリックされた場合。
@@ -580,214 +433,70 @@ XAMLで<code class="docutils literal"><span class="pre">&lt;KeyBinding&gt;</span
 最初のif文で、<code class="docutils literal"><span class="pre">e.Parameter.ToString()</span> <span class="pre">==</span> <span class="pre">&quot;KeyDown&quot;</span></code>であるときだけ、ボタンの<code class="docutils literal"><span class="pre">IsChecked</span></code>を反転させることで対応した。</p>
 <p>もう一つの可能性は、速度を切り替えたときだ。
 日周の速度を管理している<code class="docutils literal"><span class="pre">diurnalRadioButton</span></code>がクリックされたとき実行されるコードを見てみよう。</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">private</span> <span class="k">void</span> <span class="nf">diurnalRadioButton_Checked</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">RoutedEventArgs</span> <span class="n">e</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="kt">var</span> <span class="n">radioButton</span> <span class="p">=</span> <span class="p">(</span><span class="n">RadioButton</span><span class="p">)</span><span class="n">sender</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">radioButton</span><span class="p">.</span><span class="n">Name</span> <span class="p">==</span> <span class="s">&quot;diurnalRadioButton1&quot;</span><span class="p">)</span> <span class="n">diurnal_speed</span> <span class="p">=</span> <span class="n">SPEED_DIURNAL</span><span class="p">[</span><span class="s">&quot;very_high&quot;</span><span class="p">];</span>
-    <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">radioButton</span><span class="p">.</span><span class="n">Name</span> <span class="p">==</span> <span class="s">&quot;diurnalRadioButton2&quot;</span><span class="p">)</span> <span class="n">diurnal_speed</span> <span class="p">=</span> <span class="n">SPEED_DIURNAL</span><span class="p">[</span><span class="s">&quot;high&quot;</span><span class="p">];</span>
-    <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">radioButton</span><span class="p">.</span><span class="n">Name</span> <span class="p">==</span> <span class="s">&quot;diurnalRadioButton3&quot;</span><span class="p">)</span> <span class="n">diurnal_speed</span> <span class="p">=</span> <span class="n">SPEED_DIURNAL</span><span class="p">[</span><span class="s">&quot;low&quot;</span><span class="p">];</span>
-    <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">radioButton</span><span class="p">.</span><span class="n">Name</span> <span class="p">==</span> <span class="s">&quot;diurnalRadioButton4&quot;</span><span class="p">)</span> <span class="n">diurnal_speed</span> <span class="p">=</span> <span class="n">SPEED_DIURNAL</span><span class="p">[</span><span class="s">&quot;very_low&quot;</span><span class="p">];</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="n">diurnalPlusButton</span><span class="p">.</span><span class="n">IsChecked</span> <span class="p">==</span> <span class="k">true</span><span class="p">)</span>
-        <span class="n">diurnalPlusButtonCommand</span><span class="p">.</span><span class="n">Execute</span><span class="p">(</span><span class="k">null</span><span class="p">,</span> <span class="n">diurnalPlusButton</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">diurnalMinusButton</span><span class="p">.</span><span class="n">IsChecked</span> <span class="p">==</span> <span class="k">true</span><span class="p">)</span>
-        <span class="n">diurnalMinusButtonCommand</span><span class="p">.</span><span class="n">Execute</span><span class="p">(</span><span class="k">null</span><span class="p">,</span> <span class="n">diurnalMinusButton</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-</div>
 <p>前半は、<code class="docutils literal"><span class="pre">sender</span></code>がどの項目かによって速度を変更しているだけなので問題ないだろう。
 後半で、「日周進める」か「日周戻す」がCheckedになっていれば、新しい設定をさいたまに送るためコマンドを実行している。</p>
 <p>このときボタンの<code class="docutils literal"><span class="pre">IsChecked</span></code>プロパティはすでにtrueなので、二重に変更されないよう<code class="docutils literal"><span class="pre">e.Parameter</span></code>をnullとしている。
-だが、考えてみればさいたまと通信さえすればいいので、<strong>ボタンなど経由せず直接<code class="docutils literal"><span class="pre">emitCommand()</span></code>(さいたまにコマンドを送る関数)を呼べばいいだけである。</strong></p>
+だが、考えてみればさいたまと通信さえすればいいので、<strong>ボタンなど経由せず直接</strong><code class="docutils literal"><span class="pre">emitCommand()</span></code><strong>(さいたまにコマンドを送る関数)を呼べばいいだけである。</strong></p>
 <p>総じて、コマンドを使うことにこだわりすぎて酷いコードになってしまった。
 バグの原因になっている可能性もあるので、後任の方は綺麗に書き直してやって頂きたい。</p>
 </div>
 </div>
-<div class="section" id="">
-<span id="id13"></span><h3>シリアル通信<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id13">
+<h3>シリアル通信<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><code class="docutils literal"><span class="pre">MainWindow.xaml.cs</span></code>のうちシリアル通信に関する記述の大部分は、24の<code class="docutils literal"><span class="pre">Fujisawa</span></code>から受け継いでいる。
 この項では、通信を行うためのコードを読み、必要に応じて解説を加える。</p>
-<div class="section" id="">
-<span id="id14"></span><h4>ポート一覧の取得<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="c1">/// &lt;summary&gt;</span>
-<span class="c1">/// シリアルポート名を取得し前回接続したものがあればそれを使用 ボーレートの設定</span>
-<span class="c1">/// &lt;/summary&gt;</span>
-<span class="c1">/// &lt;param name=&quot;ports[]&quot;&gt;取得したシリアルポート名の配列&lt;/param&gt;</span>
-<span class="c1">/// &lt;param name=&quot;port&quot;&gt;ports[]の要素&lt;/param&gt;</span>
-<span class="k">private</span> <span class="k">void</span> <span class="nf">Window_Loaded</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">RoutedEventArgs</span> <span class="n">e</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="kt">var</span> <span class="n">ports</span> <span class="p">=</span> <span class="n">SerialPort</span><span class="p">.</span><span class="n">GetPortNames</span><span class="p">();</span>
-    <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">port</span> <span class="k">in</span> <span class="n">ports</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">portComboBox</span><span class="p">.</span><span class="n">Items</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">SerialPortItem</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="n">port</span> <span class="p">});</span>
-    <span class="p">}</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">portComboBox</span><span class="p">.</span><span class="n">Items</span><span class="p">.</span><span class="n">Count</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">ports</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="n">Settings</span><span class="p">.</span><span class="n">Default</span><span class="p">.</span><span class="n">LastConnectedPort</span><span class="p">))</span>
-            <span class="n">portComboBox</span><span class="p">.</span><span class="n">SelectedIndex</span> <span class="p">=</span> <span class="n">Array</span><span class="p">.</span><span class="n">IndexOf</span><span class="p">(</span><span class="n">ports</span><span class="p">,</span> <span class="n">Settings</span><span class="p">.</span><span class="n">Default</span><span class="p">.</span><span class="n">LastConnectedPort</span><span class="p">);</span>
-        <span class="k">else</span>
-            <span class="n">portComboBox</span><span class="p">.</span><span class="n">SelectedIndex</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="n">serialPort</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SerialPort</span>
-    <span class="p">{</span>
-        <span class="n">BaudRate</span> <span class="p">=</span> <span class="m">2400</span>
-    <span class="p">};</span>
-<span class="p">}</span>
-</pre></div>
+<div class="section" id="id14">
+<h4>ポート一覧の取得<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="line-block">
+<div class="line"><code class="docutils literal"><span class="pre">Window_Loaded</span></code>は、ウィンドウが描画されるタイミングで実行される。</div>
+<div class="line">処理としては、シリアルポート一覧を取得して<code class="docutils literal"><span class="pre">portComboBox</span></code>に候補として追加し、さらに前回の接続先と照合するというものだ。
+また、<code class="docutils literal"><span class="pre">SerialPort</span></code>クラスのオブジェクト<code class="docutils literal"><span class="pre">serialPort</span></code>を宣言し、ボーレートを2400に設定している。</div>
 </div>
-<p><code class="docutils literal"><span class="pre">Window_Loaded</span></code>は、ウィンドウが描画されるタイミングで実行される。処理としては、シリアルポート一覧を取得して<code class="docutils literal"><span class="pre">portComboBox</span></code>に候補として追加し、さらに前回の接続先と照合するというものだ。
-また、<code class="docutils literal"><span class="pre">SerialPort</span></code>クラスのオブジェクト<code class="docutils literal"><span class="pre">serialPort</span></code>を宣言し、ボーレートを2400に設定している。</p>
 <p>foreach文の中で使用している<code class="docutils literal"><span class="pre">SerialPortItem</span></code>は自作クラスで、<code class="docutils literal"><span class="pre">ToString()</span></code>をオーバーライドしている。
 何の為のものかは理解していないので、興味があればソースコードを確認してほしい。</p>
 </div>
-<div class="section" id="">
-<span id="id15"></span><h4>ポートへの接続<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id15">
+<h4>ポートへの接続<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>接続ボタンがクリックされると、<code class="docutils literal"><span class="pre">ConnectButton_IsCheckedChanged()</span></code>が呼ばれる。
 その中身はこうだ。</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span>    <span class="c1">/// &lt;summary&gt;</span>
-    <span class="c1">/// PortComboBoxが空でなくConnectButtonがチェックされている時にシリアルポートの開閉を行う シリアルポートの開閉時に誤動作が発生しないよう回避している</span>
-    <span class="c1">/// &lt;/summary&gt;</span>
-    <span class="k">private</span> <span class="k">void</span> <span class="nf">ConnectButton_IsCheckedChanged</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">RoutedEventArgs</span> <span class="n">e</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="kt">var</span> <span class="n">item</span> <span class="p">=</span> <span class="n">portComboBox</span><span class="p">.</span><span class="n">SelectedItem</span> <span class="k">as</span> <span class="n">SerialPortItem</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">item</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="n">ConnectButton</span><span class="p">.</span><span class="n">IsChecked</span><span class="p">.</span><span class="n">HasValue</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="kt">bool</span> <span class="n">connecting</span> <span class="p">=</span> <span class="n">ConnectButton</span><span class="p">.</span><span class="n">IsChecked</span><span class="p">.</span><span class="n">Value</span><span class="p">;</span>
-            <span class="n">ConnectButton</span><span class="p">.</span><span class="n">Checked</span> <span class="p">-=</span> <span class="n">ConnectButton_IsCheckedChanged</span><span class="p">;</span>
-            <span class="n">ConnectButton</span><span class="p">.</span><span class="n">Unchecked</span> <span class="p">-=</span> <span class="n">ConnectButton_IsCheckedChanged</span><span class="p">;</span>
-            <span class="n">ConnectButton</span><span class="p">.</span><span class="n">IsChecked</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
-
-            <span class="k">if</span> <span class="p">(</span><span class="n">serialPort</span><span class="p">.</span><span class="n">IsOpen</span><span class="p">)</span> <span class="n">serialPort</span><span class="p">.</span><span class="n">Close</span><span class="p">();</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">connecting</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="n">serialPort</span><span class="p">.</span><span class="n">PortName</span> <span class="p">=</span> <span class="n">item</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
-                <span class="k">try</span>
-                <span class="p">{</span>
-                    <span class="n">serialPort</span><span class="p">.</span><span class="n">WriteTimeout</span> <span class="p">=</span> <span class="m">500</span><span class="p">;</span>
-                    <span class="n">serialPort</span><span class="p">.</span><span class="n">Open</span><span class="p">();</span>
-                <span class="p">}</span>
-                <span class="k">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="n">ex</span><span class="p">)</span>
-                <span class="p">{</span>
-                    <span class="n">ConnectButton</span><span class="p">.</span><span class="n">IsChecked</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
-                    <span class="n">MessageBox</span><span class="p">.</span><span class="n">Show</span><span class="p">(</span><span class="n">ex</span><span class="p">.</span><span class="n">ToString</span><span class="p">(),</span> <span class="n">ex</span><span class="p">.</span><span class="n">GetType</span><span class="p">().</span><span class="n">Name</span><span class="p">);</span>
-                    <span class="k">return</span><span class="p">;</span>
-                <span class="p">}</span>
-                <span class="k">catch</span> <span class="p">(</span><span class="n">UnauthorizedAccessException</span> <span class="n">ex</span><span class="p">)</span>
-                <span class="p">{</span>
-                    <span class="n">ConnectButton</span><span class="p">.</span><span class="n">IsChecked</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
-                    <span class="n">MessageBox</span><span class="p">.</span><span class="n">Show</span><span class="p">(</span><span class="n">ex</span><span class="p">.</span><span class="n">ToString</span><span class="p">(),</span> <span class="n">ex</span><span class="p">.</span><span class="n">GetType</span><span class="p">().</span><span class="n">Name</span><span class="p">);</span>
-                    <span class="k">return</span><span class="p">;</span>
-                <span class="p">}</span>
-                <span class="n">Settings</span><span class="p">.</span><span class="n">Default</span><span class="p">.</span><span class="n">LastConnectedPort</span> <span class="p">=</span> <span class="n">item</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
-                <span class="n">Settings</span><span class="p">.</span><span class="n">Default</span><span class="p">.</span><span class="n">Save</span><span class="p">();</span>
-            <span class="p">}</span>
-
-            <span class="n">ConnectButton</span><span class="p">.</span><span class="n">IsChecked</span> <span class="p">=</span> <span class="n">connecting</span><span class="p">;</span>
-            <span class="n">ConnectButton</span><span class="p">.</span><span class="n">Checked</span> <span class="p">+=</span> <span class="n">ConnectButton_IsCheckedChanged</span><span class="p">;</span>
-            <span class="n">ConnectButton</span><span class="p">.</span><span class="n">Unchecked</span> <span class="p">+=</span> <span class="n">ConnectButton_IsCheckedChanged</span><span class="p">;</span>
-            <span class="n">portComboBox</span><span class="p">.</span><span class="n">IsEnabled</span> <span class="p">=</span> <span class="p">!</span><span class="n">connecting</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">else</span>
-        <span class="p">{</span>
-            <span class="n">ConnectButton</span><span class="p">.</span><span class="n">IsChecked</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-</pre></div>
-</div>
 <p>かなり長いが、順番に見ていこう。
 最初のif文はポートが選択されているかチェックしているだけだ。
 <code class="docutils literal"><span class="pre">bool</span> <span class="pre">connecting</span></code>はポートを開くのか閉じるのかの分岐に使われている。
 後はtry-catch文でポートを開き、エラーが出れば警告を出すのだが、このブロックの上下に変な記述がある。</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="n">ConnectButton</span><span class="p">.</span><span class="n">Checked</span> <span class="p">-=</span> <span class="n">ConnectButton_IsCheckedChanged</span><span class="p">;</span>
-<span class="n">ConnectButton</span><span class="p">.</span><span class="n">Unchecked</span> <span class="p">-=</span> <span class="n">ConnectButton_IsCheckedChanged</span><span class="p">;</span>
-<span class="n">ConnectButton</span><span class="p">.</span><span class="n">IsChecked</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
-<span class="c1">/// (省略)</span>
-<span class="n">ConnectButton</span><span class="p">.</span><span class="n">IsChecked</span> <span class="p">=</span> <span class="n">connecting</span><span class="p">;</span>
-<span class="n">ConnectButton</span><span class="p">.</span><span class="n">Checked</span> <span class="p">+=</span> <span class="n">ConnectButton_IsCheckedChanged</span><span class="p">;</span>
-<span class="n">ConnectButton</span><span class="p">.</span><span class="n">Unchecked</span> <span class="p">+=</span> <span class="n">ConnectButton_IsCheckedChanged</span><span class="p">;</span>
-</pre></div>
-</div>
 <p>これはおそらくコメントの言う「シリアルポートの開閉時に誤動作が発生しないよう回避している」部分であろう。
 <code class="docutils literal"><span class="pre">MainWindow.xaml</span></code>の、<code class="docutils literal"><span class="pre">ConnectButton</span></code>に関する部分を見てみよう。</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="c">&lt;!-- MainWindow.xaml --&gt;</span>
-<span class="nt">&lt;ToggleButton</span> <span class="na">x:Name=</span><span class="s">&quot;ConnectButton&quot;</span> <span class="na">Checked=</span><span class="s">&quot;ConnectButton_IsCheckedChanged&quot;</span> <span class="na">Unchecked=</span><span class="s">&quot;ConnectButton_IsCheckedChanged&quot;</span> <span class="na">Margin=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
-</pre></div>
-</div>
 <p><code class="docutils literal"><span class="pre">Checked</span></code>と<code class="docutils literal"><span class="pre">Unchecked</span></code>は、いずれもボタンがクリックされた時に発生するイベントだ。
 <code class="docutils literal"><span class="pre">ConnectButton.Checked</span> <span class="pre">-=</span> <span class="pre">ConnectButton_IsCheckedChanged;</span></code>などとしておくことで、ポートへの接続を試行している間ボタンのクリックを無効化しているようだ。
 このコードを削除した状態でボタンを連打しても特に問題はなかったので効果のほどは分からないが、あっても害にはならないだろう。</p>
 </div>
-<div class="section" id="">
-<span id="id16"></span><h4>ポート一覧の更新<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id16">
+<h4>ポート一覧の更新<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>ポート一覧のコンボボックスは、開くたびにシリアルポートを取得し直している。
 <code class="docutils literal"><span class="pre">portComboBox_DropDownOpened()</span></code>に処理が書かれているが、<code class="docutils literal"><span class="pre">Window_Loaded()</span></code>と同じようなことをしているだけなので省略する。</p>
 </div>
-<div class="section" id="">
-<span id="id17"></span><h4>コマンド送信<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<div class="section" id="id17">
+<h4>コマンド送信<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p><code class="docutils literal"><span class="pre">emitCommand()</span></code>は、コマンド文字列を与えて実行すると接続しているポートに送信してくれる。
 <code class="docutils literal"><span class="pre">serialPort.IsOpen</span></code>がfalseの時は、警告とともにコマンド文字列をMessageBoxに表示する。</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="c1">/// &lt;summary&gt;</span>
-<span class="c1">/// シリアルポートが開いている時にコマンドcmdをシリアルポートに書き込み閉じている時はMassageBoxを表示する</span>
-<span class="c1">/// &lt;/summary&gt;</span>
-<span class="c1">/// &lt;param name=&quot;cmd&quot;&gt;&lt;/param&gt;</span>
-<span class="k">private</span> <span class="k">void</span> <span class="nf">emitCommand</span><span class="p">(</span><span class="kt">string</span> <span class="n">cmd</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">serialPort</span><span class="p">.</span><span class="n">IsOpen</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="kt">var</span> <span class="n">bytes</span> <span class="p">=</span> <span class="n">Encoding</span><span class="p">.</span><span class="n">ASCII</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
-        <span class="n">serialPort</span><span class="p">.</span><span class="n">RtsEnable</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
-        <span class="n">serialPort</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="n">bytes</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">bytes</span><span class="p">.</span><span class="n">Length</span><span class="p">);</span>
-        <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">100</span><span class="p">);</span>
-        <span class="n">serialPort</span><span class="p">.</span><span class="n">RtsEnable</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">else</span>
-    <span class="p">{</span>
-        <span class="n">MessageBox</span><span class="p">.</span><span class="n">Show</span><span class="p">(</span><span class="s">&quot;Error: コントローラと接続して下さい\ncommand: &quot;</span><span class="p">+</span> <span class="n">cmd</span><span class="p">,</span> <span class="s">&quot;Error&quot;</span><span class="p">,</span> <span class="n">MessageBoxButton</span><span class="p">.</span><span class="n">OK</span><span class="p">,</span> <span class="n">MessageBoxImage</span><span class="p">.</span><span class="n">Warning</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="">
-<span id="id18"></span><h3>公演モード(誤操作防止モード)<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id18">
+<h3>公演モード(誤操作防止モード)<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p><code class="docutils literal"><span class="pre">checkBox2</span></code>は公演モードのON/OFFを管理している。
 公演モードは、日周を進める以外の機能を制限して誤操作を防ぐ為のものだ。
 ただ、これもかなり直前になって放り込んだため無理やりな実装になっている。</p>
-<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">private</span> <span class="k">void</span> <span class="nf">checkBox2_Changed</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">RoutedEventArgs</span> <span class="n">e</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MessageBoxResult</span><span class="p">();</span>
-    <span class="n">isPerfMode</span> <span class="p">=</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)(((</span><span class="n">CheckBox</span><span class="p">)</span><span class="n">sender</span><span class="p">).</span><span class="n">IsChecked</span><span class="p">);</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">isPerfMode</span><span class="p">)</span>
-    <span class="p">{</span>
-      <span class="n">result</span> <span class="p">=</span> <span class="n">MessageBox</span><span class="p">.</span><span class="n">Show</span><span class="p">(</span><span class="s">&quot;公演モードに切り替えます。\n日周を進める以外の動作はロックされます。よろしいですか？&quot;</span><span class="p">,</span> <span class="s">&quot;Changing Mode&quot;</span><span class="p">,</span> <span class="n">MessageBoxButton</span><span class="p">.</span><span class="n">YesNo</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">else</span>
-    <span class="p">{</span>
-      <span class="n">result</span> <span class="p">=</span> <span class="n">MessageBox</span><span class="p">.</span><span class="n">Show</span><span class="p">(</span><span class="s">&quot;公演モードを解除します。\nよろしいですか？&quot;</span><span class="p">,</span> <span class="s">&quot;Changing Mode&quot;</span><span class="p">,</span> <span class="n">MessageBoxButton</span><span class="p">.</span><span class="n">YesNo</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">result</span> <span class="p">==</span> <span class="n">MessageBoxResult</span><span class="p">.</span><span class="n">No</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-    <span class="n">List</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">keyList</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span><span class="n">isEnabled</span><span class="p">.</span><span class="n">Keys</span><span class="p">);</span> <span class="c1">// isEnabled.Keysを直接見に行くとループで書き換えてるので実行時エラーになる</span>
-    <span class="k">foreach</span> <span class="p">(</span><span class="kt">string</span> <span class="n">key</span> <span class="k">in</span> <span class="n">keyList</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">key</span> <span class="p">!=</span> <span class="s">&quot;diurnalMinusButton&quot;</span><span class="p">)</span> <span class="n">isEnabled</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="p">=</span> <span class="p">!</span><span class="n">isPerfMode</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="n">latitudeRadioButton1</span><span class="p">.</span><span class="n">IsEnabled</span> <span class="p">=</span> <span class="n">latitudeRadioButton2</span><span class="p">.</span><span class="n">IsEnabled</span> <span class="p">=</span> <span class="n">latitudeRadioButton3</span><span class="p">.</span><span class="n">IsEnabled</span> <span class="p">=</span> <span class="n">latitudeRadioButton4</span><span class="p">.</span><span class="n">IsEnabled</span> <span class="p">=</span> <span class="p">!</span><span class="n">isPerfMode</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
 <p>他の関数等で公演モードかどうかいちいち判定する必要が出てきたので、<code class="docutils literal"><span class="pre">isPerfMode</span></code>というbool値に記録するようにした。
 たいへん紛らわしいが、<code class="docutils literal"><span class="pre">diurnalMinusButton</span></code>が「日周進める」ボタンである。
 実機で運用した際に、かごしいの実際の動きを合わせてラベルだけ交換したため逆になっている。</p>
 </div>
 </div>
 <div class="section" id="nisshuidohencontroller-cs">
-<span id="nisshuidohencontroller-cs"></span><h2>NisshuidohenController.cs<a class="headerlink" href="#nisshuidohencontroller-cs" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>NisshuidohenController.cs<a class="headerlink" href="#nisshuidohencontroller-cs" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>さいたまに送るコマンド文字列を生成するための<code class="docutils literal"><span class="pre">NisshuidohenController</span></code>クラスが実装されている。
 27では、24が書いたものをほぼそのまま利用した。
 一点のみ、日周・緯度のギヤ比の換算もこちらでやってしまうように変更した。
-これで、クラスの外側からはかごしいを回したい角速度(1 deg/sなど)を指定すればいいようになった。</p>
+これで、クラスの外側からはかごしいを回したい角速度(1
+deg/sなど)を指定すればいいようになった。</p>
 <p>使うだけなら<code class="docutils literal"><span class="pre">RotateDiurnalBySpeed()</span></code>や<code class="docutils literal"><span class="pre">RotateLatitudeBySpeed()</span></code>をブラックボックスとして利用するだけでいいだろう。
 ただし、23や25が使っていた角度指定メソッドは残してあるだけで一切触っていないので、使いたい場合はしっかりデバッグしてほしい。</p>
 </div>
@@ -803,7 +512,7 @@ XAMLで<code class="docutils literal"><span class="pre">&lt;KeyBinding&gt;</span
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../buy_parts.html" class="btn btn-neutral float-right" title="部品の買い方" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../haisen.html" class="btn btn-neutral float-right" title="配線" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="pc-software-history.html" class="btn btn-neutral" title="日周緯度変(外部制御アプリの歴史)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

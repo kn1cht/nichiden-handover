@@ -6,7 +6,7 @@
 - タスクの必須度: 4: 毎年やるべき
 
 ## 概要
-日周緯度変の[外部制御](ikebukuro.md)には、大きな可能性があります。PCを使える以上かなり複雑な操作も自動化できるためです。
+日周緯度変の[外部制御](ikebukuro.html)には、大きな可能性があります。PCを使える以上かなり複雑な操作も自動化できるためです。
 
 ただし、本番で日周緯度変を動かすのは人間である部員たち。
 それも、プログラムの挙動を知っている日電員だけが操作するとは限りません(26・27と、かごしいにも日周緯度変操作を手伝って貰っています)。
@@ -14,12 +14,12 @@
 誰にでも使いやすい日周緯度変外部制御アプリを作るために注意すべきことを書きます。
 
 ## 沿革
-**過去に開発されたアプリケーションが多数にのぼるため、[外部制御アプリの歴史](pc-software-history.md)に分離する。**
+**過去に開発されたアプリケーションが多数にのぼるため、**[外部制御アプリの歴史](pc-software-history.html)**に分離する。**
 
 ## Ogoseの特徴と使い方
 `Ogose`は、27代日電で作成した、2017/03/01現在最新の外部制御アプリである。
 
-特徴は[沿革](pc-software-history.md)の方に文章で書いたので、ここでは簡単に箇条書きするにとどめる。
+特徴は[沿革](pc-software-history.html)の方に文章で書いたので、ここでは簡単に箇条書きするにとどめる。
 
 ![Ogoseの画面](_media/ogose.png)
 
@@ -49,6 +49,7 @@
 **公演モード** ボタンは、ONにすると警告が表示され日周を進めることしかできなくなる。
 
 モーターの回転はキーボード操作でもできる。
+
 - `W`: 緯度+
 - `A`: 日周戻す
 - `S`: 緯度-
@@ -58,11 +59,11 @@
 
 `Ogose`のコードの解説は、たいへん長いので別記事とする。
 
--> [Ogoseの実装解説](pc-software-code.md)
+-> [Ogoseの実装解説](pc-software-code.html)
 
 ## 通信プログラム
 ### シリアル通信の基本
-[`Ikebukuro`の記事](ikebukuro.md)にある通り、パソコン側からは｀はシリアルポートとして見える。
+[Ikebukuroの記事](ikebukuro.html)にある通り、パソコン側からは`Ikebukuro`はシリアルポートとして見える。
 よって、シリアルポートにアクセスするプログラムを書けばよい。
 
 ポート名は、Windowsであれば`COM1`や`COM4`のように、「'`COM`'+数字」の形式である。
@@ -70,6 +71,7 @@ Mac OS XやLinuxのようなUNIX環境であれば、`/dev/tty.usbserial-A5017AB
 
 シリアルポートの設定は、さいたま6號側のプログラム中に記述してある設定と一致させなければならない。
 現時点での設定は、
+
 - baud rate: 2400
 - parity: none
 - char bits: 8
@@ -116,12 +118,12 @@ port.Open();
 ### 他の言語でのシリアル通信
 日電では23からC#で外部制御アプリを開発してきたが、他の各種の言語でもシリアル通信を扱えるので記しておく。
 
-- C, Lua: [`librs232`](https://github.com/ynezz/librs232/)
-- Lua: `LuaSys`
-- Python: [`pySerial`](http://pyserial.sourceforge.net/)
-- Ruby: [`ruby-serialport`](http://ruby-serialport.rubyforge.org/)
-- Java: `Java Communications API` / `RXTX`(Windows)
-- JavaScript(Node.js): [`serialport`](https://www.npmjs.com/package/serialport)
+- C, Lua: [librs232](https://github.com/ynezz/librs232/)
+- Lua: LuaSys
+- Python: [pySerial](http://pyserial.sourceforge.net/)
+- Ruby: [ruby-serialport](http://ruby-serialport.rubyforge.org/)
+- Java: Java Communications API / RXTX(Windows)
+- JavaScript(Node.js): [serialport](https://www.npmjs.com/package/serialport)
 
 それぞれの使い方やインストール方法についてはググって欲しい。
 
@@ -131,7 +133,7 @@ port.Open();
 
 Windows用だが、[com0com](https://sourceforge.net/projects/com0com/)を紹介する。
 
-![](_media/com0com.png)
+![com0comの設定画面](_media/com0com.png)
 
 セットアップすると、互いに繋がった二つのCOMポートを用意してくれる。
 番号は、他と被らないよう大きめにしておけば大丈夫だろう。
@@ -156,12 +158,12 @@ ChromeとJavaScriptをベースにデスクトップアプリを実現する`Ele
 ゲームコントローラーは、27プラネではフリーソフトでキー操作と無理やり関連付けしたが、`DirectInput`を使えば単体でも利用できる。
 入力機器として完成されているし、操作に慣れている人も多いので、案外自前のボタン配置に凝るよりコスパがいいかもしれない。
 
-![](_media/honban-nichiden.jpg)
+![27本番の日周緯度変スタッフ席の様子](_media/honban-nichiden.jpg)
 
 ### 機能追加
 27の本番中、気になったことがある。
 折角フルスクリーンモードで画面が光らないようにしたのに、画面右端に指示を書いた「メモ帳」が並べられていたのだ。
-黒背景で指示やタイミングをメモしておけるよう、アプリの画面内にメモ欄を設けても良いかもしれない。
+黒背景で指示やタイミングをメモしておけるよう、アプリの**画面内にメモ欄** を設けても良いかもしれない。
 
 また、別の方向性として、**操作の記録・再生** が考えられる。
 23や25で行ってきたことを発展させ、ボタン一つで一本のソフトをまるまる上映できるようになれば楽だろう。

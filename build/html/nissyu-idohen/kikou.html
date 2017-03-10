@@ -90,10 +90,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../main.html">東京大学地文研究会天文部 日電引き継ぎ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../management.html">プロジェクト マネジメント</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">日周緯度変(日周緯度変換機構)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#">概要</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#">構成</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#">歯車機構と減速比</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#">モーターの角速度</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">構成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">歯車機構と減速比</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">モーターの角速度</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="saitama.html">日周緯度変(さいたま)</a></li>
@@ -101,6 +101,7 @@
 <li class="toctree-l1"><a class="reference internal" href="pc-software.html">日周緯度変(外部制御アプリ)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pc-software-history.html">日周緯度変(外部制御アプリの歴史)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pc-software-code.html">日周緯度変(Ogoseの実装解説)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../haisen.html">配線</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../buy_parts.html">部品の買い方</a></li>
 </ul>
 
@@ -152,7 +153,7 @@
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/nissyu-idohen/kikou.md.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/nissyu-idohen/kikou.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -165,25 +166,23 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="">
-<span id="id1"></span><h1>日周緯度変(日周緯度変換機構)<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h1>
+  <div class="section" id="id1">
+<h1>日周緯度変(日周緯度変換機構)<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <ul class="simple">
 <li>書いた人: Kenichi Ito(nichiden_27)</li>
 <li>更新日時: 2017/03/03</li>
 <li>実行に必要な知識・技能: 歯車機構</li>
 <li>タスクの重さ: 5: 準備だけで数ヶ月</li>
 <li>タスクの必須度: 2: たまにやるべき</li>
-<li>元資料<ul>
+<li>元資料</li>
 <li><code class="docutils literal"><span class="pre">saitama.pdf</span></code> by 荒田 実樹(nichiden_23)</li>
 </ul>
-</li>
-</ul>
-<div class="section" id="">
-<span id="id2"></span><h2>概要<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id2">
+<h2>概要<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>日電の正式名称「日周緯度変・電源パート」から分かる通り、日電の本来の任務は日周緯度変装置を動作させることです。この記事では、日周緯度変装置自体に関しての情報をまとめます。</p>
 </div>
-<div class="section" id="">
-<span id="id3"></span><h2>構成<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id3">
+<h2>構成<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>日周緯度変の役割は、プラネタリウムにおいて日周運動を再現する、あるいは(仮想的な)観測地の緯度を変更することである。なお、天文部の現在のプラネタリウムには歳差軸はない。</p>
 <p>日周緯度変は大きく</p>
 <ul class="simple">
@@ -191,33 +190,41 @@
 <li>緯度変ギヤボックス</li>
 </ul>
 <p>の2つに分かれ、それぞれに対応するステッピングモーターが搭載されている。</p>
-<p>このステッピングモーターは一個数万円するものだが、本番中に劣化するので数年おきに買い換えられている。高価な割に<strong>ケーブルが切れやすい</strong> ので、取り扱う際は十分な注意を要する。</p>
-<p>ギヤボックスはどちらも<strong>10年以上前に製作された</strong> ものである。製作年度に関して確かと言える情報は見つかっていないが、緯度は1994年の05主投、日周は2000年前後で製作されたようだ。</p>
-<p>これほどの機構を再現できる技術が失われたため、かなりの長期間作り変えられていない。ただし、いつかは必ず壊れてしまうものであり、<strong>なるべく早期に予備を製作すべき</strong> だろう。日周緯度変の製作に成功すれば、天文部の歴史に名が残ることは間違いない。</p>
+<p>このステッピングモーターは一個数万円するものだが、本番中に劣化するので数年おきに買い換えられている。高価な割に<strong>ケーブルが切れやすい</strong>
+ので、取り扱う際は十分な注意を要する。</p>
+<p>ギヤボックスはどちらも<strong>10年以上前に製作された</strong>
+ものである。製作年度に関して確かと言える情報は見つかっていないが、緯度は1994年の05主投、日周は2000年前後で製作されたようだ。</p>
+<p>これほどの機構を再現できる技術が失われたため、かなりの長期間作り変えられていない。ただし、いつかは必ず壊れてしまうものであり、<strong>なるべく早期に予備を製作すべき</strong>
+だろう。日周緯度変の製作に成功すれば、天文部の歴史に名が残ることは間違いない。</p>
 <p>特に緯度変に関しては、軸が摩耗していたり、ギアの噛み合わせが悪かったりして、
 緯度を動かし続けるとある角度でかごしい全体が「揺れる」ことがある。この点は早急に改善が必要である。</p>
-<p>ギヤボックス周辺の可動部分には<strong>定期的にグリスを塗るか、潤滑油を差しておく</strong> ことが望ましい。ただし2017年現在、機構部分の保守作業の大部分は、<strong>かごしいの作業の過程で行われている。</strong> ごきぶりやしいたけとの接続も彼らの方がより把握しているはずなので、任せておいて問題はないだろう。</p>
+<p>ギヤボックス周辺の可動部分には<strong>定期的にグリスを塗るか、潤滑油を差しておく</strong>
+ことが望ましい。ただし2017年現在、機構部分の保守作業の大部分は、<strong>かごしいの作業の過程で行われている。</strong>
+ごきぶりやしいたけとの接続も彼らの方がより把握しているはずなので、任せておいて問題はないだろう。</p>
 </div>
-<div class="section" id="">
-<span id="id4"></span><h2>歯車機構と減速比<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id4">
+<h2>歯車機構と減速比<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>日周緯度変を自在に操るには各ギヤ比を知っておく事が必要である。</p>
 <p>もちろん実物を見れば調べられるのだが、それなりに面倒だったので同じ手間を繰り返さないよう図に各ギヤの歯の数を載せておく。また、「正の向き(時計回り)」にモーターを回した時に各ギヤがどちら向きに回るかも載せておく。</p>
-<p><img alt="" src="../_images/nissyuuidohen_gear.png" /></p>
+<div class="figure" id="id6">
+<img alt="日周緯度変のギヤ構成" src="../_images/nissyuuidohen_gear.png" />
+<p class="caption"><span class="caption-text">日周緯度変のギヤ構成</span></p>
+</div>
 <p>図に書いてあるギヤの歯の数からギヤ比を計算すると、</p>
 <div class="math">
 \[\begin{split}\begin{aligned}
 \frac{1}{80}\times\frac{25}{80}\times\frac{18}{64}=\frac{9}{8192}
 &amp;&amp;\text{緯度変} \\
 \frac{1}{50}\times\frac{20}{100}=\frac{1}{250}
-&amp;&amp;\text{日周}\end{aligned}
-\end{split}\]</div>
+&amp;&amp;\text{日周}\end{aligned}\end{split}\]</div>
 <p>となる。なお、これらのギヤの歯の数は動かしながら手で数えたので、もしかすると数え間違いがあるかもしれない。あまり過信しないよう。</p>
 <p>つまり、各軸をある角速度で回したい場合、緯度変の場合は<code class="docutils literal"><span class="pre">8192/9</span></code>を、日周の場合は<code class="docutils literal"><span class="pre">250</span></code>をそれぞれ掛ければモーターが出力すべき角速度が求まる。日周緯度変関連のソースコードで8192や250といった定数が登場するのは、この減速比の変換をするためである。</p>
 </div>
-<div class="section" id="">
-<span id="id5"></span><h2>モーターの角速度<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id5">
+<h2>モーターの角速度<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>ステッピングモーターは速度を自由に設定できるが、もちろん上限はある。緯度変更モジュール単体で試したところ、緯度モーターの最高角速度は<span class="math">\(3500 deg/s\)</span>程度であった。</p>
-<p>この速度をかごしいの速度に換算すると <span class="math">\(3500/(8192/9)=3.84 deg/s\)</span> となる。1度動かすのに0.26秒、南北の反転に46.8秒ほどという計算だ。</p>
+<p>この速度をかごしいの速度に換算すると <span class="math">\(3500/(8192/9)=3.84 deg/s\)</span>
+となる。1度動かすのに0.26秒、南北の反転に46.8秒ほどという計算だ。</p>
 <p>ただし、この<span class="math">\(3500 deg/s\)</span>という速度は速度を徐々に上げていった場合の最高速度であり、停止した状態から回転させる場合は<span class="math">\(1800 deg/s\)</span>程度が限度だと思われる。この場合かごしいの速度は<span class="math">\(1800/(8192/9)=1.98 deg/s\)</span>となり、1度動かすのに0.5秒、南北反転には1分半かかることになる。</p>
 <p>また、実際にかごしいを載せた場合や、主投影機を全て設置した場合など、回すものの重量によってさらに実際の速度は低下するので注意すること。</p>
 </div>

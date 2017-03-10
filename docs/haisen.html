@@ -1,0 +1,600 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>配線 &mdash; Nichiden 0.1 ドキュメント</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="genindex.html"/>
+        <link rel="search" title="検索" href="search.html"/>
+    <link rel="top" title="Nichiden 0.1 ドキュメント" href="index.html"/>
+        <link rel="next" title="部品の買い方" href="buy_parts.html"/>
+        <link rel="prev" title="日周緯度変(Ogoseの実装解説)" href="nissyu-idohen/pc-software-code.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Nichiden
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">目次:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="main.html">東京大学地文研究会天文部 日電引き継ぎ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="management.html">プロジェクト マネジメント</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nissyu-idohen/kikou.html">日周緯度変(日周緯度変換機構)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nissyu-idohen/saitama.html">日周緯度変(さいたま)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nissyu-idohen/ikebukuro.html">日周緯度変(Ikebukuro)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nissyu-idohen/pc-software.html">日周緯度変(外部制御アプリ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nissyu-idohen/pc-software-history.html">日周緯度変(外部制御アプリの歴史)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nissyu-idohen/pc-software-code.html">日周緯度変(Ogoseの実装解説)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">配線</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">配線を行うタイミング</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">配線計画</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">電力計算</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">電力配分</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">配線図</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">コードの管理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">在庫調査</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">コードの買い増し</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id11">ドーム外配線</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id12">卒検・リハ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id13">タイムスケジュール</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">トレ体</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15">一体</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id16">危険箇所</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">本番</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id18">ドーム内配線</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="buy_parts.html">部品の買い方</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Nichiden</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>配線</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/haisen.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>配線<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<ul class="simple">
+<li>書いた人: Kenichi Ito(nichiden_27)</li>
+<li>更新日時: 2017/03/10</li>
+<li>実行に必要な知識・技能: 特になし</li>
+<li>タスクの重さ: 2: 数日かかる</li>
+<li>タスクの必須度: 5: しないとプラネ終了</li>
+</ul>
+<div class="section" id="id2">
+<h2>概要<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>配線には、特別な知識や技能は不要です。
+ただし、プラネの大部分には電源が欠かせません。
+配線のミスはプラネ全体に響きます。特に入念に準備をするようにしてください。</p>
+</div>
+<div class="section" id="id3">
+<h2>配線を行うタイミング<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>配線を実際に行うのは、</p>
+<ul class="simple">
+<li>卒検</li>
+<li>リハーサル</li>
+<li>本番前日準備</li>
+</ul>
+<p>の三回。
+卒検・リハと本番では、ドームの展開場所が屋外か屋内かという大きな違いがある。</p>
+<p>卒検段階では投影機は一部しか運用されないので、全てを配線する必要はない。
+ただし、リハ以降の練習ができる唯一の機会でもあり、大した負担でもないので全て配線してしまってもいいだろう。</p>
+<p>リハでは、補助投の設置状態などがほぼ確定している。
+補助投の仕様変更などを把握し、本番同様の状態を構築できるのが望ましい。</p>
+<p>前日準備はとにかく時間との戦いになる。
+配線の遅れが投影機調整の遅れ、公演開始の遅れと連鎖してしまうこともある。
+コードをつなぐだけなので、手の空いた補助投の人に協力してもらっても構わない。</p>
+</div>
+<div class="section" id="id4">
+<h2>配線計画<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id5">
+<h3>電力計算<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>体育館には、使用できる電力に制限がある。
+ブレーカーが落ちないよう、館内で個人的な充電等をしないよう注意されたのを覚えているかもしれない。
+実際には滅多に起きないことだが、もし起こしてしまえば即企画停止である。
+各投影機が使用する電力を把握し、負担を分散させることは大変重要だ。</p>
+<p>各投影機の消費電力は、白熱球やハロゲンランプからLEDへの移行によって減少傾向にある。
+ただ、あおとうやソフトなど大電力を要求する投影機があるため、急激に上下することはない。
+毎年3000W前後であり、大学側への申請は更に余裕をみて<strong>3500W</strong>
+としてある。</p>
+<p>参考までに、27で計算した電力を掲載する。数値は概略である。
+投影機仕様に大幅な変更があれば、必要に応じて再計算して欲しい。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="28%" />
+<col width="15%" />
+<col width="18%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">投影機</th>
+<th class="head">種別</th>
+<th class="head">使用数</th>
+<th class="head">電力[W]</th>
+<th class="head">電圧[V]</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>こうとう</td>
+<td>パワーLED3W</td>
+<td>32</td>
+<td>100</td>
+<td>12</td>
+</tr>
+<tr class="row-odd"><td>いっとう</td>
+<td>LED</td>
+<td>20</td>
+<td>2</td>
+<td>5</td>
+</tr>
+<tr class="row-even"><td>星座絵</td>
+<td>パワーLED1W</td>
+<td>28</td>
+<td>30</td>
+<td>12</td>
+</tr>
+<tr class="row-odd"><td>ぎんとう</td>
+<td>パワーLED1W</td>
+<td>4</td>
+<td>4</td>
+<td>12</td>
+</tr>
+<tr class="row-even"><td>ドーム</td>
+<td>ダクト用ファン</td>
+<td>3</td>
+<td>200</td>
+<td>交流100</td>
+</tr>
+<tr class="row-odd"><td>ソフト</td>
+<td>スピーカーなど</td>
+<td>~</td>
+<td>1000</td>
+<td>交流100</td>
+</tr>
+<tr class="row-even"><td>日周緯度変</td>
+<td>モータ</td>
+<td>2</td>
+<td>100</td>
+<td>24</td>
+</tr>
+<tr class="row-odd"><td>あおとう</td>
+<td>白熱球</td>
+<td>8</td>
+<td>1000</td>
+<td>交流100</td>
+</tr>
+<tr class="row-even"><td>あくとう</td>
+<td>パワーLED1W</td>
+<td>30</td>
+<td>40</td>
+<td>12</td>
+</tr>
+<tr class="row-odd"><td>あゆとう</td>
+<td>白熱球</td>
+<td>1</td>
+<td>100</td>
+<td>交流100</td>
+</tr>
+<tr class="row-even"><td>しるとう</td>
+<td>パワーLED1W</td>
+<td>8</td>
+<td>24</td>
+<td>12</td>
+</tr>
+<tr class="row-odd"><td>りゅうとう</td>
+<td>?</td>
+<td>?</td>
+<td>100</td>
+<td>?</td>
+</tr>
+<tr class="row-even"><td><strong>合計</strong></td>
+<td>~</td>
+<td>~</td>
+<td><strong>2700</strong></td>
+<td>~</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id6">
+<h3>電力配分<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>第二体育館の電源系統は一つではなく、4つに分かれている。
+一つの系統に負担が集中しすぎると、落ちてしまうというわけだ。</p>
+<div class="figure" id="id19">
+<img alt="体育館配線" src="_images/haisen-gym.jpg" />
+<p class="caption"><span class="caption-text">体育館配線</span></p>
+</div>
+<p>この画像は、23代の頃作成されたもので出典不明だが、日電の配電計画はここに書かれた数字を元に決定されてきた。
+しかし、配線の根元となる <strong>コードリールの定格が1500W</strong>
+であり、1500Wを目安とするのが安全だろう。</p>
+<p>二体の南と東向きの壁面がA系統、西側がB系統、女子更衣室前とトイレ前がそれぞれC系統とD系統となっている。</p>
+<p>現在の配分では、用途別に四系統に振り分けている。</p>
+<ul class="simple">
+<li>A系統: ダクト・かごしい(主投)・スピーカーアンプ</li>
+<li>B系統: その他(ドーム外の作業や充電用)</li>
+<li>C系統: 補助投</li>
+<li>D系統: 日周緯度変・PC・ミキサ</li>
+</ul>
+<p>ソフト関連は、PCのノイズが影響しないようアンプとそれ以外を分ける慣例となっている。
+また、主投と補助投は別電源にするなどリスクを抑える工夫がある。</p>
+</div>
+<div class="section" id="id7">
+<h3>配線図<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>電力配分が決まったら、配線図を作成する。
+配線図は毎年作成されているものではなく、実際数年で大きくは変わらないので流用してもいい。
+ただし、配線の様子を頭に入れるには、実際に図を書いてみるのが有効だろう。</p>
+<p>27で更新した配線図を掲載しておく。
+配線図はドーム内で作業中に繰り返し参照することになるので、各自の端末にすぐ表示できるようにしておくと良い。</p>
+<div class="figure" id="id20">
+<img alt="27配線図" src="_images/haisen-27.jpg" />
+<p class="caption"><span class="caption-text">27配線図</span></p>
+</div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>コードの管理<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id9">
+<h3>在庫調査<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>卒検やリハの前に、人数が集まる機会を狙ってコードの在庫調査をしておきたい。
+込み入った作業ではないので、数時間かければ終わる。</p>
+<p>部室の機材などがある側に、延長コードが入った大きなケースがある。
+大量の金属が入っているのでかなり重いので運ぶときは注意。
+27まではダンボールに入っていたが、中身の重さで破れてしまうのでプラスチックのケースに変更した。</p>
+<p>山ほどコードがあるように見えるが、プラネがフル稼働するとギリギリの数しかないので必ず全てあるか確認すること。プラネ作業中は他の投影機が持ち出していたりすることも多々ある。</p>
+<p>コードには、番号を書いたテープが付いている(番号がないものは予備である)。
+適切な長さや口数のものが使えるよう、通し番号で管理されているのだ。27で長さや口数の調査をしたので、結果を掲載する。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="38%" />
+<col width="49%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">通し番号</th>
+<th class="head">用途</th>
+<th class="head">&nbsp;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1-8</td>
+<td>C(to22)あおとう配線</td>
+<td>1：3m (分岐用) ２-6：5m 7,8：5m(端っこ)</td>
+</tr>
+<tr class="row-odd"><td>9-16</td>
+<td>C(to22)しるとう配線</td>
+<td>9：3m(分岐用) 10-14：5m 15,16：5m(端っこ)</td>
+</tr>
+<tr class="row-even"><td>17-21</td>
+<td>C方位とう配線</td>
+<td>17:3m(3) 18,19:10m(1) 20:5m(1) 21:5m(3)</td>
+</tr>
+<tr class="row-odd"><td>22</td>
+<td>Cあお、しる、方位コントローラ用</td>
+<td>3m 4口</td>
+</tr>
+<tr class="row-even"><td>23</td>
+<td>Dプロジェクター用</td>
+<td>5m 1口</td>
+</tr>
+<tr class="row-odd"><td>24</td>
+<td>A(to32)かごしい用</td>
+<td>2m 1口</td>
+</tr>
+<tr class="row-even"><td>26-30</td>
+<td>C補助用</td>
+<td>30:タップ 26-28:2m(3) 29:2m(1)</td>
+</tr>
+<tr class="row-odd"><td>31</td>
+<td>Dさいたま、PC</td>
+<td>タップ</td>
+</tr>
+<tr class="row-even"><td>32</td>
+<td>A分岐アンプかごしい</td>
+<td>4m(1)</td>
+</tr>
+<tr class="row-odd"><td>33</td>
+<td>A(to32)アンプ</td>
+<td>2m(3)</td>
+</tr>
+<tr class="row-even"><td>34</td>
+<td>A(to24)かごしい本体</td>
+<td>3m(4)</td>
+</tr>
+<tr class="row-odd"><td>35-37</td>
+<td>A ダクト</td>
+<td>35:4m(1) 36:14m(1) 37:15m(1)</td>
+</tr>
+<tr class="row-even"><td>外1-4</td>
+<td>外</td>
+<td>20m,20m,15m,15m</td>
+</tr>
+</tbody>
+</table>
+<p>毎年長さを測る必要はなく、直近で調査がなされているなら全部の番号があるかだけ調べれば良さそうだ。</p>
+<p>これとは別に、コンセントが四口あるコードリールが部室に5つある。</p>
+</div>
+<div class="section" id="id10">
+<h3>コードの買い増し<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>延長コードは既製品で、簡単に切れたりはしないので買い替えのスパンは長い。
+また、現状の量で本番に対応できているのでこれ以上増やす必要性はあまりない。
+古かったり汚れが気になるものを適宜買い換える程度で大丈夫だろう。</p>
+<p>パソコン用の電源タップは壊れると替えが効かず、またスイッチが光るタイプはドームを暗くした時に邪魔なので、光らないものを買ってもいいかもしれない。</p>
+</div>
+</div>
+<div class="section" id="id11">
+<h2>ドーム外配線<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id12">
+<h3>卒検・リハ<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>卒検やリハ時のドーム外配線は、本番にはない屋外作業となる。各投影機が予定通り調整できるよう、確実に配線しておきたい。</p>
+<div class="section" id="id13">
+<h4>タイムスケジュール<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>ドームを膨らませる前に<strong>ダクトの配線</strong>
+だけは完成していなければならないので、機長会議で予定時刻を確認して計画を立てよう。
+早朝から開始となるので、前日の夜間に最低限二人は参加しておくのが望ましい。
+なお、日電は基本的に配線優先のため<strong>ドーム作業が全て免除される。</strong></p>
+</div>
+<div class="section" id="id14">
+<h4>トレ体<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>当日、電源は<strong>トレーニング体育館(トレ体)と第一体育館(一体)</strong>
+から取っていいことになっている。
+トレ体が5:00に開くので、まずはトレ体からドームの場所までコードを引っ張ろう。
+入り口から入り、左の廊下に曲がってすぐの場所にコンセントがある。</p>
+<p>ここで注意だが、人が通る場所では
+<strong>引っかからないようコードを固定しなければならない。</strong>
+養生テープを用意し、一定間隔に貼っておこう。これは卒検やリハに限らず、本番でも必要なことだ(しかし、地面が濡れていて固定が難しいこともあるので臨機応変に)。</p>
+<div class="figure" id="id21">
+<img alt="テープでコードを固定した例" src="_images/haisen-tape.jpg" />
+<p class="caption"><span class="caption-text">テープでコードを固定した例</span></p>
+</div>
+</div>
+<div class="section" id="id15">
+<h4>一体<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>ドームが膨らみ終わる頃には一体が開いているので、一体からもコードを引いてこよう。
+一体のコンセントは差込みがゆるく抜けてしまうことがあったので、テープで念入りに固定しておくと良い。</p>
+</div>
+<div class="section" id="id16">
+<h4>危険箇所<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>配線が切れてしまいがちな場所と、対策を列挙する。</p>
+<ul class="simple">
+<li>コンセント: テープで固定する</li>
+<li>ドア(開閉で引っ張られる): ドアの下をくぐらせるか、コードをたるませる</li>
+<li>コード同士の接合部: テープを巻いて補強</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id17">
+<h3>本番<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>屋内でコードを引っ張るだけなので、卒検やリハよりは楽なはずだ。
+かなり床が冷える中二体中を歩き回るので、スリッパの用意があると幸せになれる。</p>
+<p>二体のコンセントも、グラグラしているものや壊れているものがある。コンセント周辺は抜けないように念入りに固定し、できれば注意書きもあるとなおよい。</p>
+<p>コードの固定は、広大な二体のあらゆる場所で行うのは無理があるためできる範囲で。ただし、C系統(女子更衣室前)から<strong>入り口を横切る部分</strong>
+はお客様が大勢通るので、コードが浮かないようにしておこう。</p>
+</div>
+</div>
+<div class="section" id="id18">
+<h2>ドーム内配線<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ドーム内配線は、本番までやることがそう変わらない。
+星潰しが終わる頃にコードを搬入し、配線図を見ながらコードを繋げていこう。</p>
+<p>ソフトには、どのコンセントを使っていいか伝えておけば音響の配線を進めてくれる。
+ドーム外周のあお・しる・方位については、日電で配線してしまっても補助投に任せてもいい。
+任せる場合は<strong>どれがどの投影機の配線かわかるよう、置き方などを工夫</strong>　しよう。</p>
+<p>ドーム内は末端の投影機の線が抜けても繋ぎ直せばいいだけだが、<strong>コードリールの根元</strong>
+などは余裕があるときに固定をしておく方が良い。
+<strong>ドームのダクトコンソール</strong>
+も、線が抜けるとドームがしぼんで慌てることになるので、テープを巻いておくべきだ。</p>
+<p>本番では、ドーム内にお客様が大勢入られるので、対策が必要だ。
+ケーブル類はできるだけスタッフ席側を通るべきだが、その上で銀マットなどを敷いて隠すようにする。</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="buy_parts.html" class="btn btn-neutral float-right" title="部品の買い方" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="nissyu-idohen/pc-software-code.html" class="btn btn-neutral" title="日周緯度変(Ogoseの実装解説)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Kenichi Ito.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
