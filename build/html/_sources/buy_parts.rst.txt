@@ -1,3 +1,6 @@
+.. meta::
+   :ROBOTS: NOINDEX,NOFOLLOW,NOARCHIVE
+
 部品の買い方
 ============
 

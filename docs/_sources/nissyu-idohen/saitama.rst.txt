@@ -1,3 +1,6 @@
+.. meta::
+   :ROBOTS: NOINDEX,NOFOLLOW,NOARCHIVE
+
 日周緯度変(さいたま)
 ====================
 
