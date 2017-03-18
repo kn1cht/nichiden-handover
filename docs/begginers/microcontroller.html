@@ -1,0 +1,449 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta content="NOINDEX,NOFOLLOW,NOARCHIVE" name="ROBOTS" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>マイコンをはじめよう &mdash; Nichiden 0.1 ドキュメント</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="検索" href="../search.html"/>
+    <link rel="top" title="Nichiden 0.1 ドキュメント" href="../index.html"/>
+        <link rel="prev" title="部品の買い方" href="buy_parts.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Nichiden
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">目次:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../main.html">東京大学地文研究会天文部 日電引き継ぎ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../management.html">プロジェクト マネジメント</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nissyu-idohen/kikou.html">日周緯度変(日周緯度変換機構)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nissyu-idohen/saitama.html">日周緯度変(さいたま)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nissyu-idohen/ikebukuro.html">日周緯度変(Ikebukuro)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nissyu-idohen/pc-software.html">日周緯度変(外部制御アプリ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nissyu-idohen/pc-software-history.html">日周緯度変(外部制御アプリの歴史)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nissyu-idohen/pc-software-code.html">日周緯度変(Ogoseの実装解説)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wireless/piscium_hardware.html">無線電源制御装置PISCIUMハードウェア解説</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../haisen.html">配線</a></li>
+<li class="toctree-l1"><a class="reference internal" href="buy_parts.html">部品の買い方</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">マイコンをはじめよう</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">マイコン比較</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">マイコンボード比較</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#arduino">Arduino</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">購入</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">開発環境</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">言語</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#mbed">mbed</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">購入</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">開発環境</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">言語</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id11">結局何を選べばいいのか</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Nichiden</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>マイコンをはじめよう</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/begginers/microcontroller.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>マイコンをはじめよう<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<ul class="simple">
+<li>書いた人: Kenichi Ito(nichiden_27)</li>
+<li>更新日時: 2017/03/15</li>
+<li>実行に必要な知識・技能: 特になし</li>
+<li>難易度: 2/少しやれば可能</li>
+<li>情報の必須度: 2/知ってると楽</li>
+</ul>
+<div class="section" id="id2">
+<h2>概要<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>マイコンとは、小型のコンピュータシステムのことです。
+和製英語なので注意。&#8221;microcomputer&#8221;だとパソコンも含んでしまうので、&#8221;microcontroller&#8221;と呼べば間違いはないかと。</p>
+<p>最近では<code class="docutils literal"><span class="pre">Arduino</span></code>や<code class="docutils literal"><span class="pre">mbed</span></code>に代表される手軽なマイコンボードが増え、かなりの用途に対応できます。これらについても簡単に解説します。</p>
+</div>
+<div class="section" id="id3">
+<h2>マイコン比較<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>いろんな会社がいろんなシリーズを出している。
+よく見るのだとPIC/AVR/H8/ARMなど。</p>
+<ul class="simple">
+<li>PIC<ul>
+<li>Microchip Technology Inc.が展開</li>
+<li>日本で人気があり、情報も充実している</li>
+<li>その昔アセンブラの開発環境のみ無料だった時代があり、先人たちが苦労していた</li>
+<li>今ではC原語で書ける<a class="reference external" href="http://www.microchip.com/ja/mplab/mplab-x-ide">MPLAB
+X</a>というIDE(統合開発環境)が無償配布</li>
+<li><a class="reference external" href="http://akizukidenshi.com/catalog/c/cpicr/">秋月電子で山ほど売っている</a>ので入手性はおそらく日本一</li>
+<li>ライタ(書込み機)は<a class="reference external" href="http://akizukidenshi.com/catalog/g/gM-03608/">PICkit3</a>や<a class="reference external" href="http://akizukidenshi.com/catalog/g/gK-02018">AKI-PIC</a>など</li>
+</ul>
+</li>
+<li>AVR<ul>
+<li>Atmel Corporationのマイコン<ul>
+<li>だったが、2016年にMicrochipに買収された</li>
+</ul>
+</li>
+<li>Arduinoで゙使われている</li>
+<li>主にTinyシリーズ(下位)とMegaシリーズ(上位)に分かれる</li>
+<li><a class="reference external" href="http://www.atmel.com/ja/jp/microsite/atmel-studio/default.aspx">Atmel
+Studio</a>というIDEを無償配布している</li>
+<li>ライタはAVRISP mkIIなど(秋月のサイトから消えてる...)<ul>
+<li>自作もできるらしい</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>H8<ul>
+<li>日立製作所→Renesas Electronics</li>
+<li>よく知らないけど高性能らしい</li>
+</ul>
+</li>
+<li>ARM<ul>
+<li>ARM Holdingsによるマイコン</li>
+<li>消費電力が少なくスマートフォンでの採用が多い</li>
+<li>mbedにも使われている</li>
+</ul>
+</li>
+</ul>
+<p>プラネ用途であればPICかAVRで十分であろう。</p>
+<p>以前は&#8221;C言語を使うならAVR&#8221;ということで、23-25の代でAVRが多数使われた。
+しかしPICもC言語で開発できるようになり、27ではPICを使用していた。
+今では、どちらを採用しても支障はないだろう。</p>
+</div>
+<div class="section" id="id4">
+<h2>マイコンボード比較<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>マイコンの多くは、ICチップと見た目が似ている。
+ピンに自力で配線をつながなければプログラムを書き込むことすらできない。
+これでは、初心者に優しくないのはもちろん、経験のある開発者にとっても手間が多くなってしまう。</p>
+<p>最近人気となっているArduinoやmbedは、マイコンを載せた基板に電源や通信用のコネクタをあらかじめ実装しており、思い通りの機能を手軽に試すことが可能だ。
+両者は厳密には言語や開発環境などを含めたシステム全体を指すため、マイコンそのものとは違う。
+ただ、本記事では簡単のため<strong>「マイコンボード」</strong> と呼ぶことにする。</p>
+<p>なお、Raspberry PiやIntel
+Edisonなども見た目が似ているが、これらはOSを動作させることが可能で、よりコンピュータに近い使い方ができる。
+本記事ではマイコンとは区別し、詳しくは取り扱わない。</p>
+<div class="section" id="arduino">
+<h3>Arduino<a class="headerlink" href="#arduino" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>AVRマイコンを使ったマイコンボード。
+イタリア発祥のため読み方に悩むが「あるでぃーの」みたいな感じらしい。</p>
+<p>世界中で普及しており、日本においても解説記事、ブログ共にたいへん充実している。
+シールドと呼ばれる拡張基板が充実しており、通信やインタフェースなどの機能を追加できる。</p>
+<p>2015〜2016年にかけて運営会社が内部分裂を起こしていた経緯があり、公式サイトも<a class="reference external" href="http://www.arduino.cc">arduino.cc</a>と[arduino.org]((<a class="reference external" href="http://www.arduino.org">http://www.arduino.org</a>)の二種類存在する。
+混乱は製品ラインナップやIDEにまで及び、微妙に違う二バージョンが混在するという面倒な事態になっていたが、現在は和解、統合している。</p>
+<p>公式サイトもどちらを使っても問題ないはず。筆者はarduino.ccしか見たことがないが不便を感じたことはない。</p>
+<div class="section" id="id5">
+<h4>購入<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><a class="reference external" href="http://akizukidenshi.com/catalog/c/carduino1/">秋月電子</a>や<a class="reference external" href="http://www.sengoku.co.jp/mod/sgk_cart/search.php?cid=4186">千石電商</a>、<a class="reference external" href="http://www.marutsu.co.jp/GoodsListNavi.jsp?narrow1Cond=Arduino">マルツ</a>といった有名な電子部品屋にはだいたい売っている。
+ネットのみだが<a class="reference external" href="https://www.switch-science.com/catalog/list/40/">スイッチサイエンス</a>でも買えるようだ。</p>
+<p>価格は3000〜5000円程度。
+安くはないので、一台を様々な用途に使い回すことが多くなるだろう。</p>
+<p>ただ、Arduinoの設計は公開されていて、誰でも自前で作って販売することが可能だ。
+従って本家との互換機が多数売られており、中には価格面で本家を大幅に下回るものも存在する。</p>
+<p>例えば、国内で買うと3000円弱かかるArduino
+Nanoの互換機が、中国サイトなどで300円ちょっとで入手できてしまう(送料はかかる)。
+信頼性が要求される場合や、初めてArduinoを使うときは避けるべきだが、沢山のArduinoを必要とする場面などでは検討してはいかがだろうか(クレカ情報を守るためpaypal推奨)。</p>
+<p>安い互換機は、USBシリアル変換チップに<code class="docutils literal"><span class="pre">CH340G</span></code>という中国製品を使っていることが多々ある。
+最近のWindowsなら刺せば認識するようだが、Macで初めて使う際はドライバを入れねばならない。<a class="reference external" href="http://www.wch.cn/download/CH341SER_MAC_ZIP.html">江苏沁恒股份有限公司のページ</a>から落としてきてインストールしよう。</p>
+</div>
+<div class="section" id="id6">
+<h4>開発環境<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>開発にはArduino
+IDEをPCにダウンロードする必要がある。2017年現在のバージョンは1.8系で、arduino.cc/arduino.orgのどちらでも同じものが入手できる。このIDEでスケッチと呼ばれるプログラムの作成からビルド、ボードへの書き込みまでを行う。</p>
+<p>...はずだったのだが、2016年夏に<a class="reference external" href="https://create.arduino.cc/">Arduino
+Create</a>がリリースされ、mbedのようにブラウザからオンライン開発環境(<code class="docutils literal"><span class="pre">Arduino</span> <span class="pre">Web</span> <span class="pre">Editor</span></code>)を使えるようになった。
+まだ普及している印象はないが、コミュニティ機能などが充実しているようだ。
+使いこなせれば強い味方になるかもしれない。</p>
+<div class="figure" id="id12">
+<img alt="Arduino Web Editorの画面" src="../_images/arduino-web-editor.png" />
+<p class="caption"><span class="caption-text">Arduino Web Editorの画面</span></p>
+</div>
+<p>Arduino IDEの操作手順についてはWeb上に解説が数多くあるので述べない。</p>
+</div>
+<div class="section" id="id7">
+<h4>言語<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>Arduinoは、ソフトウェアを専門としない層でも気軽に始められるようにとのコンセプトを持つ。
+そのためか言語も独自のArduino言語を使用する。</p>
+<p>C/C++風なので、経験者なら特に勉強しなくとも違和感なく書けるだろう。
+それでいてArduinoで使う頻度の高い機能にはアクセスしやすくなっているので、とにかく初心者に優しい。</p>
+<p><a class="reference external" href="https://www.arduino.cc/en/Reference/">本家のリファレンス</a>をはじめ資料も充実しており、ググれば大抵の問題は解決できるはずだ。
+C++なので自分でクラスを作るのも自由。</p>
+</div>
+</div>
+<div class="section" id="mbed">
+<h3>mbed<a class="headerlink" href="#mbed" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ARM社とNXP社が提供するマイコンボード。
+公式推奨の読み方は「<strong>エンベッド</strong>」。
+ブラウザで<a class="reference external" href="https://developer.mbed.org/">developer.mbed.org</a>にある開発環境を使うというのが最大の特徴。</p>
+<p>自分のマシンにいちいち開発環境を入れるよりも、通信環境さえあればどこからでも使えた方が良いという発想である。
+アカウントを共有すればチーム開発ができてしまうなど便利さがある一方、ネット接続前提というのが足かせになってしまうこともある(最近になりオフライン開発が容易になった、後述)。</p>
+<p>日本国内にはコアなファンが結構おり、<a class="reference external" href="https://mbed.doorkeeper.jp/">mbed祭り</a>というユーザイベントが度々開催されるなど盛り上がっている。developer.mbed.org自体がユーザコミュニティ機能を備えており、開発と情報収集・発信が連続しているというのが強みだろう。</p>
+<div class="section" id="id8">
+<h4>購入<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>秋月電子やスイッチサイエンスなどで扱っている。</p>
+<p>mbedの中で一番有名なのは<code class="docutils literal"><span class="pre">LPC1768</span></code>だ。
+コンパクトで高性能だが、価格は6千〜7千円と安くはない。
+低電圧版の<code class="docutils literal"><span class="pre">LPC11U24</span></code>でも5千円ほどはする。</p>
+<p>そのためホイホイと買えなかったmbedだが、<strong>mbed-enabled</strong>
+プラットフォームの登場により状況は変わった。
+ハードウェアの設計がオープンソースとなったことで、mbedの開発環境で使用できるボードが数多く生まれたのだ。
+その全容は公式の<a class="reference external" href="https://developer.mbed.org/platforms/">platforms</a>で確認できる。</p>
+<p>なかでも、秋月電子などで容易に購入できるものにSTmicroの&#8221;<code class="docutils literal"><span class="pre">Nucleo</span> <span class="pre">Board</span></code>&#8220;がある。
+搭載するマイコンの種類やフラッシュメモリの容量によって数十種が存在し、そのうち20種弱は<a class="reference external" href="http://akizukidenshi.com/catalog/c/cstm32/">秋月電子</a>や<a class="reference external" href="https://www.switch-science.com/catalog/list/615/">スイッチサイエンス</a>などから入手可能だ。
+さらに、大部分が1500〜1900円程度と、本家mbedに比べて安価に購入できる。</p>
+<p><code class="docutils literal"><span class="pre">Nucleo</span> <span class="pre">Board</span></code>にはArduino
+UNOとピン配置の互換性があるため、Arduinoのシールドを流用できる場合もある。Arduinoに慣れている人にも触りやすいボードかもしれない。</p>
+<p>また、変わったケースとして<a class="reference external" href="http://akizukidenshi.com/catalog/g/gI-06071/">LPC1114FN28</a>というのもある。
+これは、見た目は28ピンのマイコンだが、mbed対応だ。
+USBでPCと繋いで他のmbedと同じ感覚で扱えるボードもあり、一個400円(110円の時代もあったらしい...)のマイコンを載せ替えれば使い回せる。
+流石にボード型のものと比べて性能に制限はあるが、予算を抑えたい場合や多数のmbedを揃える場合に選択肢になりうる。</p>
+</div>
+<div class="section" id="id9">
+<h4>開発環境<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>さきに述べた通り、mbedの開発環境はオンラインに存在する。
+mbedを買ってアカウントを作成すれば早速使えるようになり、どこからでも保存したコードを閲覧できる。
+開発環境自体も自動ヘルプ機能やライブラリのリファレンスを備えており、コードを書いていて特段不自由は感じない。</p>
+<p>ビルドが成功すると拡張子<code class="docutils literal"><span class="pre">.bin</span></code>のファイルがダウンロードされる。
+これをフラッシュメモリとして認識されるmbedのルートディレクトリに配置するだけで書き込み完了だ。
+リセットボタンを押せば書き込んだプログラムが動作する。</p>
+<p>どうしても、オフラインでコンパイルをしたい場合がある。
+従来は、オンラインIDEの機能でプロジェクトを書き出した上で、自前で構築したARM向けの開発環境でビルドしていた。</p>
+<p>2016年8月、<code class="docutils literal"><span class="pre">mbed</span> <span class="pre">OS</span> <span class="pre">5</span></code>がリリースされる。
+これは、それまでのいわゆるmbedである<code class="docutils literal"><span class="pre">mbed</span> <span class="pre">2.0</span></code>と、IoT向けのOSである<code class="docutils literal"><span class="pre">mbed</span> <span class="pre">OS</span> <span class="pre">3</span></code>を統合した新たなmbedのソフトウェア基盤だ。
+これに伴い、コマンドラインの開発環境<code class="docutils literal"><span class="pre">mbed</span> <span class="pre">CLI</span></code>が使用可能になった。</p>
+<p><code class="docutils literal"><span class="pre">mbed</span> <span class="pre">CLI</span></code>は、<code class="docutils literal"><span class="pre">mbed</span> <span class="pre">2.0</span></code>のコードをインポートしてビルドすることもできる。
+本家ツールだけあってmbedとの親和性や機能性は優れているようなので、オフライン環境が欲しくなった際は使ってみてはいかがだろうか。
+詳細は、<a class="reference external" href="https://developer.mbed.org/users/MACRUM/notebook/mbed-offline-development/">mbed
+オフラインの開発環境</a>を確認されたい。</p>
+</div>
+<div class="section" id="id10">
+<h4>言語<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>C++をベースとしている。
+C++を書き慣れている開発者は違和感なく扱える一方、プログラム自体初心者だと意味を理解するのにしばらくかかるかもしれない。</p>
+<p>Arduinoより後発のため、<code class="docutils literal"><span class="pre">=</span></code>などの演算子をクラスごとにオーバーロードするなど直感的に書くための工夫が進んでいる。
+また、オンラインIDE自体にコミュニティ機能・コードの公開機能があり、他ユーザが公開している既存資源を簡単に自分のプロジェクトに取り込める。
+mbedのシステムをフル活用すれば、かなり快適に開発を進められそうだ。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id11">
+<h2>結局何を選べばいいのか<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ここまで長々と書いてきたが、一体どのマイコン(ボード)を買いに行けばいいのだろう。</p>
+<p>Arduinoやmbedといったマイコンボードの使い勝手は年々進化し続けており、従来のマイコンからは考えられない開発スピードを実現できる。
+学生団体レベルの製作物ならば、無理に素のマイコンを使おうとせず、マイコンボードを採用して構わないだろう。</p>
+<p>Arduinoとmbedには、双方に様々種類がある。
+習得もそれほど大変でないので、それぞれの特徴を知った上で目的に合わせて選ぶのが良いだろう。
+特に出力ピン数は、ボードを選ぶ際足りているかよくよく確認すべきである。</p>
+<p>高性能のコアが全く必要ない用途や、電流サージの危険があり高価なボードを故障の危険に晒したくない場面では、PICやAVRといったマイコンの技術が生きてくる。
+ひとたび動かし方を習得すれば、安くて小回りのきくマイコンは強い味方になってくれることだろう。</p>
+<p>そうしたマイコンが実際に使われている機材の修理や、ソフトウェア改修を任されることもある。
+幸いにも書き込み機や予備のマイコンがあらかじめ用意されているなら、PICやAVRの開発環境は出費なしで揃えられる。
+先達の残したコードを解読していけば、あなたのマイコンの知識も深まるかもしれない。</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="buy_parts.html" class="btn btn-neutral" title="部品の買い方" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Kenichi Ito.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

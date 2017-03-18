@@ -1,17 +1,14 @@
 .. meta::
    :ROBOTS: NOINDEX,NOFOLLOW,NOARCHIVE
 
-.. meta::
-   :ROBOTS: NOINDEX,NOFOLLOW,NOARCHIVE
-
 日周緯度変(日周緯度変換機構)
 ============================
 
 -  書いた人: Kenichi Ito(nichiden\_27)
 -  更新日時: 2017/03/03
 -  実行に必要な知識・技能: 歯車機構
--  タスクの重さ: 5: 準備だけで数ヶ月
--  タスクの必須度: 2: たまにやるべき
+-  タスクの重さ: 5/準備だけで数ヶ月
+-  タスクの必須度: 2/たまにやるべき
 -  元資料
 -  ``saitama.pdf`` by 荒田 実樹(nichiden\_23)
 
