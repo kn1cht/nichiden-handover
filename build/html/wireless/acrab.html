@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta content="NOINDEX,NOFOLLOW,NOARCHIVE" name="ROBOTS" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>無線制御(Acrab) &mdash; Nichiden 0.1 ドキュメント</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="検索" href="../search.html"/>
+    <link rel="top" title="Nichiden 0.1 ドキュメント" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Nichiden
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">目次:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../main.html">東京大学地文研究会天文部 日電引き継ぎ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../management.html">プロジェクト マネジメント</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nissyu-idohen/kikou.html">日周緯度変(日周緯度変換機構)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nissyu-idohen/saitama.html">日周緯度変(さいたま)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nissyu-idohen/ikebukuro.html">日周緯度変(Ikebukuro)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nissyu-idohen/pc-software.html">日周緯度変(外部制御アプリ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nissyu-idohen/pc-software-history.html">日周緯度変(外部制御アプリの歴史)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nissyu-idohen/pc-software-code.html">日周緯度変(Ogoseの実装解説)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="piscium_hardware.html">無線電源制御装置PISCIUMハードウェア解説</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../haisen.html">配線</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../begginers/buy_parts.html">部品の買い方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../begginers/microcontroller.html">マイコンをはじめよう</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Nichiden</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>無線制御(Acrab)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/wireless/acrab.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="acrab">
+<h1>無線制御(Acrab)<a class="headerlink" href="#acrab" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<ul class="simple">
+<li>書いた人：Kenichi Ito(nichiden_27)</li>
+<li>更新日時：2017/3/20</li>
+<li>実行に必要な知識・技能：Web制作、JavaScript</li>
+<li>タスクの重さ: 4/一月はかかる</li>
+<li>タスクの必須度：4/毎年やるべき</li>
+<li>元資料</li>
+<li><code class="docutils literal"><span class="pre">星座絵送信機・受信機資料.pdf</span></code> by 岩滝宗一郎(nichiden_22)</li>
+</ul>
+<div class="section" id="id1">
+<h2>概要<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+</div>
+<div class="section" id="id2">
+<h2>沿革<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>星座絵は、プラネのにとって重要な要素だが、常に点けたままというわけにはいかない。
+解説やソフトの流れに合わせてたくさんの星座絵をリアルタイムでオンオフできる必要がある。</p>
+<p>ただし、星座絵投影機の本体は、他の主投影機同様日周緯度変装置により回転する。
+有線での制御は不可能に近い。
+そこで、日電では星座絵の制御に無線を採用してきた。</p>
+<div class="section" id="id3">
+<h3>16-21主投<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>データとして共有されている限りの資料では、16日電が<strong>FM変調方式</strong>
+の電波を採用していた。
+FMとは周波数変調方式のことで、ある周波数を閾値として0か1かのデジタル信号を表すというわけだ。
+ただし、高周波のノイズが紛れ込むと0が1に反転してしまう問題があり、誤り訂正の工夫をしていたようだ。</p>
+<p>この頃の情報は不完全で、不明なことも多い。
+19日電の資料には、北天側で信号を受信し、南天側のサブ機に有線で信号を送ったとの記述がある。
+送信機・受信機にはPICマイコンを使っていたようだ。</p>
+</div>
+<div class="section" id="id4">
+<h3>22主投<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>22では、AM変調の無線モジュールとAVRマイコンを採用した。 英RF
+Solutions社の<code class="docutils literal"><span class="pre">AM-RT</span></code>/<code class="docutils literal"><span class="pre">AM-HRR</span></code>というモジュールを使用していたようだ。</p>
+<p>22星座絵は16個あり、16bit(2byte)のデータでオンオフを表現できる。
+送信側はトグルスイッチ16個を並べた基板と接続しており、スイッチの状態を読み取って電波信号に換える。</p>
+<p>南北の受信機の区別にも工夫があった。
+ジャンパピンの位置で、上位・下位それぞれ8bitのどちらを読み取るか切り替えられる。
+これにより、送信側からは南北まとめて信号を送り、受信側で南北を区別する仕組みだ。</p>
+<div class="figure" id="id6">
+<img alt="22星座絵受信機に貼られていたラベル" src="wireless/_media/wireless-22.jpg" />
+<p class="caption"><span class="caption-text">22星座絵受信機に貼られていたラベル</span></p>
+</div>
+<p>しかし、通信のエラーは排除しきれず、タイムラグも大きいものだった。</p>
+</div>
+<div class="section" id="id5">
+<h3>23主投<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>23主投になり、<code class="docutils literal"><span class="pre">XBee</span></code><strong>が初めて採用された。</strong>
+<code class="docutils literal"><span class="pre">Xbee</span></code>は、<code class="docutils literal"><span class="pre">ZigBee</span></code>というプロトコルを使用した無線モジュールだ。
+買ってきて設定するだけで、手軽に無線通信を使用できる。
+ロボットやCanSat(模擬人工衛星)の大会でも多数のチームが採用しており、性能は折り紙つきである。</p>
+<p><code class="docutils literal"><span class="pre">XBee</span></code>にはシリアル通信のように扱えるATモードと、<code class="docutils literal"><span class="pre">XBee</span></code>自体を制御に使うAPIモードがある。
+23で使ったのは前者で、送信側1台をPCに、受信側2台を南北それぞれの受信機回路に接続していた。</p>
+<p>23では、これまでのように一方的にコマンドを送るだけでなく、<strong>受信側の状態をフィードバック</strong>
+することでエラー検出・修正を試みた。
+しかし、回路の不備で正しい応答が返らず、星座絵の操作はできたもののフィードバックは実現しなかった。</p>
+<p>受信機の回路には22同様AVRが使われた。
+さらに、過電圧保護回路やトランジスタアレイでのポート制御など、以降の星座絵受信機の基本となる設計がこの時期に生み出された。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Kenichi Ito.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

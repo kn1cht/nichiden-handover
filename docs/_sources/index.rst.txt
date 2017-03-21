@@ -29,6 +29,7 @@
    nissyu-idohen/pc-software
    nissyu-idohen/pc-software-history
    nissyu-idohen/pc-software-code
+   wireless/wireless
    wireless/piscium_hardware
    haisen
    begginers/buy_parts
