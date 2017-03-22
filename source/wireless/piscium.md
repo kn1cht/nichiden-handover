@@ -1,7 +1,7 @@
-# 無線電源制御装置PISCIUMハードウェア解説
+# 無線制御(PISCIUM)
 
 - 書いた人：眞木俊弥
-- 更新日時：2017/3/10
+- 更新日時：2017/3/22
 - 実行に必要な知識・技能：電子工作の経験，電子回路について一通りの知識，マイコン（Arduino, PIC)，インターネットの仕組み
 - タスクの重さ: 4/一月はかかる
 - タスクの必須度：5/しないとプラネ終了/とりあえず前の年のものを使えるようにしておくこと，壊れてたら…頑張ってくれ…
@@ -33,7 +33,7 @@
 使用するには，電源を接続（27代ではパソコン用のATX電源とUSB充電器を使用）し，出力用の側面のDCジャックに星座絵などの投影機を接続してください。
 使用している電源は，[玄人志向の400Wの電源](http://www.kuroutoshikou.com/product/power/atx/krpw-l5-400w_80_/)です。
 
-![](_media/ATX電源.png)
+![](_media/atx-dengen.jpg)
 
 ATX電源は，20ピンATXと，6ピンPCI Express用のコネクタを使用しています。
 
@@ -60,16 +60,17 @@ ATX電源は，20ピンATXと，6ピンPCI Express用のコネクタを使用し
 
 - 電源がついた状態での各投影機の抜き差しは故障の原因になるのでやめてください。
 - ATX電源には，大事な自作パソコンを守ってくれる安全装置が付いています。そのため，過電流，過電圧を感知すると自動的に電源が落ちます。PISCIUMの電源設計は甘々なので（すみません…），各投影機のオンオフ時の電圧サージに耐えられず，電源が落ちてしまうことがあります。その場合は，ATX電源の電源を手動で入れ直してください。
+    - ATX電源自体にスイッチがついていますが、かごしいに設置後は手が入らないので、かごしいに繋がる延長コードごと抜き差しするといいでしょう。
+    - Wi-Fiモジュールが再起動した後、設定を送り直すため`Acrab`のページを再読み込みする必要あり(これは欠陥なので改善されるべき)。
 - かごしいのグラウンドが弱いため，稼働している間に全体が帯電してしまうようです。
 27代の公演でも，公演中に火花が飛び散り，空中放電して一瞬ブラックアウトしたことがあります。
 **28の皆さんには，かごしいのアース接続を何とかしてほしいです。**
 そうでないと最悪の場合，火花放電により出火します。
-かごしい本体とは導通していることは確認しているので，かごしい
-か，それと導通しているごきぶりをアースしてください。
+かごしい本体とは導通していることは確認しているので，かごしいか，それと導通しているごきぶりをアースしてください。
 アースするときは，より線ではなく，単芯の太めの導線を使用し，体育館の柱など地面に突き刺さっている大きい金属に接続してください。
 アースしただけで治るのかはよくわかりませんが，アースしてないのはまずいです。
 - また，グラウンドが弱く，サージに耐えられないので，こうとうの制御は現時点では不可能（電源が落ちてしまう）です。そのため，こうとうは付けっ放しにしておくのですが，最初に点灯するときに，やはり電源が落ちやすいので，何度かトライすることになります…（誰かなんとかしてー）
-- 27代の本番では，こうとうが消えてしまって真っ暗になるリスクを回避するために，こうとうの電源は，PISCIUMを通さず，ATX電源のPCI Express 6ピンコネクタから直接給電するケーブルを作成し，こうとうを常時点灯かつPISCIUMの影響を受けないようにしました。
+- 27代の本番では，こうとうが消えてしまって真っ暗になるリスクを回避するために，こうとうの電源は，`PISCIUM`を通さず，ATX電源のPCI Express 6ピンコネクタから直接給電するケーブルを作成し，こうとうを常時点灯かつ`PISCIUM`の影響を受けないようにしました。
 - いっとうの制御は可能ですが，いっとうボックスの瞬き回路の起動に時間がかかり，点灯までにタイムラグが生じるので，現時点では行える状況にありません。
 - また，いっとうボックスの方にノイズが乗り，しばしばいっとうが映らなくなる事案が発生したので，本番は結局5Vの別のACアダプタを用意しました。5Vの電源をATX電源とは別に用意するのは無駄なので，できれば，SATAとかHDDとかのコネクタから5Vを取り出せるようなケーブルを新たに作成してほしいです。
 - 以上のように，星座絵以外の制御は事実上できないような状況になってしまっています。
@@ -105,22 +106,22 @@ IPアドレスは，固定IPで，北天が192.168.11.100，南天が192.168.11.
 
 [Wikiへのリンク](https://github.com/macv35/nichiden27/wiki/Piscium#usage)
 
-Send GET request to certain url.
+>Send GET request to certain url.
 
-1. **Refresh Confirm**  
-(example) http://(ip)/refresh_confirm/status.json
-1. **Set Port**
-Set ON/OFF of each port.  
-(example) http://(ip)/setPort/status.json?P01=0&P02=1
-1. **Set Constellation Name**  
-Change names of pin used in communication.  
-(example) http://(ip)/setConstellationName/status.json?p01=And&p02=Aql...
-1. **All Set**  
-Set all port ON.  
-(example) http://(ip)/allSet/status.json
-1. **All Clear**  
-Set all port OFF.  
-(example) http://(ip)/allClear/status.json
+>1. **Refresh Confirm**  
+>(example) http://(ip)/refresh_confirm/status.json
+>1. **Set Port**
+>Set ON/OFF of each port.  
+>(example) http://(ip)/setPort/status.json?P01=0&P02=1
+>1. **Set Constellation Name**  
+>Change names of pin used in communication.  
+>(example) >http://(ip)/setConstellationName/status.json?p01=And&p02=Aql...
+>1. **All Set**  
+>Set all port ON.  
+>(example) http://(ip)/allSet/status.json
+>1. **All Clear**  
+>Set all port OFF.  
+>(example) http://(ip)/allClear/status.json
 
 以上の5種類のコマンドが用意されています。
 通常の公演時は，`Acrab`がこの辺のことはやってくれるはずですが，回路関係のデバッグをする際には，手持ちのスマホとかでこれらのURIにアクセスしながらやると楽です。
