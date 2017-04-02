@@ -1,6 +1,3 @@
-.. meta::
-   :ROBOTS: NOINDEX,NOFOLLOW,NOARCHIVE
-
 無線制御(PISCIUM)
 =================
 

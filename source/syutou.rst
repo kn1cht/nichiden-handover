@@ -1,6 +1,3 @@
-.. meta::
-   :ROBOTS: NOINDEX,NOFOLLOW,NOARCHIVE
-
 主投影機との連携
 ================
 

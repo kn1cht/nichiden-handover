@@ -1,6 +1,3 @@
-.. meta::
-   :ROBOTS: NOINDEX,NOFOLLOW,NOARCHIVE
-
 日周緯度変(外部制御アプリの歴史)
 ================================
 

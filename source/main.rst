@@ -1,6 +1,3 @@
-.. meta::
-   :ROBOTS: NOINDEX,NOFOLLOW,NOARCHIVE
-
 東京大学地文研究会天文部 日電引き継ぎ
 =====================================
 

@@ -1,6 +1,3 @@
-.. meta::
-   :ROBOTS: NOINDEX,NOFOLLOW,NOARCHIVE
-
 日周緯度変(Ogoseの実装解説)
 ===========================
 
