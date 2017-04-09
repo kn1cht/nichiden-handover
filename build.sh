@@ -9,7 +9,8 @@ done
 find ./* -name '*.rst' -print0 | while read -r -d '' file
 do
   echo "[2] Processing reST code : $file"
-  sed -i .bak -e 's/\.\.\ code::/.. code-block/g' "${file}" # substitution for code hilighting
+  sed -i .bak -e 's/\.\.\ code:: math/.. math::/g' "${file}" # substitution for code hilighting
+  sed -i .bak -e 's/\.\.\ code::/.. code-block::/g' "${file}" # substitution for code hilighting
 done
 
 echo "[3] Deleting backup files..."

@@ -118,13 +118,13 @@ XやLinuxでは\ ``.Net``\ のオープンソース実装である\ ``Mono``\ �
 
 まず、ソースコードの冒頭に以下の文を書いておくと便利であろう:
 
-.. code-block c#
+.. code-block:: c#
 
     using System.IO.Ports;
 
 通信を開始する前に、まずポートを開く：
 
-.. code-block c#
+.. code-block:: c#
 
     SerialPort port = new SerialPort(
       portName:portName,

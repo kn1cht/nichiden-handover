@@ -1,6 +1,3 @@
-.. meta::
-   :ROBOTS: NOINDEX,NOFOLLOW,NOARCHIVE
-
 日周緯度変(日周緯度変換機構)
 ============================
 
@@ -10,7 +7,8 @@
 -  タスクの重さ: 5/準備だけで数ヶ月
 -  タスクの必須度: 2/たまにやるべき
 -  元資料
--  ``saitama.pdf`` by 荒田 実樹(nichiden\_23)
+
+   -  ``saitama.pdf`` by 荒田 実樹(nichiden\_23)
 
 概要
 ----
@@ -61,11 +59,11 @@
 
 .. math::
 
-   \begin{aligned}
-   \frac{1}{80}\times\frac{25}{80}\times\frac{18}{64}=\frac{9}{8192}
-   &&\text{緯度変} \\
-   \frac{1}{50}\times\frac{20}{100}=\frac{1}{250}
-   &&\text{日周}\end{aligned}
+    \begin{aligned}
+    \frac{1}{80}\times\frac{25}{80}\times\frac{18}{64}=\frac{9}{8192}
+    &&\text{緯度変} \\
+    \frac{1}{50}\times\frac{20}{100}=\frac{1}{250}
+    &&\text{日周}\end{aligned}
 
 となる。なお、これらのギヤの歯の数は動かしながら手で数えたので、もしかすると数え間違いがあるかもしれない。あまり過信しないよう。
 

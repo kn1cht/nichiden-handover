@@ -73,7 +73,7 @@ XAML(ざむる)は、XMLをベースとしたGUIの記述言語である。XML�
 ブラシ
 ~~~~~~
 
-.. code-block xml
+.. code-block:: xml
 
     <!--  App.xaml -->
     <SolidColorBrush x:Key="WindowBackground" Color="#FF111111"/>
@@ -114,7 +114,7 @@ XAML(ざむる)は、XMLをベースとしたGUIの記述言語である。XML�
 トリガーは、特定のイベントが起きたら動的にコントロールの見た目を変更する機能だ。
 マウスでポイントした時やクリックした時に色が変わると、操作の結果がユーザーに視覚的に伝わる。
 
-.. code-block xml
+.. code-block:: xml
 
     <!--  App.xaml -->
     <ControlTemplate.Triggers>
@@ -144,7 +144,7 @@ XAML(ざむる)は、XMLをベースとしたGUIの記述言語である。XML�
 スタイルの適用の仕方はいくつかある。\ ``TargetType``\ **に要素の種類を入れると、同じ種類の要素全てに適用される**\ 。
 以下は\ ``Window``\ の見た目を指定している例。
 
-.. code-block xml
+.. code-block:: xml
 
     <!--  App.xaml -->
     <Style TargetType="Window">
@@ -164,7 +164,7 @@ XAML(ざむる)は、XMLをベースとしたGUIの記述言語である。XML�
 もう一つのスタイル適用方法は、\ ``x:Key``\ **プロパティ**
 を用いることだ。\ ``<Style>``\ タグに\ ``x:Key="hogefuga"``\ のように分かりやすい名前をつけておく。
 
-.. code-block xml
+.. code-block:: xml
 
     <!--  App.xaml -->
     <Style x:Key="DiurnalPlusButton" TargetType="ToggleButton" BasedOn="{StaticResource ToggleButton}">
@@ -178,7 +178,7 @@ XAML(ざむる)は、XMLをベースとしたGUIの記述言語である。XML�
 
 そして、適用したいボタンなどに\ ``Style="{StaticResource hogefuga}"``\ などと指定すれば該当する\ ``x:Key``\ を持つスタイルが適用される。
 
-.. code-block xml
+.. code-block:: xml
 
     <!--  MainWindow.xaml -->
     <ToggleButton x:Name="diurnalPlusButton" Style="{StaticResource DiurnalPlusButton}" Grid.Row="2" Grid.Column="0"
@@ -220,7 +220,7 @@ WPFのレイアウト要素はいくつかあるが、\ ``Ogose``\ では\ ``<Gr
 は、画面を格子状に分割してその中に要素を配置していくことができる。
 いちいち行や列を定義せねばならず面倒だが、サイズを相対的に決められるので、ウィンドウを大きくしたときボタンも拡大されるというメリットがある。
 
-.. code-block xml
+.. code-block:: xml
 
     <!-- MainWindow.xaml -->
     <Grid x:Name="MainGrid">
@@ -294,7 +294,7 @@ UI要素
 である方が都合がよい。
 実は、これには複雑なコーディングは必要なく、トグルボタン用のスタイルを適用してやるだけで済む。
 
-.. code-block xml
+.. code-block:: xml
 
     <!--  App.xaml -->
     <Style TargetType="RadioButton" BasedOn="{StaticResource ToggleButton}">
@@ -343,7 +343,7 @@ MainWindow.xaml.cs
 まず、\ ``RoutedCommand``\ クラスを宣言する。絶賛コピペなので意味はよく知らない。
 ``diurnalPlus``\ は日周を進めるという意味だ。
 
-.. code-block c#
+.. code-block:: c#
 
     /// <summary> RoutedCommand </summary>
     public readonly static RoutedCommand diurnalPlusButtonCommand = new RoutedCommand("diurnalPlusButtonCommand", typeof(MainWindow));
@@ -351,7 +351,7 @@ MainWindow.xaml.cs
 この状態ではまだコマンドとボタン・処理が結びついていない。
 CommandBindingという操作でこれらを紐付けする。これもコピペ。
 
-.. code-block c#
+.. code-block:: c#
 
     /// <summary>
     /// MainWindowに必要なコマンドを追加する。コンストラクタで呼び出して下さい
@@ -366,7 +366,7 @@ CommandBindingという操作でこれらを紐付けする。これもコピペ
 ``new CommandBinding()``\ に与えている引数は順に、コマンド・実行する関数・実行可能かを与える関数である。
 三番目のコマンド実行可否は、コマンドを実行されては困る時のための仕組みだ。
 
-.. code-block c#
+.. code-block:: c#
 
     /// <summary> 各ボタンが操作できるかどうかを記憶 </summary>
     private Dictionary<string, bool> isEnabled = new Dictionary<string, bool>()
@@ -377,7 +377,7 @@ CommandBindingという操作でこれらを紐付けする。これもコピペ
         {"latitudeMinusButton", true}
     };
 
-.. code-block c#
+.. code-block:: c#
 
     private void toggleButton_CanExecuted(object sender, CanExecuteRoutedEventArgs e)
     {
@@ -390,7 +390,7 @@ CommandBindingという操作でこれらを紐付けする。これもコピペ
 さて、\ ``private void initCommandBindings()``\ をプログラム開始時に実行しなければバインディングが適用されない。
 ``MainWindow``\ のコンストラクタ内で呼び出しておく。
 
-.. code-block c#
+.. code-block:: c#
 
     public MainWindow()
     {
@@ -404,7 +404,7 @@ CommandBindingという操作でこれらを紐付けする。これもコピペ
 ``<Window>``\ タグ内にローカルの名前空間(\ ``xmlns:local="clr-namespace:Ogose"``)がなければ追加しておこう。
 各コントロールの\ ``Command``\ プロパティにコマンドをコピペする。
 
-.. code-block xml
+.. code-block:: xml
 
     <!-- MainWindow.xaml -->
     <ToggleButton x:Name="diurnalPlusButton" Style="{StaticResource DiurnalPlusButton}" Grid.Row="2" Grid.Column="0"
@@ -419,7 +419,7 @@ CommandBindingという操作でこれらを紐付けする。これもコピペ
 XAMLで\ ``<KeyBinding>``\ タグを使えば実現できるのだが、なんとこれではボタンが\ ``sender``\ にならない。
 色々調べても対処法が見つからないので、結局キー操作イベントから無理やりコマンドを実行させるしかなかった。
 
-.. code-block c#
+.. code-block:: c#
 
     private void Window_KeyDown(object sender, KeyEventArgs e)
     {
@@ -452,7 +452,7 @@ XAMLで\ ``<KeyBinding>``\ タグを使えば実現できるのだが、なん�
 最後に、CommandBindingでコマンドと紐付けた関数について書く。
 日周を進めるボタンのものは以下のようになっている。
 
-.. code-block c#
+.. code-block:: c#
 
     private void diurnalPlusButtonCommand_Executed(object sender, ExecutedRoutedEventArgs e)
     {
@@ -483,7 +483,7 @@ XAMLで\ ``<KeyBinding>``\ タグを使えば実現できるのだが、なん�
 もう一つの可能性は、速度を切り替えたときだ。
 日周の速度を管理している\ ``diurnalRadioButton``\ がクリックされたとき実行されるコードを見てみよう。
 
-.. code-block c#
+.. code-block:: c#
 
     private void diurnalRadioButton_Checked(object sender, RoutedEventArgs e)
     {
@@ -517,7 +517,7 @@ XAMLで\ ``<KeyBinding>``\ タグを使えば実現できるのだが、なん�
 ポート一覧の取得
 ^^^^^^^^^^^^^^^^
 
-.. code-block c#
+.. code-block:: c#
 
     /// <summary>
     /// シリアルポート名を取得し前回接続したものがあればそれを使用 ボーレートの設定
@@ -557,7 +557,7 @@ foreach文の中で使用している\ ``SerialPortItem``\ は自作クラスで
 接続ボタンがクリックされると、\ ``ConnectButton_IsCheckedChanged()``\ が呼ばれる。
 その中身はこうだ。
 
-.. code-block c#
+.. code-block:: c#
 
         /// <summary>
         /// PortComboBoxが空でなくConnectButtonがチェックされている時にシリアルポートの開閉を行う シリアルポートの開閉時に誤動作が発生しないよう回避している
@@ -613,7 +613,7 @@ foreach文の中で使用している\ ``SerialPortItem``\ は自作クラスで
 ``bool connecting``\ はポートを開くのか閉じるのかの分岐に使われている。
 後はtry-catch文でポートを開き、エラーが出れば警告を出すのだが、このブロックの上下に変な記述がある。
 
-.. code-block c#
+.. code-block:: c#
 
     ConnectButton.Checked -= ConnectButton_IsCheckedChanged;
     ConnectButton.Unchecked -= ConnectButton_IsCheckedChanged;
@@ -626,7 +626,7 @@ foreach文の中で使用している\ ``SerialPortItem``\ は自作クラスで
 これはおそらくコメントの言う「シリアルポートの開閉時に誤動作が発生しないよう回避している」部分であろう。
 ``MainWindow.xaml``\ の、\ ``ConnectButton``\ に関する部分を見てみよう。
 
-.. code-block xml
+.. code-block:: xml
 
     <!-- MainWindow.xaml -->
     <ToggleButton x:Name="ConnectButton" Checked="ConnectButton_IsCheckedChanged" Unchecked="ConnectButton_IsCheckedChanged" Margin="0">
@@ -647,7 +647,7 @@ foreach文の中で使用している\ ``SerialPortItem``\ は自作クラスで
 ``emitCommand()``\ は、コマンド文字列を与えて実行すると接続しているポートに送信してくれる。
 ``serialPort.IsOpen``\ がfalseの時は、警告とともにコマンド文字列をMessageBoxに表示する。
 
-.. code-block c#
+.. code-block:: c#
 
     /// <summary>
     /// シリアルポートが開いている時にコマンドcmdをシリアルポートに書き込み閉じている時はMassageBoxを表示する
@@ -677,7 +677,7 @@ foreach文の中で使用している\ ``SerialPortItem``\ は自作クラスで
 公演モードは、日周を進める以外の機能を制限して誤操作を防ぐ為のものだ。
 ただ、これもかなり直前になって放り込んだため無理やりな実装になっている。
 
-.. code-block c#
+.. code-block:: c#
 
     private void checkBox2_Changed(object sender, RoutedEventArgs e)
     {

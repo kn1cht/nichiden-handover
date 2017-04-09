@@ -1,6 +1,3 @@
-.. meta::
-   :ROBOTS: NOINDEX,NOFOLLOW,NOARCHIVE
-
 日周緯度変(さいたま)
 ====================
 
@@ -10,31 +7,28 @@
 -  タスクの重さ: 3/数週間
 -  タスクの必須度: 3/年による
 -  元資料
--  ``日周・緯度変資料.pdf`` by 岩滝宗一郎(nichiden\_22)
--  ``saitama.pdf`` by 荒田 実樹(nichiden\_23)
+
+   -  ``日周・緯度変資料.pdf`` by 岩滝宗一郎(nichiden\_22)
+   -  ``saitama.pdf`` by 荒田 実樹(nichiden\_23)
 
 概要
 ----
 
 .. raw:: html
 
-   <div
-   style="font-family:IPAMonaPGothic,'ＭＳ Ｐゴシック',sans-serif;">
-
-　　　　　　　　　　　　　　　　＼　│　／
-　　　　　　　　　　　　　　　　　／￣＼　　 ／￣￣￣￣￣￣￣￣￣
-　　　　　　　　　　　　　　　─（ ﾟ ∀ ﾟ ）＜　さいたまさいたま！
-　　　　　　　　　　　　　　　　　＼＿／　　 ＼＿＿＿＿＿＿＿＿＿
-　　　　　　　　　　　　　　　　／　│　＼
-　　　　　　　　　　　　　　　　　　　 ∩ ∧　∧　　／￣￣￣￣￣￣￣￣￣￣
-￣￣￣￣￣￣￣￣＼∩ ∧　∧　＼（ ﾟ∀ﾟ）＜　さいたまさいたまさいたま！
-さいたま～～～！ 　 ＞（ ﾟ∀ﾟ ）/ ｜　　　　/　＼＿＿＿＿＿＿＿＿＿＿
-＿＿＿＿＿＿＿＿／ ｜　　　 〈　｜　　　｜ 　　　　　　　　　　　　　
-/　／＼\_」　/　／＼」 　　　　　　　　　　　　　 ￣　　　　 / ／
-
-.. raw:: html
-
-   </div>
+   <pre style="font-family:IPAMonaPGothic,'ＭＳ Ｐゴシック',sans-serif;">
+   　　　　　　　　　　　　　　　　＼　│　／<br>
+   　　　　　　　　　　　　　　　　　／￣＼　　 ／￣￣￣￣￣￣￣￣￣<br>
+   　　　　　　　　　　　　　　　─（ ﾟ ∀ ﾟ ）＜　さいたまさいたま！<br>
+   　　　　　　　　　　　　　　　　　＼＿／　　 ＼＿＿＿＿＿＿＿＿＿<br>
+   　　　　　　　　　　　　　　　　／　│　＼<br>
+   　　　　　　　　　　　　　　　　　　　 ∩ ∧　∧　　／￣￣￣￣￣￣￣￣￣￣<br>
+   ￣￣￣￣￣￣￣￣＼∩ ∧　∧　＼（ ﾟ∀ﾟ）＜　さいたまさいたまさいたま！<br>
+   さいたま～～～！ 　 ＞（ ﾟ∀ﾟ ）/ ｜　　　　/　＼＿＿＿＿＿＿＿＿＿＿<br>
+   ＿＿＿＿＿＿＿＿／ ｜　　　 〈　｜　　　｜<br>
+   　　　　　　　　　　　　　 /　／＼_」　/　／＼」<br>
+    　　　　　　　　　　　　　 ￣　　　　 / ／<br>
+    </pre>
 
 日周緯度変コントローラ「さいたま」の使い方や仕組みなどを説明します。壊れて部品交換が必要になった・新しいさいたまを作りたい際に参照してください。
 
@@ -84,16 +78,21 @@
    さいたま6號の内部
 
 -  メイン基板
--  **画像は23引き継ぎのものだが、この翌年に作り変えられているので注意**
--  マイコンがスイッチの状態を読取り、モータードライバにCW・CCWパルスを送信する
--  基板に付いていたスイッチはあまり重要でなかったため、基板作り変えの際取り除かれた模様
--  2×3のピンヘッダは、AVRマイコンにプログラムを書き込むためのもの
+
+   -  **画像は23引き継ぎのものだが、この翌年に作り変えられているので注意**
+   -  マイコンがスイッチの状態を読取り、モータードライバにCW・CCWパルスを送信する
+   -  基板に付いていたスイッチはあまり重要でなかったため、基板作り変えの際取り除かれた模様
+   -  2×3のピンヘッダは、AVRマイコンにプログラムを書き込むためのもの
+
 -  モータードライバ基板
--  CW・CCWパルスに応じてステッピングモータに電流を流す
--  既製品。割と高価だが、部室に未使用の買い置きがある
+
+   -  CW・CCWパルスに応じてステッピングモータに電流を流す
+   -  既製品。割と高価だが、部室に未使用の買い置きがある
+
 -  スイッチ基板
--  トグルスイッチが配置されている
--  普通に使っている場合一番壊れやすい部分なのでたまに異常がないか見てあげよう
+
+   -  トグルスイッチが配置されている
+   -  普通に使っている場合一番壊れやすい部分なのでたまに異常がないか見てあげよう
 
 プログラム
 ----------
@@ -109,18 +108,16 @@ main.c
 ~~~~~~
 
 .. figure:: _media/saitama_program_flow.png
-   :alt: プログラムの流れ>
+   :alt: プログラムの流れ
 
-   プログラムの流れ>
+   プログラムの流れ
 
 プログラムの起点となる ``main`` 関数が入っている。
 プログラムの大まかな流れは図を参照。
 
-プログラムは初期化(\ ``main.c`` の
-``init``\ 関数)の後、メインループ(無限ループ)に入る。ただ、初期化の時にタイマ割り込みを設定しているため、100マイクロ秒ごとに現在メインループで実行されている内容に関係なく「タイマ割り込み」の内容が実行される。
+プログラムは初期化(\ ``main.c``\ の\ ``init``\ 関数)の後、メインループ(無限ループ)に入る。ただ、初期化の時にタイマ割り込みを設定しているため、100マイクロ秒ごとに現在メインループで実行されている内容に関係なく「タイマ割り込み」の内容が実行される。
 
-メインループの処理内容は ``main.c`` を、「タイマ割り込み」の処理内容は
-``motordrive.c`` を参照されたい。
+メインループの処理内容は\ ``main.c``\ を、「タイマ割り込み」の処理内容は\ ``motordrive.c``\ を参照されたい。
 
 外部制御コマンドのフォーマットはここで処理している。
 
@@ -130,19 +127,23 @@ motordrive.c
 ここが最も重要な部分である。
 ステッピングモーターのドライブ回路に定期的にパルスを送り、指定した速度でモーターを回す。
 
-モーターを角速度\ :math:`Speed`\ (コード中では\ ``m->current_speed`` :math:`[deg/s]`)で回すにはどうすればよいか考えてみよう。一回のパルスでモーターが回転する角度はモーターとドライブ回路によって決まっており、\ :math:`\mathrm{MotorStep}=0.72 \mathrm{deg}`\ (コード中では\ ``MOTOR_STEP`` :math:`[10^{-2}deg]`)である。
+モーターを角速度\ :math:`Speed`\ (コード中ではm->current\_speed
+:math:`[deg/s]`)で回すにはどうすればよいか考えてみよう。
+一回のパルスでモーターが回転する角度はモーターとドライブ回路によって決まっており、\ :math:`\mathrm{MotorStep}=0.72 \mathrm{deg}`\ (コード中ではMOTOR\_STEP
+:math:`[10^{-2}deg]`)である。
 
-AVRのタイマ機能により、\ ``motordrive``\ 関数は\ :math:`\mathrm{ControlPeriod}=100 \mu\mathrm{s}`
-(コード中では\ ``CONTROL_PERIOD`` :math:`[\mu\mathrm{s}]`)間隔で呼ばれる。
+AVRのタイマ機能により、\ ``motordrive``\ 関数は\ :math:`\mathrm{ControlPeriod}=100 \mu\mathrm{s}`\ (コード中ではCONTROL\_PERIOD
+:math:`[\mu\mathrm{s}]`)間隔で呼ばれる。
 前回パルスを送ってからの経過時間を\ :math:`n\cdot\mathrm{ControlPeriod}`\ とする(前回パルスを送ってから\ :math:`n`\ 回目の\ ``motordrive``\ の呼び出し;
-:math:`n`\ はコード中では\ ``m->count``)。
+:math:`n`\ はコード中ではm->count)。
 
 このとき、簡単な考察により、\ :math:`n\cdot\mathrm{ControlPeriod}\cdot\mathrm{Speed}\ge\mathrm{MotorStep}`\ の時に次のパルスを送ればよいことが分かる。
 
 実際には、速度指定モード・角度指定モードがあったり、速度を徐々に変化させる処理を行っているので、もう少し複雑なプログラムになっている。
 
 「速度を徐々に変化させる処理」であるが、今のところ、現在の速度と目標速度が一致しなければ一定の加速度を加えるという、比較的単純な制御になっている。
-時間と速度をグラフで表すと図のようになる。赤線が指定した速度、青線が実際の速度である。このように速度を徐々に変化させるようにプログラムの改修を行ったので、もはや\ **「一旦回転を停止してから回転方向を変更する」必要はない。**
+時間と速度をグラフで表すと図のようになる。赤線が指定した速度、青線が実際の速度である。
+このように速度を徐々に変化させるようにプログラムの改修を行ったので、もはや\ **「一旦回転を停止してから回転方向を変更する」必要はない。**
 
 .. figure:: _media/saitama_program_speed.png
    :alt: 速度変化
@@ -152,8 +153,8 @@ AVRのタイマ機能により、\ ``motordrive``\ 関数は\ :math:`\mathrm{Con
 角度指定モードの、速度を下げ始めるタイミングについて。
 
 プログラムが実行されている時点を時刻\ :math:`t_0`\ とし、時刻\ :math:`t_1`\ にモーターが停止するとする。
-モーターの\ :math:`t_0`\ における角速度を\ :math:`\omega_0`\ とする。単位時間当たりのモーターの角速度の変化を
-:math:`\alpha`\ とする。現在のプログラムでは、\ ``motordrive``\ が呼ばれるたびに速度を\ :math:`1 \mathrm{deg/s}`\ ずつ増減するので、
+モーターの\ :math:`t_0`\ における角速度を\ :math:`\omega_0`\ とする。単位時間当たりのモーターの角速度の変化を\ :math:`\alpha`\ とする。
+現在のプログラムでは、\ ``motordrive``\ が呼ばれるたびに速度を\ :math:`1\mathrm{deg/s}`\ ずつ増減するので、
 
 .. math::
 
@@ -166,8 +167,9 @@ AVRのタイマ機能により、\ ``motordrive``\ 関数は\ :math:`\mathrm{Con
 .. math::
 
     \begin{aligned}
-    \omega(t)&=\omega_0+\alpha(t-t_0) \\
-    \theta(t)&=\theta(t_0)+\omega_0(t-t_0)+\frac{1}{2}\alpha(t-t_0)^2\end{aligned}
+        \omega(t)&=\omega_0+\alpha(t-t_0) \\
+        \theta(t)&=\theta(t_0)+\omega_0(t-t_0)+\frac{1}{2}\alpha(t-t_0)^2
+    \end{aligned}
 
 となる。
 時刻\ :math:`t_1`\ にモーターが停止、すなわち\ :math:`\omega(t_1)=0`\ より、
@@ -181,10 +183,11 @@ AVRのタイマ機能により、\ ``motordrive``\ 関数は\ :math:`\mathrm{Con
 .. math::
 
     \begin{aligned}
-    \theta(t_1)&=\theta(t_0)-\frac{\omega_0^2}{\alpha}
-    +\frac{1}{2}\alpha\left(-\frac{\omega_0}{\alpha}\right)^2 \\
-    %&=\theta(t_0)+\left(-\frac{1}{\alpha}+\frac{1}{2\alpha}\right)\omega_0^2 \\
-    &=\theta(t_0)-\frac{1}{2\alpha}\omega_0^2\end{aligned}
+        \theta(t_1)&=\theta(t_0)-\frac{\omega_0^2}{\alpha}
+        +\frac{1}{2}\alpha\left(-\frac{\omega_0}{\alpha}\right)^2 \\
+        %&=\theta(t_0)+\left(-\frac{1}{\alpha}+\frac{1}{2\alpha}\right)\omega_0^2 \\
+        &=\theta(t_0)-\frac{1}{2\alpha}\omega_0^2
+    \end{aligned}
 
 を得る。
 
@@ -194,9 +197,10 @@ AVRのタイマ機能により、\ ``motordrive``\ 関数は\ :math:`\mathrm{Con
 .. math::
 
     \begin{aligned}
-    \theta(t_1)-\theta(t_0)&=-\frac{1}{2\alpha}\omega_0^2 \\
-    &=\frac{1}{2\left(\frac{1 \mathrm{deg/s}}{\mathrm{ControlPeriod}}\right)}\omega_0^2 \\
-    &=\frac{\mathrm{ControlPeriod}}{2(1 \mathrm{deg/s})}\omega_0^2\end{aligned}
+        \theta(t_1)-\theta(t_0)&=-\frac{1}{2\alpha}\omega_0^2 \\
+        &=\frac{1}{2\left(\frac{1 \mathrm{deg/s}}{\mathrm{ControlPeriod}}\right)}\omega_0^2 \\
+        &=\frac{\mathrm{ControlPeriod}}{2(1 \mathrm{deg/s})}\omega_0^2
+    \end{aligned}
 
 ステップ数に換算するために両辺を\ :math:`\mathrm{MotorStep}`\ で割ると、
 

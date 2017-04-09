@@ -286,7 +286,20 @@ Mac OS
 XやLinuxでは<code class="docutils literal"><span class="pre">.Net</span></code>のオープンソース実装である<code class="docutils literal"><span class="pre">Mono</span></code>を利用できるが、<code class="docutils literal"><span class="pre">Mono</span></code>においても同様である。</p>
 <p>以下ではC#のコード例を示す。</p>
 <p>まず、ソースコードの冒頭に以下の文を書いておくと便利であろう:</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">System.IO.Ports</span><span class="p">;</span>
+</pre></div>
+</div>
 <p>通信を開始する前に、まずポートを開く：</p>
+<div class="highlight-c#"><div class="highlight"><pre><span></span><span class="n">SerialPort</span> <span class="n">port</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SerialPort</span><span class="p">(</span>
+  <span class="n">portName</span><span class="p">:</span><span class="n">portName</span><span class="p">,</span>
+  <span class="n">baudRate</span><span class="p">:</span><span class="m">2400</span><span class="p">,</span>
+  <span class="n">parity</span><span class="p">:</span><span class="n">Parity</span><span class="p">.</span><span class="n">None</span><span class="p">,</span>
+  <span class="n">dataBits</span><span class="p">:</span><span class="m">8</span><span class="p">,</span>
+  <span class="n">stopBits</span><span class="p">:</span><span class="n">StopBits</span><span class="p">.</span><span class="n">One</span>
+<span class="p">);</span>
+<span class="n">port</span><span class="p">.</span><span class="n">Open</span><span class="p">();</span>
+</pre></div>
+</div>
 <p>この後、<code class="docutils literal"><span class="pre">port.IsOpen</span></code>により、ポートを開くのに成功したか確認しておこう。</p>
 <p>実際に通信するには<code class="docutils literal"><span class="pre">SerialPort.Write</span></code>メソッドを使う。プログラムを終了する際には、<code class="docutils literal"><span class="pre">port.Close()</span></code>によりポートを閉じておく。</p>
 </div>

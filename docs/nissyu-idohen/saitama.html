@@ -5,8 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta content="NOINDEX,NOFOLLOW,NOARCHIVE" name="ROBOTS" />
-
+  
   <meta name="ROBOTS" content="NOINDEX,NOFOLLOW,NOARCHIVE">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
@@ -193,24 +192,27 @@
 <li>実行に必要な知識・技能: AVRマイコン、電子回路</li>
 <li>タスクの重さ: 3/数週間</li>
 <li>タスクの必須度: 3/年による</li>
-<li>元資料</li>
+<li>元資料<ul>
 <li><code class="docutils literal"><span class="pre">日周・緯度変資料.pdf</span></code> by 岩滝宗一郎(nichiden_22)</li>
 <li><code class="docutils literal"><span class="pre">saitama.pdf</span></code> by 荒田 実樹(nichiden_23)</li>
 </ul>
+</li>
+</ul>
 <div class="section" id="id2">
 <h2>概要<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<div
-style="font-family:IPAMonaPGothic,'ＭＳ Ｐゴシック',sans-serif;"><p>　　　　　　　　　　　　　　　　＼　│　／
-　　　　　　　　　　　　　　　　　／￣＼　　 ／￣￣￣￣￣￣￣￣￣
-　　　　　　　　　　　　　　　─（ ﾟ ∀ ﾟ ）＜　さいたまさいたま！
-　　　　　　　　　　　　　　　　　＼＿／　　 ＼＿＿＿＿＿＿＿＿＿
-　　　　　　　　　　　　　　　　／　│　＼
-　　　　　　　　　　　　　　　　　　　 ∩ ∧　∧　　／￣￣￣￣￣￣￣￣￣￣
-￣￣￣￣￣￣￣￣＼∩ ∧　∧　＼（ ﾟ∀ﾟ）＜　さいたまさいたまさいたま！
-さいたま～～～！ 　 ＞（ ﾟ∀ﾟ ）/ ｜　　　　/　＼＿＿＿＿＿＿＿＿＿＿
-＿＿＿＿＿＿＿＿／ ｜　　　 〈　｜　　　｜
-/　／＼_」　/　／＼」 　　　　　　　　　　　　　 ￣　　　　 / ／</p>
-</div><p>日周緯度変コントローラ「さいたま」の使い方や仕組みなどを説明します。壊れて部品交換が必要になった・新しいさいたまを作りたい際に参照してください。</p>
+<pre style="font-family:IPAMonaPGothic,'ＭＳ Ｐゴシック',sans-serif;">
+　　　　　　　　　　　　　　　　＼　│　／<br>
+　　　　　　　　　　　　　　　　　／￣＼　　 ／￣￣￣￣￣￣￣￣￣<br>
+　　　　　　　　　　　　　　　─（ ﾟ ∀ ﾟ ）＜　さいたまさいたま！<br>
+　　　　　　　　　　　　　　　　　＼＿／　　 ＼＿＿＿＿＿＿＿＿＿<br>
+　　　　　　　　　　　　　　　　／　│　＼<br>
+　　　　　　　　　　　　　　　　　　　 ∩ ∧　∧　　／￣￣￣￣￣￣￣￣￣￣<br>
+￣￣￣￣￣￣￣￣＼∩ ∧　∧　＼（ ﾟ∀ﾟ）＜　さいたまさいたまさいたま！<br>
+さいたま～～～！ 　 ＞（ ﾟ∀ﾟ ）/ ｜　　　　/　＼＿＿＿＿＿＿＿＿＿＿<br>
+＿＿＿＿＿＿＿＿／ ｜　　　 〈　｜　　　｜<br>
+　　　　　　　　　　　　　 /　／＼_」　/　／＼」<br>
+ 　　　　　　　　　　　　　 ￣　　　　 / ／<br>
+ </pre><p>日周緯度変コントローラ「さいたま」の使い方や仕組みなどを説明します。壊れて部品交換が必要になった・新しいさいたまを作りたい際に参照してください。</p>
 </div>
 <div class="section" id="id3">
 <h2>沿革<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -246,17 +248,23 @@ style="font-family:IPAMonaPGothic,'ＭＳ Ｐゴシック',sans-serif;"><p>　�
 <p class="caption"><span class="caption-text">さいたま6號の内部</span></p>
 </div>
 <ul class="simple">
-<li>メイン基板</li>
+<li>メイン基板<ul>
 <li><strong>画像は23引き継ぎのものだが、この翌年に作り変えられているので注意</strong></li>
 <li>マイコンがスイッチの状態を読取り、モータードライバにCW・CCWパルスを送信する</li>
 <li>基板に付いていたスイッチはあまり重要でなかったため、基板作り変えの際取り除かれた模様</li>
 <li>2×3のピンヘッダは、AVRマイコンにプログラムを書き込むためのもの</li>
-<li>モータードライバ基板</li>
+</ul>
+</li>
+<li>モータードライバ基板<ul>
 <li>CW・CCWパルスに応じてステッピングモータに電流を流す</li>
 <li>既製品。割と高価だが、部室に未使用の買い置きがある</li>
-<li>スイッチ基板</li>
+</ul>
+</li>
+<li>スイッチ基板<ul>
 <li>トグルスイッチが配置されている</li>
 <li>普通に使っている場合一番壊れやすい部分なのでたまに異常がないか見てあげよう</li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="id6">
@@ -268,46 +276,49 @@ style="font-family:IPAMonaPGothic,'ＭＳ Ｐゴシック',sans-serif;"><p>　�
 <div class="section" id="main-c">
 <h3>main.c<a class="headerlink" href="#main-c" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <div class="figure" id="id12">
-<img alt="プログラムの流れ&gt;" src="../_images/saitama_program_flow.png" />
-<p class="caption"><span class="caption-text">プログラムの流れ&gt;</span></p>
+<img alt="プログラムの流れ" src="../_images/saitama_program_flow.png" />
+<p class="caption"><span class="caption-text">プログラムの流れ</span></p>
 </div>
 <p>プログラムの起点となる <code class="docutils literal"><span class="pre">main</span></code> 関数が入っている。
 プログラムの大まかな流れは図を参照。</p>
-<p>プログラムは初期化(<code class="docutils literal"><span class="pre">main.c</span></code> の
-<code class="docutils literal"><span class="pre">init</span></code>関数)の後、メインループ(無限ループ)に入る。ただ、初期化の時にタイマ割り込みを設定しているため、100マイクロ秒ごとに現在メインループで実行されている内容に関係なく「タイマ割り込み」の内容が実行される。</p>
-<p>メインループの処理内容は <code class="docutils literal"><span class="pre">main.c</span></code> を、「タイマ割り込み」の処理内容は
-<code class="docutils literal"><span class="pre">motordrive.c</span></code> を参照されたい。</p>
+<p>プログラムは初期化(<code class="docutils literal"><span class="pre">main.c</span></code>の<code class="docutils literal"><span class="pre">init</span></code>関数)の後、メインループ(無限ループ)に入る。ただ、初期化の時にタイマ割り込みを設定しているため、100マイクロ秒ごとに現在メインループで実行されている内容に関係なく「タイマ割り込み」の内容が実行される。</p>
+<p>メインループの処理内容は<code class="docutils literal"><span class="pre">main.c</span></code>を、「タイマ割り込み」の処理内容は<code class="docutils literal"><span class="pre">motordrive.c</span></code>を参照されたい。</p>
 <p>外部制御コマンドのフォーマットはここで処理している。</p>
 </div>
 <div class="section" id="motordrive-c">
 <h3>motordrive.c<a class="headerlink" href="#motordrive-c" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ここが最も重要な部分である。
 ステッピングモーターのドライブ回路に定期的にパルスを送り、指定した速度でモーターを回す。</p>
-<p>モーターを角速度<span class="math">\(Speed\)</span>(コード中では<code class="docutils literal"><span class="pre">m-&gt;current_speed</span></code> <span class="math">\([deg/s]\)</span>)で回すにはどうすればよいか考えてみよう。一回のパルスでモーターが回転する角度はモーターとドライブ回路によって決まっており、<span class="math">\(\mathrm{MotorStep}=0.72 \mathrm{deg}\)</span>(コード中では<code class="docutils literal"><span class="pre">MOTOR_STEP</span></code> <span class="math">\([10^{-2}deg]\)</span>)である。</p>
-<p>AVRのタイマ機能により、<code class="docutils literal"><span class="pre">motordrive</span></code>関数は<span class="math">\(\mathrm{ControlPeriod}=100 \mu\mathrm{s}\)</span>
-(コード中では<code class="docutils literal"><span class="pre">CONTROL_PERIOD</span></code> <span class="math">\([\mu\mathrm{s}]\)</span>)間隔で呼ばれる。
+<p>モーターを角速度<span class="math">\(Speed\)</span>(コード中ではm-&gt;current_speed
+<span class="math">\([deg/s]\)</span>)で回すにはどうすればよいか考えてみよう。
+一回のパルスでモーターが回転する角度はモーターとドライブ回路によって決まっており、<span class="math">\(\mathrm{MotorStep}=0.72 \mathrm{deg}\)</span>(コード中ではMOTOR_STEP
+<span class="math">\([10^{-2}deg]\)</span>)である。</p>
+<p>AVRのタイマ機能により、<code class="docutils literal"><span class="pre">motordrive</span></code>関数は<span class="math">\(\mathrm{ControlPeriod}=100 \mu\mathrm{s}\)</span>(コード中ではCONTROL_PERIOD
+<span class="math">\([\mu\mathrm{s}]\)</span>)間隔で呼ばれる。
 前回パルスを送ってからの経過時間を<span class="math">\(n\cdot\mathrm{ControlPeriod}\)</span>とする(前回パルスを送ってから<span class="math">\(n\)</span>回目の<code class="docutils literal"><span class="pre">motordrive</span></code>の呼び出し;
-<span class="math">\(n\)</span>はコード中では<code class="docutils literal"><span class="pre">m-&gt;count</span></code>)。</p>
+<span class="math">\(n\)</span>はコード中ではm-&gt;count)。</p>
 <p>このとき、簡単な考察により、<span class="math">\(n\cdot\mathrm{ControlPeriod}\cdot\mathrm{Speed}\ge\mathrm{MotorStep}\)</span>の時に次のパルスを送ればよいことが分かる。</p>
 <p>実際には、速度指定モード・角度指定モードがあったり、速度を徐々に変化させる処理を行っているので、もう少し複雑なプログラムになっている。</p>
 <p>「速度を徐々に変化させる処理」であるが、今のところ、現在の速度と目標速度が一致しなければ一定の加速度を加えるという、比較的単純な制御になっている。
-時間と速度をグラフで表すと図のようになる。赤線が指定した速度、青線が実際の速度である。このように速度を徐々に変化させるようにプログラムの改修を行ったので、もはや<strong>「一旦回転を停止してから回転方向を変更する」必要はない。</strong></p>
+時間と速度をグラフで表すと図のようになる。赤線が指定した速度、青線が実際の速度である。
+このように速度を徐々に変化させるようにプログラムの改修を行ったので、もはや<strong>「一旦回転を停止してから回転方向を変更する」必要はない。</strong></p>
 <div class="figure" id="id13">
 <img alt="速度変化" src="../_images/saitama_program_speed.png" />
 <p class="caption"><span class="caption-text">速度変化</span></p>
 </div>
 <p>角度指定モードの、速度を下げ始めるタイミングについて。</p>
 <p>プログラムが実行されている時点を時刻<span class="math">\(t_0\)</span>とし、時刻<span class="math">\(t_1\)</span>にモーターが停止するとする。
-モーターの<span class="math">\(t_0\)</span>における角速度を<span class="math">\(\omega_0\)</span>とする。単位時間当たりのモーターの角速度の変化を
-<span class="math">\(\alpha\)</span>とする。現在のプログラムでは、<code class="docutils literal"><span class="pre">motordrive</span></code>が呼ばれるたびに速度を<span class="math">\(1 \mathrm{deg/s}\)</span>ずつ増減するので、</p>
+モーターの<span class="math">\(t_0\)</span>における角速度を<span class="math">\(\omega_0\)</span>とする。単位時間当たりのモーターの角速度の変化を<span class="math">\(\alpha\)</span>とする。
+現在のプログラムでは、<code class="docutils literal"><span class="pre">motordrive</span></code>が呼ばれるたびに速度を<span class="math">\(1\mathrm{deg/s}\)</span>ずつ増減するので、</p>
 <div class="math">
 \[\alpha=\pm\frac{1 \mathrm{deg/s}}{\mathrm{ControlPeriod}}\]</div>
 <p>である。モーターの時刻<span class="math">\(t\)</span>における角度(位置)を<span class="math">\(\theta(t)\)</span>とする。</p>
 <p>時刻<span class="math">\(t\)</span>におけるモーターの角速度と角度はそれぞれ</p>
 <div class="math">
 \[\begin{split}\begin{aligned}
-\omega(t)&amp;=\omega_0+\alpha(t-t_0) \\
-\theta(t)&amp;=\theta(t_0)+\omega_0(t-t_0)+\frac{1}{2}\alpha(t-t_0)^2\end{aligned}\end{split}\]</div>
+    \omega(t)&amp;=\omega_0+\alpha(t-t_0) \\
+    \theta(t)&amp;=\theta(t_0)+\omega_0(t-t_0)+\frac{1}{2}\alpha(t-t_0)^2
+\end{aligned}\end{split}\]</div>
 <p>となる。
 時刻<span class="math">\(t_1\)</span>にモーターが停止、すなわち<span class="math">\(\omega(t_1)=0\)</span>より、</p>
 <div class="math">
@@ -315,18 +326,20 @@ style="font-family:IPAMonaPGothic,'ＭＳ Ｐゴシック',sans-serif;"><p>　�
 <p>である。これを<span class="math">\(\theta(t_1)\)</span>に代入すると、</p>
 <div class="math">
 \[\begin{split}\begin{aligned}
-\theta(t_1)&amp;=\theta(t_0)-\frac{\omega_0^2}{\alpha}
-+\frac{1}{2}\alpha\left(-\frac{\omega_0}{\alpha}\right)^2 \\
-%&amp;=\theta(t_0)+\left(-\frac{1}{\alpha}+\frac{1}{2\alpha}\right)\omega_0^2 \\
-&amp;=\theta(t_0)-\frac{1}{2\alpha}\omega_0^2\end{aligned}\end{split}\]</div>
+    \theta(t_1)&amp;=\theta(t_0)-\frac{\omega_0^2}{\alpha}
+    +\frac{1}{2}\alpha\left(-\frac{\omega_0}{\alpha}\right)^2 \\
+    %&amp;=\theta(t_0)+\left(-\frac{1}{\alpha}+\frac{1}{2\alpha}\right)\omega_0^2 \\
+    &amp;=\theta(t_0)-\frac{1}{2\alpha}\omega_0^2
+\end{aligned}\end{split}\]</div>
 <p>を得る。</p>
 <p>求めたい量は、現在角がどういう値になったら速度を下げ始めるか、その角度である。
 つまり、<span class="math">\(\theta(t_1)-\theta(t_0)\)</span>の値である:</p>
 <div class="math">
 \[\begin{split}\begin{aligned}
-\theta(t_1)-\theta(t_0)&amp;=-\frac{1}{2\alpha}\omega_0^2 \\
-&amp;=\frac{1}{2\left(\frac{1 \mathrm{deg/s}}{\mathrm{ControlPeriod}}\right)}\omega_0^2 \\
-&amp;=\frac{\mathrm{ControlPeriod}}{2(1 \mathrm{deg/s})}\omega_0^2\end{aligned}\end{split}\]</div>
+    \theta(t_1)-\theta(t_0)&amp;=-\frac{1}{2\alpha}\omega_0^2 \\
+    &amp;=\frac{1}{2\left(\frac{1 \mathrm{deg/s}}{\mathrm{ControlPeriod}}\right)}\omega_0^2 \\
+    &amp;=\frac{\mathrm{ControlPeriod}}{2(1 \mathrm{deg/s})}\omega_0^2
+\end{aligned}\end{split}\]</div>
 <p>ステップ数に換算するために両辺を<span class="math">\(\mathrm{MotorStep}\)</span>で割ると、</p>
 <div class="math">
 \[\frac{\theta(t_1)-\theta(t_0)}{\mathrm{MotorStep}}
