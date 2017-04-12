@@ -1,12 +1,12 @@
 # 日周緯度変(さいたま)
--   書いた人: Kenichi Ito(nichiden\_27)
+-   書いた人: Kenichi Ito(nichiden_27)
 -   更新日時: 2017/02/26
 -   実行に必要な知識・技能: AVRマイコン、電子回路
 -   タスクの重さ: 3/数週間
 -   タスクの必須度: 3/年による
 -   元資料
-    -   `日周・緯度変資料.pdf` by 岩滝宗一郎(nichiden\_22)
-    -   `saitama.pdf` by 荒田 実樹(nichiden\_23)
+    -   `日周・緯度変資料.pdf` by 岩滝宗一郎(nichiden_22)
+    -   `saitama.pdf` by 荒田 実樹(nichiden_23)
 
 ## 概要
 <pre style="font-family:IPAMonaPGothic,'ＭＳ Ｐゴシック',sans-serif;">

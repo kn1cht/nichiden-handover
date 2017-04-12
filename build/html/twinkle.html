@@ -113,11 +113,21 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#id11">プログラム</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id12">セットアップ、メインルーチン用</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#int0">INT0割り込み</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id13">タイマ0割り込み</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id14">乱数値更新</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id15">出力ビットシフト</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#twinkle-h">Twinkle.h</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#twinkle-cpp">Twinkle.cpp</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#port-shift">port_shift()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#refresh">refresh()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chaos-gen-y">chaos_gen(y)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generate">generate()</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#twinkle-ino">Twinkle.ino</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#isr-int0-vect">ISR(INT0_vect)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#isr-timer0-compa-vect">ISR(TIMER0_COMPA_vect)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#main">main()</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">書き込むには</a></li>
 </ul>
 </li>
 </ul>
@@ -254,7 +264,7 @@
 回路には<strong>過電圧保護回路</strong>があり、約5.2Vを超える電圧を印加すると電流を遮断する。
 これは、いっとう以外の投影機の電源電圧が12Vであり、刺し間違いによる故障を避けるためである。
 耐圧は15V程度の設計であるため、24Vなどの高電圧をかけると保護回路が破損する危険がある。</p>
-<div class="figure" id="id16">
+<div class="figure" id="id13">
 <img alt="またたき回路の回路図" src="_images/twinkle-circuit.png" />
 <p class="caption"><span class="caption-text">またたき回路の回路図</span></p>
 </div>
@@ -262,16 +272,16 @@
 <strong>電源部</strong>(過電圧保護部)、<strong>またたき制御部</strong>(マイコン)、<strong>またたき出力部</strong>(トランジスタアレイ、DCジャック)が主だった構成である。</p>
 <div class="section" id="id7">
 <h3>スイッチ類<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<div class="figure" id="id17">
+<div class="figure" id="id14">
 <img alt="またたき回路の外観" src="_images/twinkle-appearance.jpg" />
 <p class="caption"><span class="caption-text">またたき回路の外観</span></p>
 </div>
-<p>トグルスイッチ(<code class="docutils literal"><span class="pre">SW2</span></code>)が、またたきのON/OFFスイッチである。
+<p>トグルスイッチ(<code class="docutils literal"><span class="pre">SW2</span></code>)が、<strong>またたきのON/OFFスイッチ</strong> である。
 OFFにすると消灯するわけではなく、またたきの効果のない常時点灯となる。
 いっとうユニット自体のテストやデバッグに使用することを想定している。</p>
 <p>スイッチの近くに設置されたLEDはまたたきの確認用である。
 横のジャンパピンを外すと消灯するので、上映中は外しておくとよい。</p>
-<p>タクトスイッチはリセットスイッチで、不具合発生時に押すとマイコンが再起動する。</p>
+<p>タクトスイッチは<strong>リセットスイッチ</strong>で、押すとマイコンが再起動する。</p>
 </div>
 <div class="section" id="id8">
 <h3>またたき制御部<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -290,13 +300,13 @@ OFFにすると消灯するわけではなく、またたきの効果のない�
 </div>
 <div class="section" id="id10">
 <h3>過電圧保護回路<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>23の製作時に、こうとうユニットの電源電圧が12Vであったことから急遽設置された。
-電源を12Vに統一して3端子レギュレータで5Vにするアイデアもあり、作り変えの際には考慮されたい。</p>
-<div class="figure" id="id18">
+<p>23製作時に、こうとうユニットの電源電圧が12Vであったことから急遽設置された。
+電源を12Vに統一して三端子レギュレータで5Vにするアイデアもあり、作り変えの際には考慮されたい。</p>
+<div class="figure" id="id15">
 <img alt="過電圧保護回路" src="_images/twinkle-protection.png" />
 <p class="caption"><span class="caption-text">過電圧保護回路</span></p>
 </div>
-<p>閾値の検出に使用しているのはツェナーダイオードである。
+<p>閾値の検出に使用しているのは<strong>ツェナーダイオード</strong>である。
 ダイオードには、逆方向に電圧をかけるとある閾値以上の電位差で逆向きに電流が流れ、それ以上電位差が大きくならない効果がある。
 その閾値をツェナー電圧という。</p>
 <p>通常のダイオードでは非常に高いツェナー電圧だが、ツェナーダイオードは不純物を混ぜることでツェナー電圧を下げている。
@@ -311,57 +321,231 @@ OFFにすると消灯するわけではなく、またたきの効果のない�
 <p>この回路の耐圧はツェナーダイオードの許容損失による。
 入力が約15Vを越えると許容損失を超え、ダイオードが焼き切れる可能性がある。
 仮に焼ききれた場合、ツェナーダイオードに電流が流れない状態と同じになり、入力電圧が<code class="docutils literal"><span class="pre">VCC_OUT</span></code>に出力されてしまう。
-大変危険なので、高電圧の電源を接続しないよう注意すべきだ。</p>
+大変危険なので、<strong>高電圧の電源を接続しないよう注意すべきだ</strong>。</p>
 <p>保護回路の閾値は、ツェナーダイオードのツェナー電圧やカソード側の抵抗値を調整することで変更できる。</p>
 </div>
 </div>
 <div class="section" id="id11">
 <h2>プログラム<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>書き込みの際、Fuseビットの<code class="docutils literal"><span class="pre">DIVCLK8</span></code>を<code class="docutils literal"><span class="pre">Disable</span></code>する必要がある(内部クロックを1MHzではなく8MHzで使用するため)。</p>
 <p>27でプログラムを改修した際、Arduino
-IDEを使用してビルドと書き込みを行った。
-Arduinoの中身はAVRマイコンなので、マイコン(ボード)の定義さえ読み込めばAVRマイコンに書き込むことも可能である。</p>
-<p>ボードマネージャでhttp://drazzy.com/package_drazzy.com_index.json
-を指定すればよい。 手順の詳細は<a class="reference external" href="http://make.kosakalab.com/make/electronic-work/arduino-ide/attiny-dev/">Arduino IDE に ATtiny45/85/2313
-他の開発環境を組み込む</a>など参照。</p>
+IDEを使用してビルドと書き込みを行った。 Arduino
+IDEではメインのソースファイルは.inoという拡張子のファイルになる。
+ただし、ベースはC++なので.cppや.hのファイルに分割して記述しても問題ない。</p>
+<p>23日電のまたたき回路のプログラムでは<strong>マイコンを実際に動作させる部分</strong>と<strong>またたきパターンを生成する部分</strong>が混在していた。
+可読性を高める目的で、前者を<code class="docutils literal"><span class="pre">Twinkle.ino</span></code>に、後者を<code class="docutils literal"><span class="pre">Twinkle.cpp</span></code>及び<code class="docutils literal"><span class="pre">Twinkle.h</span></code>と分けることにした。</p>
+<p><code class="docutils literal"><span class="pre">Twinkle.h</span></code>で宣言している<code class="docutils literal"><span class="pre">Twinkle</span></code>クラスがパターン生成のライブラリのように使えることを目指したが、完全なブラックボックスにはできていないので適宜改善が必要。</p>
+<div class="section" id="twinkle-h">
+<h3>Twinkle.h<a class="headerlink" href="#twinkle-h" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>プログラム中で使う変数・関数の宣言があるファイル。
+<code class="docutils literal"><span class="pre">NORTH_HEMISPHERE</span></code>や<code class="docutils literal"><span class="pre">SOUTH_HEMISPHERE</span></code>がdefineされているが、これは北天・南天で数値を切り替えるために用いる。
+書き込み前によく確かめて、不要な方をコメントアウトすること(片方をコメントにしていないと、変数宣言が二重となりエラーが出る)。</p>
+<p>使っている変数や配列の注釈を箇条書きしておこう。</p>
+<ul class="simple">
+<li>public変数<ul>
+<li>int bit_num[6]:
+パターンの番号とマイコン側のピンの順番の対応を示す</li>
+<li>unsigned int on[12]:
+27で追加した、またたきをピンごとに無効化するための配列。1か0</li>
+<li>unsigned int on_duration[12]:
+一周期のうちLEDが点灯している時間(=またたきパターン)を格納する</li>
+</ul>
+</li>
+<li>private変数<ul>
+<li>unsigned long shift_chaos: ピン同士を入れ替える際に使う乱数値</li>
+<li>unsigned long chaos[12]: またたきパターン用の乱数値</li>
+<li>unsigned int min_duration[12]:
+on_durationの最小値。大きくするとまたたき効果が強くなる</li>
+<li>unsigned int refresh_rate/rr_count/shift_rate/sr_count: (後述)</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="twinkle-cpp">
+<h3>Twinkle.cpp<a class="headerlink" href="#twinkle-cpp" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>冒頭でいくつか記号定数が宣言されている。
+コメントを読めば概ね理解できるであろう。
+結局<code class="docutils literal"><span class="pre">Twinkle</span></code>クラスの内部処理で使うだけなので、ヘッダファイルのクラス宣言の方に書いても問題なかったかも。</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="cp">#define CHAOS_DIV 256 </span><span class="c1">// chaos_gen()で生成される乱数は1~32768の幅であるが、このままではタイマ0割込に使用できないので適当な2の乗数で割る</span>
+<span class="cp">#define ON_DURATION_MAX 160 </span><span class="c1">// LEDの点灯時間の最大値を決定するパラメーター(タイマ割込の間隔によって決まっているのでオシロスコープで波形を見ながら調整のこと)</span>
+<span class="cp">#define TWINKLE_RATE 2 </span><span class="c1">// またたき用の乱数値の更新レート、nを設定するとn回のタイマ割込に1回の割合で値が更新する</span>
+<span class="cp">#define TWINKLE_SHIFT 100 </span><span class="c1">// 乱数の周期性問題を解決するために、乱数とそれに対応する信号出力ビットをport_shift()で変更している。nを設定するとn回の乱数更新に1回の割合で出力がビットシフトする</span>
+</pre></div>
+</div>
+<p>次に、コンストラクタがある。
+と言っても変数の初期化をしているだけである。
+ここで、<code class="docutils literal"><span class="pre">refresh_rate</span></code>や<code class="docutils literal"><span class="pre">shift_rate</span></code>などを設定する。</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="n">Twinkle</span><span class="o">::</span><span class="n">Twinkle</span><span class="p">()</span><span class="o">:</span><span class="n">refresh_rate</span><span class="p">(</span><span class="n">TWINKLE_RATE</span><span class="p">),</span>
+                   <span class="n">rr_count</span><span class="p">(</span><span class="n">TWINKLE_RATE</span><span class="p">),</span>
+                   <span class="n">shift_rate</span><span class="p">(</span><span class="n">TWINKLE_SHIFT</span><span class="p">),</span>
+                   <span class="n">sr_count</span><span class="p">(</span><span class="n">TWINKLE_SHIFT</span><span class="p">){};</span>
+</pre></div>
+</div>
+<div class="section" id="port-shift">
+<h4>port_shift()<a class="headerlink" href="#port-shift" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>間欠カオス法はあくまで擬似乱数なので、周期性が目立つことがある(らしい)。
+定期的にまたたきパターンと各出力ピンの対応を変えることで、これを防ぐ。</p>
+<p><strong>ただし、このメソッドは現在使用していない。</strong>
+23では12のピンを強弱2種類にしか分けていなかったが、27で惑星(またたかない)を追加したのでこれが3種類に増えた。
+当初それに気づかず実験したところ、またたき強・弱・惑星が数秒で入れ替わってしまう。
+修正の時間も限られており、本番ではポートの入れ替えを使わずに投影をすることとなった。
+見ていた限りでは特に不自然には感じなかったが、この仕様が必要かどうかは更なる検証を待ちたい。</p>
+<p>参考のためにピンを入れ替える仕組みを解説する。</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">6</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">bit_num</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">bit_num</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">shift_chaos</span> <span class="o">&gt;=</span> <span class="mi">12000</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">4</span><span class="p">))</span> <span class="o">%</span> <span class="mi">6</span><span class="p">;</span> <span class="c1">// 6要素の数列を左に回転シフト</span>
+</pre></div>
+</div>
+<p>回転シフトは、配列の中身を押し出して溢れた分を逆側に追加するものだ。
+円環状に並んだ数字を回転させるイメージである。
+アルゴリズムとしてはある数字(6要素なら1~5)を足し、6以上になった要素からは6を引くというものだ。
+6で割った余りを保ったまま6を下回ればいいので、<strong>実は割り算して余りをとるだけでもいい。</strong></p>
+<p>なお、23の計測によるこの処理の実行時間は100μsだが、割り算の方法で処理を簡略化したので短くなったかもしれない。</p>
+</div>
+<div class="section" id="refresh">
+<h4>refresh()<a class="headerlink" href="#refresh" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>またたきパターンの更新を行う。
+<code class="docutils literal"><span class="pre">chaos</span></code>の12個の要素それぞれに、新たな乱数値を格納している。</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">Twinkle</span><span class="o">::</span><span class="n">refresh</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span> <span class="c1">// 乱数値を更新する。所要時間は12変数で1ms</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">SIZE_OF</span><span class="p">(</span><span class="n">on_duration</span><span class="p">);</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+    <span class="n">chaos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">chaos_gen</span><span class="p">(</span><span class="n">chaos</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="n">on_duration</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span><span class="p">((</span><span class="kt">int</span><span class="p">)(</span><span class="n">chaos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">CHAOS_DIV</span> <span class="o">+</span> <span class="n">min_duration</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">ON_DURATION_MAX</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>実際のまたたきパターンで使う<code class="docutils literal"><span class="pre">on_duration</span></code>には、<code class="docutils literal"><span class="pre">chaos</span></code>から二つの変化を加える。
+まず、最大32768の出力を<code class="docutils literal"><span class="pre">CHAOS_DIV</span></code>で除した上で、<code class="docutils literal"><span class="pre">min_duration</span></code>という数を加えている。
+<code class="docutils literal"><span class="pre">min_duration</span></code>が大きいほど、<strong>LEDが点灯している時間が増え、またたきの効果が薄まる</strong>。</p>
+<p>また、<code class="docutils literal"><span class="pre">on_duration</span></code>は160を超えてはいけないので、<code class="docutils literal"><span class="pre">ON_DURATION_MAX</span></code>と比較して小さい方を採用する。
+実行時間は1msらしい。</p>
+</div>
+<div class="section" id="chaos-gen-y">
+<h4>chaos_gen(y)<a class="headerlink" href="#chaos-gen-y" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>入力yに対して間欠カオス法による擬似乱数を一個出力する。
+元の漸化式にアレンジを加え、yの変化が微小になることがないよう調整してある。</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">Twinkle</span><span class="o">::</span><span class="n">chaos_gen</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">y</span><span class="p">){</span> <span class="c1">// Max == 32768までの整数値を返す疑似乱数(1/fゆらぎ)</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">y</span> <span class="o">&lt;</span> <span class="mi">1638</span><span class="p">)</span> <span class="n">y</span> <span class="o">+=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pow</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">32768</span> <span class="o">+</span> <span class="mi">1966</span><span class="p">;</span>
+  <span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">y</span> <span class="o">&lt;</span> <span class="mi">16384</span><span class="p">)</span> <span class="n">y</span> <span class="o">+=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pow</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">32768</span><span class="p">;</span>
+  <span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="mi">31129</span><span class="p">)</span> <span class="n">y</span> <span class="o">-=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pow</span><span class="p">(</span><span class="mi">32768</span> <span class="o">-</span> <span class="n">y</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">32768</span> <span class="o">+</span> <span class="mi">1310</span><span class="p">;</span>
+  <span class="k">else</span> <span class="n">y</span> <span class="o">-=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pow</span><span class="p">(</span><span class="mi">32768</span> <span class="o">-</span> <span class="n">y</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">32768</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="generate">
+<h4>generate()<a class="headerlink" href="#generate" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>またたき生成や出力ピンの入れ替えを制御する。
+タイマ割り込みで毎回呼ばれることを想定している。</p>
+<p>割り込みが入るたびに<code class="docutils literal"><span class="pre">rr_count</span></code>と<code class="docutils literal"><span class="pre">sr_count</span></code>が1ずつ減少し、0になると<code class="docutils literal"><span class="pre">port_shift()</span></code>や<code class="docutils literal"><span class="pre">refresh()</span></code>を実行する。
+ただし、27の仕様変更で<code class="docutils literal"><span class="pre">port_shift()</span></code>は不使用としたので、その部分はコメントになっている。</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">Twinkle</span><span class="o">::</span><span class="n">generate</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span> <span class="c1">// またたきをつかさどる部分</span>
+  <span class="n">rr_count</span><span class="o">--</span><span class="p">;</span> <span class="c1">//乱数更新時期の判定と実行をする</span>
+  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">rr_count</span><span class="p">){</span>
+    <span class="n">sr_count</span><span class="o">--</span><span class="p">;</span> <span class="c1">//ビットシフト更新時期の判定と実行をする</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">sr_count</span><span class="p">){</span>
+      <span class="c1">//port_shift();</span>
+      <span class="n">sr_count</span> <span class="o">=</span> <span class="n">shift_rate</span><span class="p">;</span>
+    <span class="p">}</span><span class="k">else</span> <span class="n">_delay_us</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+    <span class="n">refresh</span><span class="p">();</span>
+    <span class="n">rr_count</span> <span class="o">=</span> <span class="n">refresh_rate</span><span class="p">;</span>
+  <span class="p">}</span><span class="k">else</span> <span class="n">_delay_us</span><span class="p">(</span><span class="mi">1100</span><span class="p">);</span> <span class="c1">//それらの操作をしない場合でも、同じだけの時間waitして調整する</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="twinkle-ino">
+<h3>Twinkle.ino<a class="headerlink" href="#twinkle-ino" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>AVRマイコンの制御に直接関連するコードはこちらにまとめた。</p>
+<div class="section" id="isr-int0-vect">
+<h4>ISR(INT0_vect)<a class="headerlink" href="#isr-int0-vect" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>INT0割り込みで呼ばれる。
+PORTAとPORTBをすべてH、つまり常時点灯・またたきなしの状態にする。</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="n">ISR</span><span class="p">(</span><span class="n">INT0_vect</span><span class="p">){</span> <span class="c1">//またたきOFF（スイッチで切り替え）</span>
+  <span class="n">PORTA</span> <span class="o">=</span> <span class="mh">0xFF</span><span class="p">;</span>
+  <span class="n">PORTB</span> <span class="o">=</span> <span class="mh">0xFF</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="isr-timer0-compa-vect">
+<h4>ISR(TIMER0_COMPA_vect)<a class="headerlink" href="#isr-timer0-compa-vect" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>タイマ0割り込みで呼ばれる。
+PORTAとPORTBをすべてHにしてから、Twinkleクラスの<code class="docutils literal"><span class="pre">generate()</span></code>関数を呼んでパターンの更新処理をする。</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="n">PORTA</span> <span class="o">=</span> <span class="mh">0xFF</span><span class="p">;</span>
+<span class="n">PORTB</span> <span class="o">=</span> <span class="mh">0xFF</span><span class="p">;</span>
+<span class="n">twinkle</span><span class="p">.</span><span class="n">generate</span><span class="p">();</span>
+<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">c_up</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>以降は、実際にピンから出力するコードになる。
+<code class="docutils literal"><span class="pre">pattern_count</span></code>は出力ピンの数(現状12)を表す。</p>
+<p>forループ内では、7μsごとに<code class="docutils literal"><span class="pre">c_up</span></code>をインクリメント(コメントに<code class="docutils literal"><span class="pre">twinkle.c_up</span></code>とあるがこれはミス)していく。
+<code class="docutils literal"><span class="pre">twinkle.on_duration[i]</span></code>と一致したら<code class="docutils literal"><span class="pre">pattern_count</span></code>を一つ減らして、<code class="docutils literal"><span class="pre">twinkle.on[i]</span></code>が0でなければLEDを消灯する。
+<code class="docutils literal"><span class="pre">i</span></code>とピン番号の対応は<code class="docutils literal"><span class="pre">twinkle.bit_num</span></code>に書いてある。</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">pattern_count</span> <span class="o">=</span> <span class="n">SIZE_OF</span><span class="p">(</span><span class="n">twinkle</span><span class="p">.</span><span class="n">on_duration</span><span class="p">);</span>
+<span class="k">while</span><span class="p">(</span><span class="n">pattern_count</span><span class="p">){</span> <span class="c1">//twinkle.on_durationの値とtwinkle.c_up（カウントアップ）の値を比較し、一致するまではON、一致したらLEDをOFFにする。全部OFFになったらループを抜けてmainに戻る。</span>
+  <span class="n">c_up</span><span class="o">++</span><span class="p">;</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">SIZE_OF</span><span class="p">(</span><span class="n">twinkle</span><span class="p">.</span><span class="n">on_duration</span><span class="p">);</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">twinkle</span><span class="p">.</span><span class="n">on_duration</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">c_up</span><span class="p">){</span>
+      <span class="n">pattern_count</span><span class="o">--</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">twinkle</span><span class="p">.</span><span class="n">on</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">continue</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">)</span> <span class="n">PORTA</span> <span class="o">^=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">twinkle</span><span class="p">.</span><span class="n">bit_num</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+      <span class="k">else</span> <span class="n">PORTB</span> <span class="o">^=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">twinkle</span><span class="p">.</span><span class="n">bit_num</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">6</span><span class="p">];</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="n">_delay_us</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>出力ポートの制御であるが、マイコンボードのデジタル出力のようには便利でなく、<strong>出力レジスタというものを使う</strong>。
+<code class="docutils literal"><span class="pre">PORTA</span></code>や<code class="docutils literal"><span class="pre">PORTB</span></code>とあるのが出力レジスタで、ピンの状態が二進数で保存されている。
+これを書き換えることで出力がなされる仕組みだ。</p>
+<p>例えば、<code class="docutils literal"><span class="pre">PORTA</span> <span class="pre">=</span> <span class="pre">0xFF(11111111)</span></code>の時に、6番目のピンを<code class="docutils literal"><span class="pre">LOW</span></code>にしたいとする。
+<code class="docutils literal"><span class="pre">^=</span></code>演算子はXOR代入といい、右の数との排他的論理和を代入する。
+XORは二つの数が違えば1、同じなら0を返すので、<code class="docutils literal"><span class="pre">PORTA</span></code>の6桁目と1のXORを取ればそこだけが0になる。
+n桁目が1の数は1を(n-1)ビット左にビットシフトすると作れるので、コードはこうなる。</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="n">PORTA</span> <span class="o">^=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="main">
+<h4>main()<a class="headerlink" href="#main" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>初期設定とメインルーチン。
+I/Oポートの設定・タイマ0(CTCモード)とプリスケーラの設定・タイマ0割り込みの設定・INT0割り込みの設定を行っているらしい。
+ここを変更したければAVRの勉強をしよう。</p>
+<p><code class="docutils literal"><span class="pre">sei()</span></code>は割り込みを許可する組み込み関数である。
+設定終了後にこれを呼んで無限ループに入り、割り込みを待つことになる。</p>
+<div class="highlight-cpp"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+  <span class="cm">/*** 初期設定(TIMER0_CTC、TIMER割込、INT0割込) ***/</span>
+  <span class="n">_delay_ms</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+  <span class="n">DDRA</span> <span class="o">=</span> <span class="mh">0xFF</span><span class="p">;</span> <span class="c1">//PORTA0~7を出力に設定</span>
+  <span class="n">DDRB</span> <span class="o">=</span> <span class="mh">0xFF</span><span class="p">;</span>
+  <span class="cm">/*タイマ0 CTCモード、タイマ0_Compare_A割込*/</span>
+  <span class="n">TCCR0A</span> <span class="o">=</span> <span class="mh">0x01</span><span class="p">;</span> <span class="c1">//CTC0をHに</span>
+  <span class="n">TCCR0B</span> <span class="o">=</span> <span class="mh">0x00</span> <span class="o">|</span> <span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">CS02</span> <span class="o">|</span> <span class="mi">0</span><span class="o">&lt;&lt;</span><span class="n">CS01</span> <span class="o">|</span> <span class="mi">0</span><span class="o">&lt;&lt;</span><span class="n">CS00</span><span class="p">;</span>
+  <span class="n">OCR0A</span>  <span class="o">=</span> <span class="mi">180</span><span class="p">;</span> <span class="c1">//CTCのMAX値の設定(180、プリスケーラ256の設定でタイマ割込間隔は7.5msec)</span>
+  <span class="n">TIMSK</span> <span class="o">|=</span> <span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">OCIE0A</span> <span class="o">|</span> <span class="mi">0</span><span class="o">&lt;&lt;</span><span class="n">TOIE0</span><span class="p">;</span> <span class="c1">//タイマ0CompA割込有効</span>
+  <span class="n">GIMSK</span> <span class="o">|=</span> <span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">INT0</span><span class="p">;</span> <span class="c1">//INT0割り込み有効</span>
+  <span class="n">MCUCR</span> <span class="o">|=</span> <span class="mi">0</span><span class="o">&lt;&lt;</span><span class="n">ISC01</span> <span class="o">|</span> <span class="mi">0</span><span class="o">&lt;&lt;</span><span class="n">ISC00</span><span class="p">;</span> <span class="c1">//INTピンのLowで割り込み発生</span>
+  <span class="n">PORTA</span>  <span class="o">=</span> <span class="mh">0x00</span><span class="p">;</span>
+  <span class="n">PORTB</span>  <span class="o">=</span> <span class="mh">0x00</span><span class="p">;</span>
+  <span class="cm">/*************************************************/</span>
+  <span class="n">sei</span><span class="p">();</span>
+  <span class="k">for</span><span class="p">(;;){}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="id12">
-<h3>セットアップ、メインルーチン用<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>int main(void)
-setupを呼び出して初期設定を行ったあと、、割り込みを許可してあとは無限ループに入る。
-void setup(void)
-I/Oポートの設定、タイマ0(CTCモード)とプリスケーラの設定、タイマ0割り込みの設定、INT0割り込みの設定を行ったあと、PORTAとPORTBをすべてLにする。</p>
-</div>
-<div class="section" id="int0">
-<h3>INT0割り込み<a class="headerlink" href="#int0" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>ISR (INT0_vect) PORTAとPORTBをすべてHにする。</p>
-</div>
-<div class="section" id="id13">
-<h3>タイマ0割り込み<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>ISR (TIMER0_COMPA_vect)
-まず、PORTAとPORTBをすべてHにする。つづいて、あらかじめ設定したtwinkle_rate(タイマ割り込み何回につき一回乱数値を更新するか)にもとづいて乱数更新時期の判定を行う。乱数を更新する場合は、まずあらかじめ設定したtwinkle_shift(乱数値更新何回につき一回出力をビットシフトするか)にもとづいてビットシフトが必要かどうか判定する。ビットシフトが必要ならばport_shift()を呼び出して出力をビットシフトする。その後chaos_renew()を呼び出して乱数値を更新し、12個の新たな乱数値をそれぞれのled_intに格納する。
-乱数の更新が必要ない場合には、上述の動作の代わりに1.1msecのdelayをはさんで時間を調節する。どちらの場合でも、その後は7usecのdelayループをled_int回実行し、その後出力ピンをＬにする。すべてのピンがＬになったら割り込みを終了する。</p>
-</div>
-<div class="section" id="id14">
-<h3>乱数値更新<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>unsigned long chaos_gen(unsigned long y)
-入力されたyの値(最大32768の整数)にたいして、間欠カオス法によって生成された新たなyの値を出力する。
-void chaos_renew(void) ISR
-(TIMER0_COMPA_vect)内において乱数値を更新する関数。まずPORTA(またたき強)用の乱数値chaos[0]からchaos[5]までを更新する。その後、その値をあらかじめ設定したchaos_divで割り、これもあらかじめ設定したmin_strongを加えて、結果をled_int[0]からled_int[5]に格納する。(このようにした理由は、chaos[i]の値は32768までの整数値であるが、このままではタイマ0割り込み時のdelayループに使うには値が大きすぎるため、適当な2の乗数chaos_divでまず除算する。。そしてその値にさらにmin_strongを加える。min_strongはまたたき強用のled_intの最小値であり、タイマ0割り込みにおいて最低でもmin_strong回以上はdelayループが起こるようになっている。)その後、次にPORTB(またたき弱)用の乱数値chaos[6]からchaos[11]までを同様に更新する。0~5と異なるのはmin_strongではなくそれより小さなmin_weakを加えている点である。min_weakはmin_strongよりも大きな整数の値で、これが大きいほどled_intの最小値が大きくなる。led_intの最大値はあらかじめ設定したled_int_maxによって決まっているため、min_weakまたはmin_strongが大きいほどled_intの値域の幅が狭まり、結果としてまたたきが目立ちにくくなる。</p>
-</div>
-<div class="section" id="id15">
-<h3>出力ビットシフト<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>unsigned int left_shift(unsigned int i, unsigned int a)
-0から５までの６個の数字が並んでいる数列を左回転でaビットシフトした際、もともとiがあった位置にくる数をあたえる。たとえば、0から5までの数字が
-0 1 2 3 4 5 とならんでいた場合、左に3ビットシフトすると 3 4 5 0 1 2
-となる。この場合もともと3があった位置にくる数字は0なので、left_shift(3,3)の値は0となる。
-void port_shift(void)
-タイマ0割り込み中に呼び出される。PA0<sub>PA5、PB0</sub>PB5にはled_int[0]~led_int[11]が対応するが、その対応の仕方を変更する関数。たとえば、ある段階で
-led_int 0 1 2 3 4 5 6 7 8 9 10 11 portA 0 1 2 3 4 5 portB 0 1 2 3 4 5
-という対応になっていたとする。port_shift()が呼び出されると、portAとportBのビットの対応を左回りに1ビットまたは4ビットシフトする。その区別は制御用の乱数shift_chaosの判定で行う。たとえば、左回りに1ビットシフトした場合、対応は
-led_int 0 1 2 3 4 5 6 7 8 9 10 11 portA 1 2 3 4 5 0 1 2 3 4 5 0
-となる。逆に4ビットシフトした場合には、 led_int 0 1 2 3 4 5 6 7 8 9 10
-11 portA 4 5 0 1 2 3 4 5 0 1 2 3 となる。
-この対応の変更を定期的に行うことによって、ゆらぎの周期性を目立ちにくくしている。</p>
+<h3>書き込むには<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>書き込みの際、Fuseビットの<code class="docutils literal"><span class="pre">DIVCLK8</span></code>を<code class="docutils literal"><span class="pre">Disable</span></code>する必要がある(内部クロックを1MHzではなく8MHzで使用するため)。</p>
+<p>27では、書き込みにArduino IDEを使った。
+Arduinoの中身はAVRマイコンなので、マイコン(ボード)の定義を読み込む事で書き込み可能になる。
+ボードマネージャで<a class="reference external" href="http://drazzy.com/package_drazzy.com_index.json">設定ファイルのURL</a>を指定すると各種設定が選べるので、<code class="docutils literal"><span class="pre">ATTiny861A</span></code>を選択して書き込もう。</p>
+<p>手順の詳細は<a class="reference external" href="http://make.kosakalab.com/make/electronic-work/arduino-ide/attiny-dev/">Arduino IDE に ATtiny45/85/2313
+他の開発環境を組み込む</a>など参照。</p>
 </div>
 </div>
 </div>
