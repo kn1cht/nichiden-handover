@@ -19,6 +19,7 @@
    nissyu-idohen/pc-software-code
    wireless/wireless
    wireless/piscium
+   wireless/acrab
    twinkle
    haisen
    haisen-kagoshii.md
