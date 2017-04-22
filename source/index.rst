@@ -20,6 +20,7 @@
    wireless/wireless
    wireless/piscium
    wireless/acrab
+   wireless/acrab-code
    twinkle
    haisen
    haisen-kagoshii.md

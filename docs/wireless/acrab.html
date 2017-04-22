@@ -35,7 +35,7 @@
               href="../genindex.html"/>
         <link rel="search" title="検索" href="../search.html"/>
     <link rel="top" title="Nichiden 0.1 ドキュメント" href="../index.html"/>
-        <link rel="next" title="またたき回路" href="../twinkle.html"/>
+        <link rel="next" title="無線制御(Acrabの実装解説)" href="acrab-code.html"/>
         <link rel="prev" title="無線制御(PISCIUM)" href="piscium.html"/> 
 
   
@@ -114,26 +114,24 @@
 <li class="toctree-l4"><a class="reference internal" href="#json">JSON</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#acrab-conf-json">acrab_conf.json</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#acrab-main-js">acrab_main.js</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id9">読み込み時の処理</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#getrequest-address-data">getRequest(address, data)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#checkstatus-stat">checkStatus(stat)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pinsettingsend">pinSettingSend()</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#button">buttonオブジェクト</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#each-slice-obj-n">each_slice(obj, n)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#sleep-ms-t">sleep_ms(T)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">指示書の検討</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id10">指示書をどう表現するか</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">エクセルからJSONデータへ</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#acrab-scenario-js">acrab-scenario.js</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">ソースコード解説</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id10">今後の展望</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id11">既知の問題</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id13">今後の展望</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id14">既知の問題</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#acrab-conf-json">読み込んだ際、設定ファイル(acrab_conf.json)が読み込まれないことがある</a></li>
 </ul>
 </li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="acrab-code.html">無線制御(Acrabの実装解説)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../twinkle.html">またたき回路</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../haisen.html">配線</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../haisen-kagoshii.html">配線(かごしい内)</a></li>
@@ -239,7 +237,7 @@ MacならApacheが標準で入っているはずなので、<code class="docutil
 <h3>起動と接続<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>localhostにアクセスすれば以下のような画面が表示されるはずだ。
 もしボタンに日本語が表示されない場合、設定ファイルの読み込みに失敗しているので再読み込みすること。</p>
-<div class="figure" id="id12">
+<div class="figure" id="id15">
 <img alt="Acrabのメイン画面" src="../_images/acrab-main.png" />
 <p class="caption"><span class="caption-text">Acrabのメイン画面</span></p>
 </div>
@@ -254,16 +252,16 @@ MacならApacheが標準で入っているはずなので、<code class="docutil
 <div class="section" id="id5">
 <h3>公演用画面<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ソフトの指示を次へ・前へのボタンで実行できるモード。
-画面上に「公演用」ボタンがあり、押すと画面が切り替わる。</p>
-<div class="figure" id="id13">
+画面上に「<strong>公演用</strong>」ボタンがあり、押すと画面が切り替わる。</p>
+<div class="figure" id="id16">
 <img alt="Acrabの公演用画面" src="../_images/acrab-scenario.png" />
 <p class="caption"><span class="caption-text">Acrabの公演用画面</span></p>
 </div>
-<p>左上のメニューから番組名を選べるので、選んでから「開始」ボタンを押すと一番初めのコマンドが送信される。
-下にタイミングが表示されるので、緑色の次へボタンを押して番組を進行する。
-前へボタンでは、直前と逆の指示を送信できる。</p>
-<p>「開始」した後は左のボタンが「停止」「再開」に変化するが、これは右上のタイマーが止まるだけで深い意味はない。
-「リセット」ボタンを押すと、タイマーと番組の進行状況が最初に戻る。</p>
+<p>左上のメニューから番組名を選べるので、選んでから「<strong>開始</strong>」ボタンを押すと一番初めのコマンドが送信される。
+下にタイミングが表示されるので、緑色の「<strong>次へ</strong>」ボタンを押して番組を進行する。
+「<strong>前へ</strong>」ボタンでは、直前と逆の指示を送信できる。</p>
+<p>「開始」した後は左のボタンが「<strong>停止</strong>」「<strong>再開</strong>」に変化するが、これは右上のタイマーが止まるだけで深い意味はない。
+「<strong>リセット</strong>」ボタンを押すと、タイマーと番組の進行状況が最初に戻る。</p>
 <p>誤操作防止のため、「リセット」は「停止」状態でないとできない。
 また、番組選択メニューは「リセット」しなければ操作できない。</p>
 </div>
@@ -356,257 +354,108 @@ Notation)は、JavaScriptのオブジェクトの形式でデータを記述す�
 <a class="reference external" href="http://jsonlint.com/">JSONLint</a>など、JSONの文法ミスを検出してくれるサービスが存在する。</p>
 </div>
 </div>
-<div class="section" id="acrab-conf-json">
-<h3>acrab_conf.json<a class="headerlink" href="#acrab-conf-json" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><code class="docutils literal"><span class="pre">Acrab</span></code>の設定ファイルである。 JSONファイルのため構造の概略のみ示す。</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>├── &quot;ip&quot; [Pisciumとの通信用]
-│   ├── &quot;N&quot; [北天受信機のIPアドレス]
-│   └── &quot;S&quot; [南天受信機のIPアドレス]
-├── &quot;port&quot; [出力ポート用]
-│   ├── &quot;And&quot; [星座or投影機名の三文字コード]
-│   │   ├── &quot;name&quot; [ボタンに表示する名前]
-│   │   ├── &quot;box&quot; [北天なら&quot;N&quot;/南天なら&quot;N&quot;/両方なら&quot;NS&quot;]
-│   │   └── &quot;pin&quot; [投影機とピン番号の対応]
-│   └── (以下同様)
-└── &quot;group&quot; [星座や投影機のグループを定義]
-    ├── &quot;Set&quot; [全点灯の三文字コード]
-    │   └── &quot;name&quot; [ボタンに表示する名前]
-    ├── &quot;Cle&quot; [全消灯の三文字コード]
-    │   └── &quot;name&quot; [ボタンに表示する名前]
-    ├── &quot;Spc&quot; [グループ名の三文字コード]
-    │   ├── &quot;name&quot; [ボタンに表示する名前]
-    │   └── &quot;value&quot; [配列: グループに属する星座or投影機を列挙]
-    └── (以下同様)
-</pre></div>
-</div>
-<p>三文字コードというのは、プログラム中で<strong>星座・投影機・そのグループ</strong>を区別するため一意に割り振った三文字を指す。
-星座にはもともと<a class="reference external" href="http://www.nao.ac.jp/new-info/constellation2.html">この形式の略符が用意されている</a>こともあり、文字数を統一して可読性を高めることを目指した。</p>
-<p>例えば星座絵のピン番号を入れ替える際には、<code class="docutils literal"><span class="pre">port.(星座名).pin</span></code>を書き換えれば良い。
-<code class="docutils literal"><span class="pre">Piscium</span></code>側に設定を反映させるためページをリロードすること。</p>
-</div>
-<div class="section" id="acrab-main-js">
-<h3>acrab_main.js<a class="headerlink" href="#acrab-main-js" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p><code class="docutils literal"><span class="pre">Acrab</span></code>全体に関わるコードや、「メイン」画面で使用するコードを記述した。</p>
 <div class="section" id="id9">
-<h4>読み込み時の処理<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>ページを読み込んだ後に一度だけ実行したい処理がある。
-JSはスクリプト言語なので、main関数のようなものはなくコードの頭から順に読み込まれる。</p>
-<p>通常は関数を定義しても呼び出されるまで何も起こらないが、<code class="docutils literal"><span class="pre">(function(){})()</span></code>の形式のものは読み込んだ時点で実行される。
-これを<strong>即時関数</strong>といい、初期設定の適用などに使える。</p>
-<p>また、コード中に<code class="docutils literal"><span class="pre">$(function(){})</span></code>もあるが、これは即時関数ではない。
-$がついたものはjQueryの<strong>readyイベント</strong>といい、<strong>HTMLが全てロードされた時点で実行される</strong>。
-ページを書き換えるような処理の場合ページが読み込まれていないと意味がないので、こちらを使うようにしよう。</p>
-<p>即時関数・readyイベントで行っている処理は以下の通り。</p>
-<ul class="simple">
-<li><code class="docutils literal"><span class="pre">acrab_conf.json</span></code>の取得とパース<ul>
-<li><code class="docutils literal"><span class="pre">$.getJSON()</span></code>を使うだけ</li>
-</ul>
-</li>
-<li><code class="docutils literal"><span class="pre">port</span></code>と<code class="docutils literal"><span class="pre">group</span></code>の<code class="docutils literal"><span class="pre">name</span></code>をボタンに表示<ul>
-<li><code class="docutils literal"><span class="pre">$.each()</span></code>で配列の全要素にループ処理できる</li>
-</ul>
-</li>
-<li>ピン番号の設定を<code class="docutils literal"><span class="pre">Piscium</span></code>に送信(<code class="docutils literal"><span class="pre">pinSettingSend()</span></code>)</li>
-<li>各ボタンにclickイベントを追加<ul>
-<li><code class="docutils literal"><span class="pre">.main_button</span></code>というクラスの要素を取得して<code class="docutils literal"><span class="pre">$.each()</span></code></li>
-<li>HTMLに手作業で書くのが面倒なので、クラスからボタンの種類を判定して最適な関数を実行する仕組み</li>
-</ul>
-</li>
-<li>更新ボタン、明るさスライダーの処理を追加</li>
-<li>タブの切り替え<ul>
-<li>各タブの画面はそれぞれ<code class="docutils literal"><span class="pre">.content</span></code>クラスに入っている</li>
-<li>一度全てを非表示にした後、押したタブの順番と同じ順番の画面のみ表示する</li>
-</ul>
-</li>
-</ul>
-<p>開発の途中に順次追加したのでかなりグチャグチャになっている。
-自由に読みやすく変更して構わない。</p>
-<p>本番まで気づかなかったため未修正だが、実は<strong>コード先頭の即時関数もreadyイベントにすべき</strong>である。
-「<code class="docutils literal"><span class="pre">port</span></code>と<code class="docutils literal"><span class="pre">group</span></code>の<code class="docutils literal"><span class="pre">name</span></code>をボタンに表示」する処理がHTML読み込み後でないとできないからだ。
-稀にだが<code class="docutils literal"><span class="pre">acrab_conf.json</span></code>が読み込まれない不具合はこれが原因と思われる。</p>
-</div>
-<div class="section" id="getrequest-address-data">
-<h4>getRequest(address, data)<a class="headerlink" href="#getrequest-address-data" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p><code class="docutils literal"><span class="pre">address</span></code>にURLパラメータとして<code class="docutils literal"><span class="pre">data</span></code>を付けて送信する関数。
-jQueryの<code class="docutils literal"><span class="pre">get()</span></code>や<code class="docutils literal"><span class="pre">Deferred</span></code>を使用している。</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">data</span> <span class="o">=</span> <span class="nx">data</span> <span class="o">||</span> <span class="p">{}</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="nx">address</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span> <span class="o">+</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">();</span> <span class="c1">// 非同期通信なので完了時にデータを渡す処理</span>
-<span class="nx">$</span><span class="p">.</span><span class="nx">get</span><span class="p">({</span>
-  <span class="nx">url</span><span class="o">:</span> <span class="nx">address</span><span class="p">,</span> <span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="nx">timeout</span><span class="o">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="nx">data</span><span class="o">:</span> <span class="nx">data</span>
-<span class="p">}).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
-  <span class="k">if</span><span class="p">(</span><span class="nx">address</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">ip</span><span class="p">.</span><span class="nx">N</span><span class="p">))</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#wifi-icons #north&#39;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;正常受信中&#39;</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">);</span>
-  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">address</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">ip</span><span class="p">.</span><span class="nx">S</span><span class="p">))</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#wifi-icons #south&#39;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;正常受信中&#39;</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">);</span>
-  <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
-<span class="p">}).</span><span class="nx">fail</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">xhr</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="o">+</span><span class="s1">&#39; &#39;</span><span class="o">+</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">statusText</span><span class="p">);</span>
-  <span class="k">if</span><span class="p">(</span><span class="nx">address</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">ip</span><span class="p">.</span><span class="nx">N</span><span class="p">))</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#wifi-icons #north&#39;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;接続なし&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">);</span>
-  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">address</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">ip</span><span class="p">.</span><span class="nx">S</span><span class="p">))</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#wifi-icons #south&#39;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;接続なし&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">);</span>
-  <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span><span class="p">;</span>
-<span class="p">});</span>
-<span class="k">return</span> <span class="nx">deferred</span><span class="p">;</span>
-</pre></div>
-</div>
-<p><code class="docutils literal"><span class="pre">$.get()</span></code>は、指定したURLにGETリクエストを送信する。
-<code class="docutils literal"><span class="pre">data</span></code>に連想配列を指定するとURLパラメータに整形してくれる嬉しい機能付きだ。
-また、通信が切れている時に固まらないよう、1000msのタイムアウトを設定している。</p>
-<p>その後の<code class="docutils literal"><span class="pre">.done()</span></code>や<code class="docutils literal"><span class="pre">.fail()</span></code>にはそれぞれ通信成功時・失敗時の処理を書く。
-ここでは通信するたびにブラウザコンソールに結果を出力し、受信状況の欄を更新するようになっている。</p>
-<p>さて、<code class="docutils literal"><span class="pre">Piscium</span></code>にコマンドを送ると、<strong>各ポートの状態を0か1で表したjsonデータ</strong>
-が返る。
-<code class="docutils literal"><span class="pre">dataType:</span> <span class="pre">'json'</span></code>としておけばパースまでやってくれるようだ。
-これを関数の戻り値としたいが、これには工夫が必要になる。</p>
-<p><code class="docutils literal"><span class="pre">$.get()</span></code>のようなAjax通信は<strong>非同期処理</strong>を採用しており、リクエストを送った後応答を待たずに関数が終了してしまう。
-そのため、送られてくるはずのデータを戻り値に入れることができない。</p>
-<p>そこで、<code class="docutils literal"><span class="pre">$.Deferred</span></code>を利用する。
-ググれば出てくるため詳細は省くが、Deferredオブジェクトを一旦返し<strong>通信が終了してからデータを格納する</strong>ことができる。
-また、通信が失敗した場合<code class="docutils literal"><span class="pre">deferred.reject</span></code>すると以上終了させることもできる。</p>
-</div>
-<div class="section" id="checkstatus-stat">
-<h4>checkStatus(stat)<a class="headerlink" href="#checkstatus-stat" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p><code class="docutils literal"><span class="pre">Piscium</span></code>から送られてくるjsonをパースしたオブジェクトから<strong>各星座絵・投影機のオンオフ状況を確認する</strong>。
-基本的に<code class="docutils literal"><span class="pre">getRequest()</span></code>で通信した後はこれを呼ぶようにして、表示を常に最新に保つべきである。
-<code class="docutils literal"><span class="pre">getRequest()</span></code>は非同期関数なので、以下のコード片のように<code class="docutils literal"><span class="pre">.done()</span></code>を使う。</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">getRequest</span><span class="p">(</span><span class="nx">address</span><span class="p">,</span> <span class="nx">data</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">){</span><span class="nx">checkStatus</span><span class="p">(</span><span class="nx">res</span><span class="p">)});</span>
-</pre></div>
-</div>
-<p>ボタンはHTML側で以下のように三文字コードのIDが振られている。</p>
-<div class="highlight-html"><div class="highlight"><pre><span></span><span class="c">&lt;!-- index.html --&gt;</span>
-<span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;main_button constellation&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;And&quot;</span><span class="p">&gt;</span>And<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-<p>三文字コードは<code class="docutils literal"><span class="pre">port</span></code>や<code class="docutils literal"><span class="pre">group</span></code>に入っているので、<code class="docutils literal"><span class="pre">$.each()</span></code>ループを回して巡回する。
-各ボタンに<code class="docutils literal"><span class="pre">on</span></code>クラスを追加すると色などが変わる仕組みだ。</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">){</span> <span class="c1">// 星座|投影機ごと</span>
-  <span class="k">if</span><span class="p">(</span><span class="nx">stat</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;[id=&#39;</span><span class="o">+</span><span class="nx">key</span><span class="o">+</span><span class="s1">&#39;]&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;on&#39;</span><span class="p">);</span>
-  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">stat</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;[id=&#39;</span><span class="o">+</span><span class="nx">key</span><span class="o">+</span><span class="s1">&#39;]&#39;</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;on&#39;</span><span class="p">);</span>
-<span class="p">});</span>
-</pre></div>
-</div>
-<p><code class="docutils literal"><span class="pre">group</span></code>に関しても基本は変わらないが、こちらは<strong>属している星座絵全てが点灯していなければオンにならない</strong>。
-例えば、「夏の大三角」ボタンを押すと「こと/わし/はくちょう」が点灯するが、このうち一つでも消すと「夏の大三角」もオフの表示になる。</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span>  <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">group</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">){</span> <span class="c1">// 星座グループごと</span>
-    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">isOn</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-    <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span><span class="nx">isOn</span> <span class="o">&amp;=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">).</span><span class="nx">hasClass</span><span class="p">(</span><span class="s1">&#39;on&#39;</span><span class="p">);});</span> <span class="c1">// 各星座がオンかどうかのANDをとる</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">isOn</span><span class="p">)</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;[id=&#39;</span><span class="o">+</span><span class="nx">key</span><span class="o">+</span><span class="s1">&#39;]&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;on&#39;</span><span class="p">);</span>
-    <span class="k">else</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;[id=&#39;</span><span class="o">+</span><span class="nx">key</span><span class="o">+</span><span class="s1">&#39;]&#39;</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;on&#39;</span><span class="p">);</span>
-  <span class="p">});</span>
-  <span class="k">return</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="pinsettingsend">
-<h4>pinSettingSend()<a class="headerlink" href="#pinsettingsend" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p><code class="docutils literal"><span class="pre">Piscium</span></code>には、<code class="docutils literal"><span class="pre">(ip)/setConstellationName/status.json</span></code>にアクセスすることでピンごとに名前を設定する機能がある。
-これで<code class="docutils literal"><span class="pre">(ip)/setPort/status.json?And=0</span></code>のように三文字コードをURLに使えるようになり、ユーザが見てもわかりやすい。</p>
-<p><code class="docutils literal"><span class="pre">acrab_conf.json</span></code>が読み込まれた後のタイミングで実行される。
-<code class="docutils literal"><span class="pre">port.(三文字コード).pin</span></code>の中身を順に取得して<code class="docutils literal"><span class="pre">getRequest()</span></code>に渡すという流れである。</p>
-</div>
-<div class="section" id="button">
-<h4>buttonオブジェクト<a class="headerlink" href="#button" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>メイン画面のボタンは、<strong>星座絵/投影機/全点(消)灯/グループ</strong>
-の四種類ある。
-それぞれに合った処理をするため、<code class="docutils literal"><span class="pre">button</span></code>オブジェクトを作成し必要なメソッドをまとめるようにした。</p>
-<div class="section" id="button-constellation-obj">
-<h5>星座絵: button.constellation(obj)<a class="headerlink" href="#button-constellation-obj" title="このヘッドラインへのパーマリンク">¶</a></h5>
-<p>星座絵は南天か北天に分かれている。
-南北は<code class="docutils literal"><span class="pre">port[(三文字コード)].box</span></code>から判定し、受信機のアドレスを<code class="docutils literal"><span class="pre">ip[(NかS)]</span></code>で取得する。</p>
-<p>また、ボタンのオンオフ状態と逆の真偽値を<code class="docutils literal"><span class="pre">data</span></code>に入れておく。
-後は<code class="docutils literal"><span class="pre">getRequest()</span></code>を呼んで終了する。</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">address</span> <span class="o">=</span> <span class="nx">ip</span><span class="p">[</span><span class="nx">port</span><span class="p">[</span><span class="nx">obj</span><span class="p">.</span><span class="nx">id</span><span class="p">].</span><span class="nx">box</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;setPort/status.json&#39;</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="nx">data</span><span class="p">[</span><span class="nx">obj</span><span class="p">.</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">button</span><span class="p">.</span><span class="nx">stat</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
-<span class="nx">getRequest</span><span class="p">(</span><span class="nx">address</span><span class="p">,</span> <span class="nx">data</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">){</span><span class="nx">checkStatus</span><span class="p">(</span><span class="nx">res</span><span class="p">)});</span>
-<span class="k">return</span><span class="p">;</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="button-projector-obj">
-<h5>投影機: button.projector(obj)<a class="headerlink" href="#button-projector-obj" title="このヘッドラインへのパーマリンク">¶</a></h5>
-<p>星座絵以外の投影機は南北両方に付いているのが普通である。
-そのため<strong>受信機の数だけ同じリクエストを送る</strong>必要がある。
-<code class="docutils literal"><span class="pre">ip</span></code>の各要素について<code class="docutils literal"><span class="pre">$.each()</span></code>を回すことでこれを実現する。</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">ip</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-  <span class="kd">var</span> <span class="nx">address</span> <span class="o">=</span> <span class="k">this</span> <span class="o">+</span> <span class="s1">&#39;setPort/status.json&#39;</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{};</span>
-  <span class="nx">data</span><span class="p">[</span><span class="nx">obj</span><span class="p">.</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">button</span><span class="p">.</span><span class="nx">stat</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
-  <span class="nx">getRequest</span><span class="p">(</span><span class="nx">address</span><span class="p">,</span> <span class="nx">data</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">){</span><span class="nx">checkStatus</span><span class="p">(</span><span class="nx">res</span><span class="p">)});</span>
-<span class="p">});</span>
-<span class="k">return</span><span class="p">;</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="button-all-obj">
-<h5>全点(消)灯: button.all(obj)<a class="headerlink" href="#button-all-obj" title="このヘッドラインへのパーマリンク">¶</a></h5>
-<p><code class="docutils literal"><span class="pre">Piscium</span></code>側の全点灯(allSet)・全消灯(allClear)を使う場合。
-コードは<code class="docutils literal"><span class="pre">button.projector(obj)</span></code>と似ているので省略。</p>
-<p><code class="docutils literal"><span class="pre">Piscium</span></code>側の負荷の関係で、今のところ全点灯は使うべきでないようだ。</p>
-</div>
-<div class="section" id="button-group-obj">
-<h5>グループ: button.group(obj)<a class="headerlink" href="#button-group-obj" title="このヘッドラインへのパーマリンク">¶</a></h5>
-<p>「夏の大三角」「黄道十二星座」と言った星座のグループ。
-実はこれが一番面倒である。
-理由は<strong>各星座絵が南北にばらけていることがある</strong>ため。</p>
-<p>そのため、</p>
-<ol class="arabic simple">
-<li><code class="docutils literal"><span class="pre">ip</span></code>からIPアドレスを取得してURLを作成</li>
-<li><code class="docutils literal"><span class="pre">group[(三文字コード).value]</span></code>で<code class="docutils literal"><span class="pre">$.each()</span></code>を回し、南北判定していずれかの<code class="docutils literal"><span class="pre">data</span></code>に追加</li>
-<li><code class="docutils literal"><span class="pre">req</span></code>オブジェクトに南北それぞれのデータを入れ、<code class="docutils literal"><span class="pre">getRequest()</span></code></li>
-</ol>
-<p>という手順を踏んでいる。</p>
-<p>実は、本番前にさらに一段階手順を増やした。
-星座絵を10個弱同時に点灯すると電源が不安定化する事象を確認したため、回避のため<strong>少数ずつ分けて点灯する</strong>よう変更したのである。
-このため新たに<code class="docutils literal"><span class="pre">each_slice()</span></code>と<code class="docutils literal"><span class="pre">sleep_ms()</span></code>という関数を定義した。
-これらの詳細は後述する。</p>
-</div>
-<div class="section" id="button-stat-obj">
-<h5>ボタンの状態を取得する: button.stat(obj)<a class="headerlink" href="#button-stat-obj" title="このヘッドラインへのパーマリンク">¶</a></h5>
-<p>ボタンがオンかオフかは、<code class="docutils literal"><span class="pre">on</span></code>クラスを持っているかどうかで分かる。
-<code class="docutils literal"><span class="pre">stat()</span></code>にボタンのオブジェクトを渡すと、現在の状態の逆の値を返す。</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">obj</span><span class="p">).</span><span class="nx">hasClass</span><span class="p">(</span><span class="s1">&#39;on&#39;</span><span class="p">)</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="each-slice-obj-n">
-<h4>each_slice(obj, n)<a class="headerlink" href="#each-slice-obj-n" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p>投影機を複数点灯・消灯する際一回あたりの数を抑えるのに使用する。
-<code class="docutils literal"><span class="pre">obj</span></code>にオブジェクトを、<code class="docutils literal"><span class="pre">n</span></code>に最大数を指定すると<code class="docutils literal"><span class="pre">obj</span></code>をn要素ごとに切り分けたオブジェクトの配列を返す。</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">each_slice</span><span class="p">({</span><span class="s2">&quot;Ari&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;Cnc&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;Gem&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;Leo&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;Aqr&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;Cap&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;Psc&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">},</span><span class="mi">3</span><span class="p">)</span>
-<span class="o">-&gt;</span> <span class="p">[{</span><span class="s2">&quot;Ari&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;Cnc&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;Gem&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">},{</span><span class="s2">&quot;Leo&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;Aqr&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;Cap&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">},{</span><span class="s2">&quot;Psc&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">}]</span>
-</pre></div>
-</div>
-<p>ただし、例外として&#8221;St1&#8221;と&#8221;St2&#8221;をキーにもつ場合は1要素のオブジェクトに分ける。
-これは、こうとうの負荷があまりに大きいため他の投影機と同時に点灯することを避けるためである。</p>
-<p>アルゴリズムとしては、n要素ずつ切ったものをfor文内でオブジェクトに追加していくだけなのでコードは省略する。</p>
-</div>
-<div class="section" id="sleep-ms-t">
-<h4>sleep_ms(T)<a class="headerlink" href="#sleep-ms-t" title="このヘッドラインへのパーマリンク">¶</a></h4>
-<p><code class="docutils literal"><span class="pre">getRequest()</span></code>が<code class="docutils literal"><span class="pre">each_slice()</span></code>により複数回に別れる場合に、間隔を十分取るための関数。
-これがマイコンならば<code class="docutils literal"><span class="pre">delay()</span></code>のような関数が標準で用意されるところだが、ブラウザにはそんなものはないので作るしかない。
-下のコードを見れば分かるように、ひたすら時刻を取得して最初との差が<code class="docutils literal"><span class="pre">T</span></code>を超えたら抜けるという作戦になっている。</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">();</span>
-<span class="kd">var</span> <span class="nx">dd</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">();</span>
-<span class="k">while</span><span class="p">(</span><span class="nx">dd</span> <span class="o">&lt;</span> <span class="nx">d</span><span class="o">+</span><span class="nx">T</span><span class="p">)</span> <span class="nx">dd</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">();</span>
-</pre></div>
-</div>
-<p>遅らせる時間だが、100 msとした。
-LEDの突入電流が流れる時間は数ms程度なので、十分大きくかつ人間には長すぎない程度と判断している。</p>
-</div>
-</div>
-<div class="section" id="acrab-scenario-js">
-<h3>acrab-scenario.js<a class="headerlink" href="#acrab-scenario-js" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>(執筆中)</p>
-</div>
-</div>
+<h3>指示書の検討<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>PCで投影機を操作する場合、指示書の内容が表示されていると便利なのは言うまでもない。
+しかし、コードに直接書き込むような方式では、翌年にはもう使えなくなってしまう。
+そこで、<code class="docutils literal"><span class="pre">Acrab</span></code>が<strong>外部の指示書ファイルを読み込む</strong>方式を検討した。</p>
 <div class="section" id="id10">
-<h2>今後の展望<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h4>指示書をどう表現するか<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>ソフトの指示書には様々な情報が書かれているが、主投影機に限れば必要な情報は</p>
+<ul class="simple">
+<li>順番</li>
+<li>セリフ</li>
+<li>タイミング</li>
+<li>指示<ul>
+<li>どの投影機を</li>
+<li>点灯する/消灯する</li>
+</ul>
+</li>
+</ul>
+<p>となる。
+一公演に対して普通は多数のセリフが存在し、また一つのセリフに複数の投影機への指示がつくこともある。
+つまり、「番組」→「セリフ(タイミング)」→「指示」と<strong>階層的に表現</strong>できればとても嬉しい。</p>
+<p>ソフトは指示書をExcel(xlsxファイル)で作成している。
+xlsxファイルはかなり複雑で、プログラムから読むのは大変なので、テキスト形式のデータに変換したい。</p>
+<p>エクセルならCSVが扱えるが、CSVは表形式のデータとなり階層構造が表現できない。
+階層状にできるXMLかJSONのうち、XMLは扱いづらそうだったため<strong>JSON</strong>を採用した。
+JSONならばJavaScriptの<code class="docutils literal"><span class="pre">Acrab</span></code>との親和性もある。</p>
+<p>具体的にどのような構造のJSONかについては、ソースコード解説の記事にゆずる(概ね上の箇条書きの通りと思ってよい)。</p>
+</div>
 <div class="section" id="id11">
-<h3>既知の問題<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h4>エクセルからJSONデータへ<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>指示書のデータはソフトが持っているので貰ってくるとして、一発でJSONに変換できる訳ではない。
+日本語の指示を<strong>プログラム用の形式にする</strong>作業が待っている。</p>
+<p>とはいえ、JSONを手で書くのは非常に面倒で、しかもミスがあるとパースができない。
+そこで一旦CSVにして保存し、CSV→JSONの変換はプログラムに任せることにした。</p>
+<p>CSVは階層データを表現できないが、1フィールド(Excelで言う1セル)に<strong>複数データを無理やり入れてしまえば</strong>なんちゃって階層データが作れる。
+今回は二階層しかないので、下の階層は<strong>JSONを直接入力してしまう</strong>と言う苦肉の策を講じた。
+変換の手順を表で表すとこのようになる。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="60%" />
+<col width="28%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">工程</th>
+<th class="head">内容</th>
+<th class="head">データ形式</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>ソフトからExcelデータを入手</td>
+<td>xlsx</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>人力でJSONへの変換を準備</td>
+<td>CSV(Shift-JIS)</td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>(Excelで保存した場合)文字コード変換</td>
+<td>CSV(UTF-8)</td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>プログラムでJSONデータに変換</td>
+<td>JSON</td>
+</tr>
+</tbody>
+</table>
+<p><strong>工程1</strong> で、JSONに自動変換できる状態にまで指示書を編集する。
+この段階は、エクセルで作業した方が余計な列の削除・列移動等が楽だろう。</p>
+<p>実装解説でも触れるが、<code class="docutils literal"><span class="pre">Acrab</span></code>では星座絵や投影機を<strong>半角三文字のコード</strong>で管理している。
+投影機の指示もこれに準じたものに変える。
+例えば、「アンドロメダ座を点灯する」なら<code class="docutils literal"><span class="pre">&quot;And&quot;:</span> <span class="pre">1</span></code>になる。
+詳しくは<a class="reference external" href="acrab-code.html">実装解説の記事</a>や、本番で使用したデータなどをご覧いただきたい。</p>
+<p>この工程で、指示の<strong>曖昧さを完全になくす</strong>ことを目指す。
+「いい感じのタイミングでつけてください」のような記述があったり、点灯したまま消灯しない投影機が出たりという事態はよくある。
+疑問を感じたら<strong>ソフトあるいはライブ解説者に確認</strong>しよう。
+面倒な作業ではあるが、本番直前に気づくよりは対処に余裕を持てる。</p>
+<p><strong>工程2</strong> はExcelからCSVを出力した場合に必要だ。
+ExcelはCSVをShift-JISで保存するが、文字化けの元凶となるので<strong>Unicodeに変換しておく</strong>のが望ましい。
+コマンドで変換しても、テキストエディタで保存しなおしてもいい。</p>
+<p><strong>工程3</strong>
+でJSONに自動変換となる訳だが、CSV内にJSONを無理やり混ぜているので変換するだけではいけない。
+JSONの括弧(<code class="docutils literal"><span class="pre">{</span></code>,<code class="docutils literal"><span class="pre">}</span></code>)が<code class="docutils literal"><span class="pre">&quot;&quot;</span></code>で囲まれたり、<code class="docutils literal"><span class="pre">&quot;</span></code>がバックスラッシュで文字列にエスケープされたりしているので、置換などで修正する必要がある。
+27代では<code class="docutils literal"><span class="pre">scenario/csv/</span></code>に入っている<code class="docutils literal"><span class="pre">jsonify.py</span></code>というPythonスクリプトで変換と置換の処理をした。</p>
+</div>
+</div>
+<div class="section" id="id12">
+<h3>ソースコード解説<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>たいへん長くなるので、<a class="reference external" href="acrab-code.html">Acrabの実装解説</a>に分離する。</p>
+</div>
+</div>
+<div class="section" id="id13">
+<h2>今後の展望<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id14">
+<h3>既知の問題<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="acrab-conf-json">
+<h4>読み込んだ際、設定ファイル(acrab_conf.json)が読み込まれないことがある<a class="headerlink" href="#acrab-conf-json" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>開発時に<strong>即時関数</strong>と<strong>jQuery.readyイベント関数</strong>の違いを理解していなかったことが原因。
+即時関数を使うのをやめれば修正可能。</p>
 <p>(執筆中)</p>
+</div>
 </div>
 </div>
 </div>
@@ -621,7 +470,7 @@ LEDの突入電流が流れる時間は数ms程度なので、十分大きくか
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../twinkle.html" class="btn btn-neutral float-right" title="またたき回路" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="acrab-code.html" class="btn btn-neutral float-right" title="無線制御(Acrabの実装解説)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="piscium.html" class="btn btn-neutral" title="無線制御(PISCIUM)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
