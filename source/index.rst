@@ -29,3 +29,4 @@
    hojotou
    begginers/buy_parts
    begginers/microcontroller
+   begginers/editor
