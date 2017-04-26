@@ -273,8 +273,7 @@
 <div class="section" id="id6">
 <h2>プログラム<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>23代が<code class="docutils literal"><span class="pre">nissyuido</span></code>ディレクトリ以下に使用したソースコードを残している。<code class="docutils literal"><span class="pre">WinAVR</span></code>環境があれば<code class="docutils literal"><span class="pre">default</span></code>ディレクトリに移動して<code class="docutils literal"><span class="pre">make</span></code>コマンドを打てばビルドされるとのことだ。</p>
-<p>ただし、前述の通り<strong>24代でマイコンをATmega328Pに変更</strong>
-しており、以前のコードを使用できるかは定かでない。作り変えをする際は、24代の方に問い合わせてみることも検討されたい。</p>
+<p>ただし、前述の通り<strong>24代でマイコンをATmega328Pに変更</strong>しており、以前のコードを使用できるかは定かでない。作り変えをする際は、24代の方に問い合わせてみることも検討されたい。</p>
 <p>以下のプログラム解説は、23荒田氏の作成されたドキュメントと同内容である。必要なら氏のPDFや、コード中のコメントなども併せて確認すると良いだろう。</p>
 <div class="section" id="main-c">
 <h3>main.c<a class="headerlink" href="#main-c" title="このヘッドラインへのパーマリンク">¶</a></h3>
@@ -376,10 +375,8 @@ Studioだか何だか知らないが、適当にプロジェクトを作って�
 </div>
 <div class="section" id="id8">
 <h2>今後の展望<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>もしもさいたまを作り替えるようなら、もう少し強力なマイコンを搭載すること、センサー(後述)対応にすること、<strong>通信経路</strong>
-についてもっとしっかり考えること(<code class="docutils literal"><span class="pre">RS-485</span></code>にするのか、全部<code class="docutils literal"><span class="pre">RS-232</span></code>とUSBシリアル通信で統一するのか)が望ましい。</p>
-<p>23代で相対角度指定が実装されたが(現在使われていない)、<strong>絶対角度指定</strong>
-があると良いだろう。つまり、投影される星空を見ながら日周緯度変を操作するのではなく、「緯度は何度、日周は何月何日何時」という形で指定できるようにする。</p>
+<p>もしもさいたまを作り替えるようなら、もう少し強力なマイコンを搭載すること、センサー(後述)対応にすること、<strong>通信経路</strong>についてもっとしっかり考えること(<code class="docutils literal"><span class="pre">RS-485</span></code>にするのか、全部<code class="docutils literal"><span class="pre">RS-232</span></code>とUSBシリアル通信で統一するのか)が望ましい。</p>
+<p>23代で相対角度指定が実装されたが(現在使われていない)、<strong>絶対角度指定</strong>があると良いだろう。つまり、投影される星空を見ながら日周緯度変を操作するのではなく、「緯度は何度、日周は何月何日何時」という形で指定できるようにする。</p>
 <p>絶対角度指定のためには、角度センサーを設置して現在位置を取得するか、一ヶ所にフォトインタラプタなどを設置して初期位置を判別できるようにして、後はステッピングモーターのステップ数で現在位置を把握する、などの方法が考えられる。</p>
 <p>いずれにせよ、さいたまを作り直す際に日周緯度変に設置したセンサーを接続することを考慮しておくとよいだろう。</p>
 <p>PC側のソフトウエアだが、PCで操作する以上何らかのメリットが欲しい。

@@ -219,8 +219,7 @@ OSでは対応していない旨が表示され起動しなかった。</p>
 </div>
 <p>23代紺野氏の作。<code class="docutils literal"><span class="pre">Tokyo</span> <span class="pre">Terminal</span></code>がMac専用だったため、Windows版として開発された。開発言語はC#で、Windows
 Formアプリケーション(<code class="docutils literal"><span class="pre">System.Windows.Forms</span></code>名前空間を使用)である。</p>
-<p><code class="docutils literal"><span class="pre">Tokyo</span> <span class="pre">Terminal</span></code>と共通の機能が多いが、大きな違いは<strong>操作の記録・再生ができる</strong>
-ことである。「速度指定」か「角度指定」かを選択して「記録」ボタンを押すと右のスペースに送るコマンドが表示され、同時に<code class="docutils literal"><span class="pre">Instruction.txt</span></code>というファイルにも保存される。</p>
+<p><code class="docutils literal"><span class="pre">Tokyo</span> <span class="pre">Terminal</span></code>と共通の機能が多いが、大きな違いは<strong>操作の記録・再生ができる</strong>ことである。「速度指定」か「角度指定」かを選択して「記録」ボタンを押すと右のスペースに送るコマンドが表示され、同時に<code class="docutils literal"><span class="pre">Instruction.txt</span></code>というファイルにも保存される。</p>
 <p>あらかじめ必要なコマンドを記録しておいて面倒な操作なしに再実行できる画期的な機能である...と言いたいところだが、<strong>表示されるのはコマンドだけ</strong>(数値は16進数)なので、肝心の再生部分が手軽に利用できるとは言い難い。</p>
 <p>「高速」「低速」のボタンで出る角速度は以下の数値に固定されている。なお、上半分で入力する角速度はモーターのもの、以下の角速度はギアによる減速後のかごしいのものなので注意。
 - 日周高速ボタン: 4 deg/s - 日周低速ボタン: 1 deg/s - 緯度高速ボタン: 1
@@ -237,8 +236,7 @@ deg/s - 緯度低速ボタン: 0.5 deg/s</p>
 </div>
 <p>24池下氏によるもの。引き続きC#によるWindowsアプリだが、UIのフレームワークに<code class="docutils literal"><span class="pre">Windows</span> <span class="pre">Presentation</span> <span class="pre">Foundation(WPF)</span></code>を使用している。</p>
 <p>WPFの詳細についてはググって欲しいが、デザインとコードを分けて書くことができるというのが大きな利点である。つまり、内部の動作を崩さずに見た目だけをいじり倒せるのだ。その甲斐あってか、23のUIに比べデザイン面が大きく改善した。コマンド文字列を生成するコードは<code class="docutils literal"><span class="pre">fujisawa/NisshuidohenController.cs</span></code>でクラスにまとめて定義されている。</p>
-<p>日周緯度変にPCを使うとき、一番問題になるのは画面が光ることだ。PCは画面も大きいし、そのために星がかき消されてしまいかねない。<code class="docutils literal"><span class="pre">Fujisawa</span></code>は、<strong>黒基調の画面</strong>
-にすることでPCの光害を抑制している。</p>
+<p>日周緯度変にPCを使うとき、一番問題になるのは画面が光ることだ。PCは画面も大きいし、そのために星がかき消されてしまいかねない。<code class="docutils literal"><span class="pre">Fujisawa</span></code>は、<strong>黒基調の画面</strong>にすることでPCの光害を抑制している。</p>
 <p>使い方は見れば分かると思うが、「びゅーん」が高速回転、「のろのろ」が低速回転だ。また、本番で画面を暗くしているとマウス操作が大変なので、日周はキーボードでも操作できる。<code class="docutils literal"><span class="pre">C</span></code>:
 高速逆転、<code class="docutils literal"><span class="pre">V</span></code>: 低速逆転、<code class="docutils literal"><span class="pre">B</span></code>: 停止、<code class="docutils literal"><span class="pre">N</span></code>:
 低速順回転、<code class="docutils literal"><span class="pre">M</span></code>: 高速順回転 である。</p>
