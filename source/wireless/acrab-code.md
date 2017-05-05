@@ -361,7 +361,6 @@ print(result.replace('\'','"').replace('\\"','"').replace('"{','{').replace('}"'
 ## acrab-scenario.js
 「公演用画面」のためのコード。
 分量が多くなったためmainと分けることにした。
-(執筆中)
 
 ### ページの初期化関連
 前述の通り、指示書は番組ごとに連番のJSONファイルに分けて`scenario/`以下に保存されている。
