@@ -2,7 +2,7 @@
 =========================
 
 -  書いた人: Kenichi Ito(nichiden\_27)
--  更新日時: 2017/04/18
+-  更新日時: 2017/05/05
 -  実行に必要な知識・技能: Web制作、JavaScript
 -  難易度: 3/練習・勉強が必要
 -  情報の必須度: 4/担当者には必須
@@ -436,8 +436,11 @@ acrab-scenario.js
 -----------------
 
 「公演用画面」のためのコード。
-分量が多くなったためmainと分けることにした。 (執筆中) ###
-指示書ファイルの読み込み
+分量が多くなったためmainと分けることにした。 (執筆中)
+
+ページの初期化関連
+~~~~~~~~~~~~~~~~~~
+
 前述の通り、指示書は番組ごとに連番のJSONファイルに分けて\ ``scenario/``\ 以下に保存されている。
 ``acrab_main.js``\ と同様に、jQueryの\ ``$.getJSON()``\ を用いて取得とパースを行っている。
 
@@ -456,7 +459,7 @@ acrab-scenario.js
 ググりながらコードを読んで理解してほしい。
 
 最後の\ ``$('select#select').change()``\ は、セレクトボックスが更新された際に呼ばれるメソッドを指定している。
-``getScenarioData()``\ については後述するが、指示書のデータを画面に表示するものである。
+``getScenarioData()``\ を使うと、該当する番号の指示書ファイルを読み込む。
 
 .. code-block:: js
 
@@ -480,6 +483,15 @@ acrab-scenario.js
       }).fail(function(xhr){console.error(xhr.status+' '+xhr.statusText);});
       getScenarioData(0);
 
+指示書データの取得と表示
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+getScenarioData(num)
+^^^^^^^^^^^^^^^^^^^^
+
+``num``\ 番目の\ **指示書ファイルを取得**\ し、JSONとしてパースする。
+取得を終えたら、\ ``scenarioInit()``\ を呼び出す。
+
 .. code-block:: js
 
     function getScenarioData(num){
@@ -491,6 +503,16 @@ acrab-scenario.js
       });
     }
 
+scenarioInit()
+^^^^^^^^^^^^^^
+
+取得された\ **指示書のデータ**\ (``scenario``)\ **を画面に表示**\ する。
+情報が表示される要素にはHTML側で該当するタグを付与してある。
+
+各要素に何番目の指示が表示されるかを管理するため、\ ``scenario{数字}``\ という名称のクラスを\ ``scenario0``\ から順に追加するようになっている。
+
+.. code-block:: js
+
     function scenarioInit(){
       $('#scenario_prev').html('(前のシーンが表示されます)').addClass('scenario0').attr('onclick', 'goPrev();').prop('disabled', true);
       viewScript('#scenario_now', 0);
@@ -501,99 +523,14 @@ acrab-scenario.js
       $('#progress_bar progress').attr('pass_time', '00:00:00');
     }
 
-    var timer_button = new function(){
-      this.start = function(){
-        sendComm(0, 0);
-        $('#select').prop('disabled', true);
-        $('#scenario_next').prop('disabled', false);
-        timer = setInterval(function(){pass_time++; readTime();}, 1000);
-        $('#timer_start').hide();
-        $('#timer_stop').show();
-        $('#timer_reset').prop('disabled', true);
-      };
-      this.stop = function(){
-        clearInterval(timer);
-        $('#timer_stop').hide();
-        $('#timer_restart').show();
-        $('#timer_reset').prop('disabled', false);
-      };
-      this.restart = function(){
-        timer = setInterval(function(){pass_time++; readTime();}, 1000);
-        $('#timer_restart').hide();
-        $('#timer_stop').show();
-        $('#timer_reset').prop('disabled', true);
-      };
-      this.reset = function(){
-        pass_time = 0;
-        readTime();
-        scenarioInit();
-        $('#select').prop('disabled', false);
-        $('#timer_restart').hide();
-        $('#timer_start').show();
-        $('#timer_reset').prop('disabled', true);
-        $('#scenario_prev').removeClass(function(index, className) {
-              return (className.match(/\bscenario\S+/g) || []).join(' ');
-        });
-        $('#scenario_now').removeClass(function(index, className) {
-              return (className.match(/\bscenario\S+/g) || []).join(' ');
-        });
-        $('#scenario_next').removeClass(function(index, className) {
-              return (className.match(/\bscenario\S+/g) || []).join(' ');
-        });
-      };
-      var pass_time = 0;
-      var readTime = function(){
-        var hour     = toDoubleDigits(Math.floor(pass_time / 3600));
-        var minute   = toDoubleDigits(Math.floor((pass_time - 3600*hour) / 60));
-        var second   = toDoubleDigits((pass_time - 3600*hour - 60*minute));
-        $('#progress_bar progress').attr('pass_time', hour + ':' + minute + ':' + second);
-        var progress = Math.min(pass_time / 1500.0, 1); // 25 minutes
-        $('#progress_bar progress').attr('value', progress);
-        return;
-      };
-      var toDoubleDigits = function(num){return ('0' + num).slice(-2);}; // sliceで時刻要素の0埋め
-    };
+viewScript(id, index)
+^^^^^^^^^^^^^^^^^^^^^
 
-    function goNext(){
-      $.each(['scenario_prev', 'scenario_now', 'scenario_next'], function(){
-        var num = $('#'+this).get(0).className.match(/\d/g).join('') / 1; // 数字だけ取り出して渡す(型変換しないとうまくいかなかった)
-        $('#'+this).removeClass($('#'+this).get(0).className).addClass('scenario' + (num+1));
-        if(num+1 > scenario.length) $('#'+this).html('(原稿の最後です)').prop('disabled', true);
-        else{
-          if(this == 'scenario_now') sendComm(num, 0);
-          viewScript('#'+this, num);
-        }
-      });
-      $('#scenario_number').html($('#scenario_now').get(0).className.match(/\d/g).join('') + '/' + scenario.length);
-    }
+``id``\ のIDを持つ要素に、
+``index``\ 番目の\ **セリフ・タイミング・指示**\ を表示する。
+タイミング等の表記を変えたければ、ここを編集すれば良い。
 
-    function goPrev(){
-      $.each(['scenario_prev', 'scenario_now', 'scenario_next'], function(){
-        var num = $('#'+this).get(0).className.match(/\d/g).join('') / 1; // 数字だけ取り出して渡す(型変換しないとうまくいかなかった)
-        $('#'+this).removeClass($('#'+this).get(0).className).addClass('scenario' + (num-1));
-        if(num-1 <= 0) $('#'+this).html('(前のシーンが表示されます)').prop('disabled', true);
-        else{
-          if(this == 'scenario_now') sendComm(num-1, 1);
-          viewScript('#'+this, num-2);
-        }
-      });
-      $('#scenario_number').html($('#scenario_now').get(0).className.match(/\d/g).join('') + '/' + scenario.length);
-    }
-
-    function sendComm(index, reverse){
-      var data = $.extend(true, {}, scenario[index].projector);
-      if(reverse) $.each(data, function(key){
-        data[key] = this == 1 ? 0 : 1;
-      });
-      $.each(ip, function(){
-        address = this + 'setPort/status.json';
-        sliced_data = each_slice(data, 5);
-        $.each(sliced_data, function(){
-          getRequest(address, this).done(function(res){checkStatus(res)});
-          sleep_ms(100);
-        });
-      });
-    }
+.. code-block:: js
 
     function viewScript(id, index){
       if($(id).is(':disabled'))$(id).prop('disabled', false);
@@ -614,4 +551,144 @@ acrab-scenario.js
         });
         return res;
       });
+    }
+
+timer\_buttonオブジェクト
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ボタン関連
+^^^^^^^^^^
+
+**「開始」「停止」「再開」「リセット」**\ の四つのボタンの動きを管理する。
+``timer_button``\ には四つのメンバ関数が用意されており、それぞれが各ボタンが押された際に呼ばれる。
+
+なお画面ではボタンは二つに見えるが、内部的には四つのボタンの表示/非表示を切り替えて内容が変わるように見せている。
+以下にそれぞれの動作内容を簡単に記す(「」内はボタン名称)。
+
+-  timer\_button.start()
+
+   -  投影機に0番目(番組開始前)の指示を送信
+   -  **セレクトボックス**\ を無効化・「\ **次へ**\ 」を有効化
+   -  **タイマー**\ を動かす
+   -  「\ **開始**\ 」を「\ **停止**\ 」に、「\ **リセット**\ 」を無効化
+
+-  timer\_button.stop()
+
+   -  **タイマー**\ を止める
+      \*「\ **停止**\ 」を「\ **再開**\ 」に、「\ **リセット**\ 」を有効化
+
+-  timer\_button.restart()
+
+   -  **タイマー**\ を動かす
+   -  「\ **再開**\ 」を「\ **停止**\ 」に、「\ **リセット**\ 」を無効化
+
+-  timer\_button.reset()
+
+   -  **タイマー**\ と\ **指示書表示**\ の初期化
+   -  **セレクトボックス**\ を有効化
+   -  「\ **再開**\ 」を「\ **開始**\ 」に、「\ **リセット**\ 」を無効化
+   -  セリフ・指示表示エリアから\ ``scenario{数字}``\ のクラスを除去
+
+「停止」ボタンは意図せぬリセットを防ぐ意味合いで設置したため、押しても「次へ」などは有効のままである。
+コード例として、\ ``timer_button.start()``\ を掲載しておく。
+
+.. code-block:: js
+
+    this.start = function(){
+      sendComm(0, 0);
+      $('#select').prop('disabled', true);
+      $('#scenario_next').prop('disabled', false);
+      timer = setInterval(function(){pass_time++; readTime();}, 1000);
+      $('#timer_start').hide();
+      $('#timer_stop').show();
+      $('#timer_reset').prop('disabled', true);
+    };
+
+タイマー関連
+^^^^^^^^^^^^
+
+画面には、\ **「開始」が押されてからの時間経過**\ を表示するタイマーがある。
+特にタイマーが必須だったわけではなく、遊びでつけてしまったものである。
+
+ボタン操作と連動するので、\ ``timer_button``\ のメンバとなっている。
+``pass_time``\ が経過時間で、単位は秒。
+``readTime()``\ を呼び出すと、\ ``pass_time``\ を\ **"時:分:秒"のフォーマット**\ に直した上で表示する。
+「開始」または「再開」が押されると\ ``setInterval()``\ によって\ ``readTime()``\ が\ **1秒おきに実行**\ されるようになる。
+
+また、タイマーが表示される部分は\ **プログレスバー**\ (進行状況を示す棒グラフ)であり、``value``\ に0~1の値を入れることができる。
+ここでは、公演の標準的な時間を25分として、進行の目安を確認できるようにした(本番で活用されてはいなかったようだが...)。
+
+.. code-block:: js
+
+    var pass_time = 0;
+    var readTime = function(){
+      var hour     = toDoubleDigits(Math.floor(pass_time / 3600));
+      var minute   = toDoubleDigits(Math.floor((pass_time - 3600*hour) / 60));
+      var second   = toDoubleDigits((pass_time - 3600*hour - 60*minute));
+      $('#progress_bar progress').attr('pass_time', hour + ':' + minute + ':' + second);
+      var progress = Math.min(pass_time / 1500.0, 1); // 25 minutes
+      $('#progress_bar progress').attr('value', progress);
+      return;
+    };
+    var toDoubleDigits = function(num){return ('0' + num).slice(-2);}; // sliceで時刻要素の0埋め
+
+指示の送信
+~~~~~~~~~~
+
+``acrab_main.js``\ に実装がある\ ``getRequest()``\ と\ ``checkStatus()``\ を利用する。
+しかし、メイン画面と違いユーザが\ **進む・戻る**\ の動作をするので、それに対応した。
+``scenario``\ オブジェクトから\ ``index``\ 番目の指示を読み取り、\ ``reverse``\ がtrueなら真偽値の部分を反転させる。
+
+後は完成した指示を送信するだけだが、前に書いたように同時点灯の問題が出たため、ここでも\ ``each_slice()``\ した上で送るようにした。
+なお、画面右に表示されている星座名付きのグリッドは、メイン画面と同じIDにしてあり\ **オンになったものに色が付く**\ 。
+同一ページ内でIDが被るのはHTMLの規格上間違いであるが、\ ``Acrab``\ ではどちらかが常に非表示になるため不具合は出ないと判断した。
+
+.. code-block:: js
+
+    function sendComm(index, reverse){
+      var data = $.extend(true, {}, scenario[index].projector);
+      if(reverse) $.each(data, function(key){
+        data[key] = this == 1 ? 0 : 1;
+      });
+      $.each(ip, function(){
+        address = this + 'setPort/status.json';
+        sliced_data = each_slice(data, 5);
+        $.each(sliced_data, function(){
+          getRequest(address, this).done(function(res){checkStatus(res)});
+          sleep_ms(100);
+        });
+      });
+    }
+
+次へ/前へボタン
+~~~~~~~~~~~~~~~
+
+指示の送信は\ ``sendComm()``\ に番号を渡せば済むので、ここでは\ **何番目の指示を次に送るべきかを管理**\ する。
+前述の通り、現状を挟んで三つの指示が表示される領域には\ ``scenario{数字}``\ なるクラスが付与されているので、そこから数字を取り出して利用する。
+
+実装については\ ``goNext()``\ のコード例を読んで頂くとして、処理の流れのみ解説しておく。
+
+-  クラス名から\ **数字を取得**\ し、\ ``num``\ に格納
+-  クラスを一旦削除し、数字を増やし(減らし)て再追加
+-  次のnumが0以下か最終番号を超えるか
+
+   -  true:
+      指示が存在しないので\ **ボタンを無効化**\ して\ **メッセージ表示**
+   -  false: ``#scenario_now``\ の処理中なら\ **指示を送信**
+
+-  ``#scenario_number``\ に\ ``#scenario_now``\ の番号を表示
+
+.. code-block:: js
+
+    function goNext(){
+      $.each(['scenario_prev', 'scenario_now', 'scenario_next'], function(){
+        var num = $('#'+this).get(0).className.match(/\d/g).join('') / 1; // 数字だけ取り出して渡す(型変換しないとうまくいかなかった)
+        $('#'+this).removeClass($('#'+this).get(0).className).addClass('scenario' + (num+1));
+        if(num+1 > scenario.length) $('#'+this).html('(原稿の最後です)').prop('disabled', true);
+        else{
+          if(this == 'scenario_now') sendComm(num, 0);
+          viewScript('#'+this, num);
+        }
+      });
+      $('#scenario_number').html($('#scenario_now').get(0).className.match(/\d/g).join('') + '/' + scenario.length);
     }

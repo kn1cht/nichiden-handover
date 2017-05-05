@@ -124,7 +124,23 @@
 <li class="toctree-l3"><a class="reference internal" href="#csv-jsonify-py">csv/jsonify.py</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#acrab-scenario-js">acrab-scenario.js</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#acrab-scenario-js">acrab-scenario.js</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">ページの初期化関連</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">指示書データの取得と表示</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#getscenariodata-num">getScenarioData(num)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#scenarioinit">scenarioInit()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewscript-id-index">viewScript(id, index)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#timer-button">timer_buttonオブジェクト</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">ボタン関連</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">タイマー関連</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">指示の送信</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">次へ/前へボタン</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../twinkle.html">またたき回路</a></li>
@@ -203,7 +219,7 @@
 <h1>無線制御(Acrabの実装解説)<a class="headerlink" href="#acrab" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <ul class="simple">
 <li>書いた人: Kenichi Ito(nichiden_27)</li>
-<li>更新日時: 2017/04/18</li>
+<li>更新日時: 2017/05/05</li>
 <li>実行に必要な知識・技能: Web制作、JavaScript</li>
 <li>難易度: 3/練習・勉強が必要</li>
 <li>情報の必須度: 4/担当者には必須</li>
@@ -566,9 +582,10 @@ CSVファイル側は、タイミングや投影機などのフィールドをJS
 <div class="section" id="acrab-scenario-js">
 <h2>acrab-scenario.js<a class="headerlink" href="#acrab-scenario-js" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>「公演用画面」のためのコード。
-分量が多くなったためmainと分けることにした。 (執筆中) ###
-指示書ファイルの読み込み
-前述の通り、指示書は番組ごとに連番のJSONファイルに分けて<code class="docutils literal"><span class="pre">scenario/</span></code>以下に保存されている。
+分量が多くなったためmainと分けることにした。 (執筆中)</p>
+<div class="section" id="id3">
+<h3>ページの初期化関連<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>前述の通り、指示書は番組ごとに連番のJSONファイルに分けて<code class="docutils literal"><span class="pre">scenario/</span></code>以下に保存されている。
 <code class="docutils literal"><span class="pre">acrab_main.js</span></code>と同様に、jQueryの<code class="docutils literal"><span class="pre">$.getJSON()</span></code>を用いて取得とパースを行っている。</p>
 <p>問題は<code class="docutils literal"><span class="pre">Acrab</span></code>がブラウザ側だけで動作していることで、サーバに<strong>いくつの指示書ファイルがあるか取得できない。</strong>
 苦肉の策として<code class="docutils literal"><span class="pre">SCENARIO_COUNT</span></code>という定数にファイル数を事前に入れておくことで対応した。
@@ -582,7 +599,7 @@ CSVファイル側は、タイミングや投影機などのフィールドをJS
 特に工夫したわけではないので特に解説はしない。
 ググりながらコードを読んで理解してほしい。</p>
 <p>最後の<code class="docutils literal"><span class="pre">$('select#select').change()</span></code>は、セレクトボックスが更新された際に呼ばれるメソッドを指定している。
-<code class="docutils literal"><span class="pre">getScenarioData()</span></code>については後述するが、指示書のデータを画面に表示するものである。</p>
+<code class="docutils literal"><span class="pre">getScenarioData()</span></code>を使うと、該当する番号の指示書ファイルを読み込む。</p>
 <div class="highlight-js"><div class="highlight"><pre><span></span><span class="cm">/*** Initialize select box ***/</span>
 <span class="nx">$</span><span class="p">.</span><span class="nx">when</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">$</span><span class="p">,</span> <span class="nx">scenario_file</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span> <span class="c1">// シナリオファイルが全部取得できたら&lt;option&gt;と&lt;optgroup&gt;追加</span>
   <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">arguments</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">){</span> <span class="c1">// argumentsに取得したjsonが全部入ってるのでそれぞれ読む</span>
@@ -604,6 +621,13 @@ CSVファイル側は、タイミングや投影機などのフィールドをJS
 <span class="nx">getScenarioData</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="id4">
+<h3>指示書データの取得と表示<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="getscenariodata-num">
+<h4>getScenarioData(num)<a class="headerlink" href="#getscenariodata-num" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><code class="docutils literal"><span class="pre">num</span></code>番目の<strong>指示書ファイルを取得</strong>し、JSONとしてパースする。
+取得を終えたら、<code class="docutils literal"><span class="pre">scenarioInit()</span></code>を呼び出す。</p>
 <div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">getScenarioData</span><span class="p">(</span><span class="nx">num</span><span class="p">){</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="s1">&#39;getScenarioData called. num: &#39;</span><span class="o">+</span><span class="nx">num</span><span class="p">);</span>
   <span class="nx">$</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">getJSON</span><span class="p">(</span><span class="s1">&#39;scenario/&#39;</span><span class="o">+</span> <span class="nx">num</span> <span class="o">+</span><span class="s1">&#39;.json&#39;</span><span class="p">)).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
@@ -612,8 +636,15 @@ CSVファイル側は、タイミングや投影機などのフィールドをJS
     <span class="nx">scenarioInit</span><span class="p">();</span>
   <span class="p">});</span>
 <span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">scenarioInit</span><span class="p">(){</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="scenarioinit">
+<h4>scenarioInit()<a class="headerlink" href="#scenarioinit" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>取得された<strong>指示書のデータ</strong>(<code class="docutils literal"><span class="pre">scenario</span></code>)<strong>を画面に表示</strong>する。
+情報が表示される要素にはHTML側で該当するタグを付与してある。</p>
+<p>各要素に何番目の指示が表示されるかを管理するため、<code class="docutils literal"><span class="pre">scenario{数字}</span></code>という名称のクラスを<code class="docutils literal"><span class="pre">scenario0</span></code>から順に追加するようになっている。</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">scenarioInit</span><span class="p">(){</span>
   <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#scenario_prev&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s1">&#39;(前のシーンが表示されます)&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;scenario0&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;onclick&#39;</span><span class="p">,</span> <span class="s1">&#39;goPrev();&#39;</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
   <span class="nx">viewScript</span><span class="p">(</span><span class="s1">&#39;#scenario_now&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
   <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#scenario_now&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;scenario1&#39;</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
@@ -622,102 +653,15 @@ CSVファイル側は、タイミングや投影機などのフィールドをJS
   <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#scenario_number&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s1">&#39;1/&#39;</span> <span class="o">+</span> <span class="nx">scenario</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
   <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#progress_bar progress&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;pass_time&#39;</span><span class="p">,</span> <span class="s1">&#39;00:00:00&#39;</span><span class="p">);</span>
 <span class="p">}</span>
-
-<span class="kd">var</span> <span class="nx">timer_button</span> <span class="o">=</span> <span class="k">new</span> <span class="kd">function</span><span class="p">(){</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">start</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">sendComm</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#select&#39;</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#scenario_next&#39;</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-    <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="nx">pass_time</span><span class="o">++</span><span class="p">;</span> <span class="nx">readTime</span><span class="p">();},</span> <span class="mi">1000</span><span class="p">);</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#timer_start&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#timer_stop&#39;</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#timer_reset&#39;</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-  <span class="p">};</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">stop</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#timer_stop&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#timer_restart&#39;</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#timer_reset&#39;</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-  <span class="p">};</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">restart</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="nx">pass_time</span><span class="o">++</span><span class="p">;</span> <span class="nx">readTime</span><span class="p">();},</span> <span class="mi">1000</span><span class="p">);</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#timer_restart&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#timer_stop&#39;</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#timer_reset&#39;</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-  <span class="p">};</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">reset</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">pass_time</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="nx">readTime</span><span class="p">();</span>
-    <span class="nx">scenarioInit</span><span class="p">();</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#select&#39;</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#timer_restart&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#timer_start&#39;</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#timer_reset&#39;</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#scenario_prev&#39;</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">className</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="p">(</span><span class="nx">className</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/\bscenario\S+/g</span><span class="p">)</span> <span class="o">||</span> <span class="p">[]).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span>
-    <span class="p">});</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#scenario_now&#39;</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">className</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="p">(</span><span class="nx">className</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/\bscenario\S+/g</span><span class="p">)</span> <span class="o">||</span> <span class="p">[]).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span>
-    <span class="p">});</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#scenario_next&#39;</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">className</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="p">(</span><span class="nx">className</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/\bscenario\S+/g</span><span class="p">)</span> <span class="o">||</span> <span class="p">[]).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span>
-    <span class="p">});</span>
-  <span class="p">};</span>
-  <span class="kd">var</span> <span class="nx">pass_time</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">readTime</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="kd">var</span> <span class="nx">hour</span>     <span class="o">=</span> <span class="nx">toDoubleDigits</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">pass_time</span> <span class="o">/</span> <span class="mi">3600</span><span class="p">));</span>
-    <span class="kd">var</span> <span class="nx">minute</span>   <span class="o">=</span> <span class="nx">toDoubleDigits</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">((</span><span class="nx">pass_time</span> <span class="o">-</span> <span class="mi">3600</span><span class="o">*</span><span class="nx">hour</span><span class="p">)</span> <span class="o">/</span> <span class="mi">60</span><span class="p">));</span>
-    <span class="kd">var</span> <span class="nx">second</span>   <span class="o">=</span> <span class="nx">toDoubleDigits</span><span class="p">((</span><span class="nx">pass_time</span> <span class="o">-</span> <span class="mi">3600</span><span class="o">*</span><span class="nx">hour</span> <span class="o">-</span> <span class="mi">60</span><span class="o">*</span><span class="nx">minute</span><span class="p">));</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#progress_bar progress&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;pass_time&#39;</span><span class="p">,</span> <span class="nx">hour</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="nx">minute</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="nx">second</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">progress</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="nx">pass_time</span> <span class="o">/</span> <span class="mf">1500.0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// 25 minutes</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#progress_bar progress&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="nx">progress</span><span class="p">);</span>
-    <span class="k">return</span><span class="p">;</span>
-  <span class="p">};</span>
-  <span class="kd">var</span> <span class="nx">toDoubleDigits</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">num</span><span class="p">){</span><span class="k">return</span> <span class="p">(</span><span class="s1">&#39;0&#39;</span> <span class="o">+</span> <span class="nx">num</span><span class="p">).</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">);};</span> <span class="c1">// sliceで時刻要素の0埋め</span>
-<span class="p">};</span>
-
-<span class="kd">function</span> <span class="nx">goNext</span><span class="p">(){</span>
-  <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">([</span><span class="s1">&#39;scenario_prev&#39;</span><span class="p">,</span> <span class="s1">&#39;scenario_now&#39;</span><span class="p">,</span> <span class="s1">&#39;scenario_next&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="kd">var</span> <span class="nx">num</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">className</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/\d/g</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 数字だけ取り出して渡す(型変換しないとうまくいかなかった)</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">className</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;scenario&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">num</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">num</span><span class="o">+</span><span class="mi">1</span> <span class="o">&gt;</span> <span class="nx">scenario</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s1">&#39;(原稿の最後です)&#39;</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-    <span class="k">else</span><span class="p">{</span>
-      <span class="k">if</span><span class="p">(</span><span class="k">this</span> <span class="o">==</span> <span class="s1">&#39;scenario_now&#39;</span><span class="p">)</span> <span class="nx">sendComm</span><span class="p">(</span><span class="nx">num</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-      <span class="nx">viewScript</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">,</span> <span class="nx">num</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">});</span>
-  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#scenario_number&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#scenario_now&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">className</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/\d/g</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="nx">scenario</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">goPrev</span><span class="p">(){</span>
-  <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">([</span><span class="s1">&#39;scenario_prev&#39;</span><span class="p">,</span> <span class="s1">&#39;scenario_now&#39;</span><span class="p">,</span> <span class="s1">&#39;scenario_next&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="kd">var</span> <span class="nx">num</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">className</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/\d/g</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 数字だけ取り出して渡す(型変換しないとうまくいかなかった)</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">className</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;scenario&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">num</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">num</span><span class="o">-</span><span class="mi">1</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s1">&#39;(前のシーンが表示されます)&#39;</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-    <span class="k">else</span><span class="p">{</span>
-      <span class="k">if</span><span class="p">(</span><span class="k">this</span> <span class="o">==</span> <span class="s1">&#39;scenario_now&#39;</span><span class="p">)</span> <span class="nx">sendComm</span><span class="p">(</span><span class="nx">num</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-      <span class="nx">viewScript</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">,</span> <span class="nx">num</span><span class="o">-</span><span class="mi">2</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">});</span>
-  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#scenario_number&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#scenario_now&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">className</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/\d/g</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="nx">scenario</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">sendComm</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">reverse</span><span class="p">){</span>
-  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="p">{},</span> <span class="nx">scenario</span><span class="p">[</span><span class="nx">index</span><span class="p">].</span><span class="nx">projector</span><span class="p">);</span>
-  <span class="k">if</span><span class="p">(</span><span class="nx">reverse</span><span class="p">)</span> <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">){</span>
-    <span class="nx">data</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
-  <span class="p">});</span>
-  <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">ip</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">address</span> <span class="o">=</span> <span class="k">this</span> <span class="o">+</span> <span class="s1">&#39;setPort/status.json&#39;</span><span class="p">;</span>
-    <span class="nx">sliced_data</span> <span class="o">=</span> <span class="nx">each_slice</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
-    <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">sliced_data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-      <span class="nx">getRequest</span><span class="p">(</span><span class="nx">address</span><span class="p">,</span> <span class="k">this</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">){</span><span class="nx">checkStatus</span><span class="p">(</span><span class="nx">res</span><span class="p">)});</span>
-      <span class="nx">sleep_ms</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-    <span class="p">});</span>
-  <span class="p">});</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">viewScript</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">index</span><span class="p">){</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="viewscript-id-index">
+<h4>viewScript(id, index)<a class="headerlink" href="#viewscript-id-index" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><code class="docutils literal"><span class="pre">id</span></code>のIDを持つ要素に、
+<code class="docutils literal"><span class="pre">index</span></code>番目の<strong>セリフ・タイミング・指示</strong>を表示する。
+タイミング等の表記を変えたければ、ここを編集すれば良い。</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">viewScript</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">index</span><span class="p">){</span>
   <span class="k">if</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">id</span><span class="p">).</span><span class="nx">is</span><span class="p">(</span><span class="s1">&#39;:disabled&#39;</span><span class="p">))</span><span class="nx">$</span><span class="p">(</span><span class="nx">id</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
   <span class="nx">$</span><span class="p">(</span><span class="nx">id</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
     <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
@@ -738,6 +682,137 @@ CSVファイル側は、タイミングや投影機などのフィールドをJS
   <span class="p">});</span>
 <span class="p">}</span>
 </pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="timer-button">
+<h3>timer_buttonオブジェクト<a class="headerlink" href="#timer-button" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id5">
+<h4>ボタン関連<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><strong>「開始」「停止」「再開」「リセット」</strong>の四つのボタンの動きを管理する。
+<code class="docutils literal"><span class="pre">timer_button</span></code>には四つのメンバ関数が用意されており、それぞれが各ボタンが押された際に呼ばれる。</p>
+<p>なお画面ではボタンは二つに見えるが、内部的には四つのボタンの表示/非表示を切り替えて内容が変わるように見せている。
+以下にそれぞれの動作内容を簡単に記す(「」内はボタン名称)。</p>
+<ul class="simple">
+<li>timer_button.start()<ul>
+<li>投影機に0番目(番組開始前)の指示を送信</li>
+<li><strong>セレクトボックス</strong>を無効化・「<strong>次へ</strong>」を有効化</li>
+<li><strong>タイマー</strong>を動かす</li>
+<li>「<strong>開始</strong>」を「<strong>停止</strong>」に、「<strong>リセット</strong>」を無効化</li>
+</ul>
+</li>
+<li>timer_button.stop()<ul>
+<li><strong>タイマー</strong>を止める
+*「<strong>停止</strong>」を「<strong>再開</strong>」に、「<strong>リセット</strong>」を有効化</li>
+</ul>
+</li>
+<li>timer_button.restart()<ul>
+<li><strong>タイマー</strong>を動かす</li>
+<li>「<strong>再開</strong>」を「<strong>停止</strong>」に、「<strong>リセット</strong>」を無効化</li>
+</ul>
+</li>
+<li>timer_button.reset()<ul>
+<li><strong>タイマー</strong>と<strong>指示書表示</strong>の初期化</li>
+<li><strong>セレクトボックス</strong>を有効化</li>
+<li>「<strong>再開</strong>」を「<strong>開始</strong>」に、「<strong>リセット</strong>」を無効化</li>
+<li>セリフ・指示表示エリアから<code class="docutils literal"><span class="pre">scenario{数字}</span></code>のクラスを除去</li>
+</ul>
+</li>
+</ul>
+<p>「停止」ボタンは意図せぬリセットを防ぐ意味合いで設置したため、押しても「次へ」などは有効のままである。
+コード例として、<code class="docutils literal"><span class="pre">timer_button.start()</span></code>を掲載しておく。</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">start</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">sendComm</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#select&#39;</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#scenario_next&#39;</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+  <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="nx">pass_time</span><span class="o">++</span><span class="p">;</span> <span class="nx">readTime</span><span class="p">();},</span> <span class="mi">1000</span><span class="p">);</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#timer_start&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#timer_stop&#39;</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#timer_reset&#39;</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h4>タイマー関連<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>画面には、<strong>「開始」が押されてからの時間経過</strong>を表示するタイマーがある。
+特にタイマーが必須だったわけではなく、遊びでつけてしまったものである。</p>
+<p>ボタン操作と連動するので、<code class="docutils literal"><span class="pre">timer_button</span></code>のメンバとなっている。
+<code class="docutils literal"><span class="pre">pass_time</span></code>が経過時間で、単位は秒。
+<code class="docutils literal"><span class="pre">readTime()</span></code>を呼び出すと、<code class="docutils literal"><span class="pre">pass_time</span></code>を<strong>&#8220;時:分:秒&#8221;のフォーマット</strong>に直した上で表示する。
+「開始」または「再開」が押されると<code class="docutils literal"><span class="pre">setInterval()</span></code>によって<code class="docutils literal"><span class="pre">readTime()</span></code>が<strong>1秒おきに実行</strong>されるようになる。</p>
+<p>また、タイマーが表示される部分は<strong>プログレスバー</strong>(進行状況を示す棒グラフ)であり、<code class="docutils literal"><span class="pre">value</span></code>に0~1の値を入れることができる。
+ここでは、公演の標準的な時間を25分として、進行の目安を確認できるようにした(本番で活用されてはいなかったようだが...)。</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">pass_time</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">readTime</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+  <span class="kd">var</span> <span class="nx">hour</span>     <span class="o">=</span> <span class="nx">toDoubleDigits</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">pass_time</span> <span class="o">/</span> <span class="mi">3600</span><span class="p">));</span>
+  <span class="kd">var</span> <span class="nx">minute</span>   <span class="o">=</span> <span class="nx">toDoubleDigits</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">((</span><span class="nx">pass_time</span> <span class="o">-</span> <span class="mi">3600</span><span class="o">*</span><span class="nx">hour</span><span class="p">)</span> <span class="o">/</span> <span class="mi">60</span><span class="p">));</span>
+  <span class="kd">var</span> <span class="nx">second</span>   <span class="o">=</span> <span class="nx">toDoubleDigits</span><span class="p">((</span><span class="nx">pass_time</span> <span class="o">-</span> <span class="mi">3600</span><span class="o">*</span><span class="nx">hour</span> <span class="o">-</span> <span class="mi">60</span><span class="o">*</span><span class="nx">minute</span><span class="p">));</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#progress_bar progress&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;pass_time&#39;</span><span class="p">,</span> <span class="nx">hour</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="nx">minute</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="nx">second</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">progress</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="nx">pass_time</span> <span class="o">/</span> <span class="mf">1500.0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// 25 minutes</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#progress_bar progress&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="nx">progress</span><span class="p">);</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">toDoubleDigits</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">num</span><span class="p">){</span><span class="k">return</span> <span class="p">(</span><span class="s1">&#39;0&#39;</span> <span class="o">+</span> <span class="nx">num</span><span class="p">).</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">);};</span> <span class="c1">// sliceで時刻要素の0埋め</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>指示の送信<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">acrab_main.js</span></code>に実装がある<code class="docutils literal"><span class="pre">getRequest()</span></code>と<code class="docutils literal"><span class="pre">checkStatus()</span></code>を利用する。
+しかし、メイン画面と違いユーザが<strong>進む・戻る</strong>の動作をするので、それに対応した。
+<code class="docutils literal"><span class="pre">scenario</span></code>オブジェクトから<code class="docutils literal"><span class="pre">index</span></code>番目の指示を読み取り、<code class="docutils literal"><span class="pre">reverse</span></code>がtrueなら真偽値の部分を反転させる。</p>
+<p>後は完成した指示を送信するだけだが、前に書いたように同時点灯の問題が出たため、ここでも<code class="docutils literal"><span class="pre">each_slice()</span></code>した上で送るようにした。
+なお、画面右に表示されている星座名付きのグリッドは、メイン画面と同じIDにしてあり<strong>オンになったものに色が付く</strong>。
+同一ページ内でIDが被るのはHTMLの規格上間違いであるが、<code class="docutils literal"><span class="pre">Acrab</span></code>ではどちらかが常に非表示になるため不具合は出ないと判断した。</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">sendComm</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">reverse</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="p">{},</span> <span class="nx">scenario</span><span class="p">[</span><span class="nx">index</span><span class="p">].</span><span class="nx">projector</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="nx">reverse</span><span class="p">)</span> <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">){</span>
+    <span class="nx">data</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">});</span>
+  <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">ip</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">address</span> <span class="o">=</span> <span class="k">this</span> <span class="o">+</span> <span class="s1">&#39;setPort/status.json&#39;</span><span class="p">;</span>
+    <span class="nx">sliced_data</span> <span class="o">=</span> <span class="nx">each_slice</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">sliced_data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+      <span class="nx">getRequest</span><span class="p">(</span><span class="nx">address</span><span class="p">,</span> <span class="k">this</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">){</span><span class="nx">checkStatus</span><span class="p">(</span><span class="nx">res</span><span class="p">)});</span>
+      <span class="nx">sleep_ms</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h3>次へ/前へボタン<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>指示の送信は<code class="docutils literal"><span class="pre">sendComm()</span></code>に番号を渡せば済むので、ここでは<strong>何番目の指示を次に送るべきかを管理</strong>する。
+前述の通り、現状を挟んで三つの指示が表示される領域には<code class="docutils literal"><span class="pre">scenario{数字}</span></code>なるクラスが付与されているので、そこから数字を取り出して利用する。</p>
+<p>実装については<code class="docutils literal"><span class="pre">goNext()</span></code>のコード例を読んで頂くとして、処理の流れのみ解説しておく。</p>
+<ul class="simple">
+<li>クラス名から<strong>数字を取得</strong>し、<code class="docutils literal"><span class="pre">num</span></code>に格納</li>
+<li>クラスを一旦削除し、数字を増やし(減らし)て再追加</li>
+<li>次のnumが0以下か最終番号を超えるか<ul>
+<li>true:
+指示が存在しないので<strong>ボタンを無効化</strong>して<strong>メッセージ表示</strong></li>
+<li>false: <code class="docutils literal"><span class="pre">#scenario_now</span></code>の処理中なら<strong>指示を送信</strong></li>
+</ul>
+</li>
+<li><code class="docutils literal"><span class="pre">#scenario_number</span></code>に<code class="docutils literal"><span class="pre">#scenario_now</span></code>の番号を表示</li>
+</ul>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">goNext</span><span class="p">(){</span>
+  <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">([</span><span class="s1">&#39;scenario_prev&#39;</span><span class="p">,</span> <span class="s1">&#39;scenario_now&#39;</span><span class="p">,</span> <span class="s1">&#39;scenario_next&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">num</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">className</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/\d/g</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 数字だけ取り出して渡す(型変換しないとうまくいかなかった)</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">className</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;scenario&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">num</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">num</span><span class="o">+</span><span class="mi">1</span> <span class="o">&gt;</span> <span class="nx">scenario</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s1">&#39;(原稿の最後です)&#39;</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="k">else</span><span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="k">this</span> <span class="o">==</span> <span class="s1">&#39;scenario_now&#39;</span><span class="p">)</span> <span class="nx">sendComm</span><span class="p">(</span><span class="nx">num</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+      <span class="nx">viewScript</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">,</span> <span class="nx">num</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#scenario_number&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#scenario_now&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">className</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/\d/g</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="nx">scenario</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
