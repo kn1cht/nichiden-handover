@@ -330,8 +330,7 @@ jQueryの<code class="docutils literal"><span class="pre">get()</span></code>や
 また、通信が切れている時に固まらないよう、1000msのタイムアウトを設定している。</p>
 <p>その後の<code class="docutils literal"><span class="pre">.done()</span></code>や<code class="docutils literal"><span class="pre">.fail()</span></code>にはそれぞれ通信成功時・失敗時の処理を書く。
 ここでは通信するたびにブラウザコンソールに結果を出力し、受信状況の欄を更新するようになっている。</p>
-<p>さて、<code class="docutils literal"><span class="pre">Piscium</span></code>にコマンドを送ると、<strong>各ポートの状態を0か1で表したjsonデータ</strong>
-が返る。
+<p>さて、<code class="docutils literal"><span class="pre">Piscium</span></code>にコマンドを送ると、<strong>各ポートの状態を0か1で表したjsonデータ</strong>が返る。
 <code class="docutils literal"><span class="pre">dataType:</span> <span class="pre">'json'</span></code>としておけばパースまでやってくれるようだ。
 これを関数の戻り値としたいが、これには工夫が必要になる。</p>
 <p><code class="docutils literal"><span class="pre">$.get()</span></code>のようなAjax通信は<strong>非同期処理</strong>を採用しており、リクエストを送った後応答を待たずに関数が終了してしまう。
@@ -384,8 +383,7 @@ jQueryの<code class="docutils literal"><span class="pre">get()</span></code>や
 </div>
 <div class="section" id="button">
 <h3>buttonオブジェクト<a class="headerlink" href="#button" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>メイン画面のボタンは、<strong>星座絵/投影機/全点(消)灯/グループ</strong>
-の四種類ある。
+<p>メイン画面のボタンは、<strong>星座絵/投影機/全点(消)灯/グループ</strong>の四種類ある。
 それぞれに合った処理をするため、<code class="docutils literal"><span class="pre">button</span></code>オブジェクトを作成し必要なメソッドをまとめるようにした。</p>
 <div class="section" id="button-constellation-obj">
 <h4>星座絵: button.constellation(obj)<a class="headerlink" href="#button-constellation-obj" title="このヘッドラインへのパーマリンク">¶</a></h4>

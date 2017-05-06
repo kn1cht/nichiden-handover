@@ -129,6 +129,15 @@
 <li class="toctree-l2"><a class="reference internal" href="#id13">今後の展望</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id14">既知の問題</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#acrab-conf-json">読み込んだ際、設定ファイル(acrab_conf.json)が読み込まれないことがある</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15">同時多数点灯対策でごちゃごちゃしている</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id16">指示書のデータがあるファイルの読み込み処理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id17">公演用画面で、指示をスキップできない</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#piscium">Pisciumが再起動した後、ピン名称を再送する必要がある</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">追加機能案</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id19">設定画面の導入</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id20">デスクトップアプリ化</a></li>
 </ul>
 </li>
 </ul>
@@ -212,7 +221,7 @@
 <h1>無線制御(Acrab)<a class="headerlink" href="#acrab" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <ul class="simple">
 <li>書いた人: Kenichi Ito(nichiden_27)</li>
-<li>更新日時: 2017/04/13</li>
+<li>更新日時: 2017/05/06</li>
 <li>実行に必要な知識・技能: Web制作、JavaScript</li>
 <li>タスクの重さ: 3/数週間</li>
 <li>タスクの必須度: 4/毎年やるべき</li>
@@ -242,7 +251,7 @@ MacならApacheが標準で入っているはずなので、<code class="docutil
 <h3>起動と接続<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>localhostにアクセスすれば以下のような画面が表示されるはずだ。
 もしボタンに日本語が表示されない場合、設定ファイルの読み込みに失敗しているので再読み込みすること。</p>
-<div class="figure" id="id15">
+<div class="figure" id="id21">
 <img alt="Acrabのメイン画面" src="../_images/acrab-main.png" />
 <p class="caption"><span class="caption-text">Acrabのメイン画面</span></p>
 </div>
@@ -258,7 +267,7 @@ MacならApacheが標準で入っているはずなので、<code class="docutil
 <h3>公演用画面<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ソフトの指示を次へ・前へのボタンで実行できるモード。
 画面上に「<strong>公演用</strong>」ボタンがあり、押すと画面が切り替わる。</p>
-<div class="figure" id="id16">
+<div class="figure" id="id22">
 <img alt="Acrabの公演用画面" src="../_images/acrab-scenario.png" />
 <p class="caption"><span class="caption-text">Acrabの公演用画面</span></p>
 </div>
@@ -312,12 +321,9 @@ MacならApacheが標準で入っているはずなので、<code class="docutil
 <div class="section" id="htmlcss">
 <h4>HTMLとCSS<a class="headerlink" href="#htmlcss" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>最近のWebアプリは、サーバ側でHTMLファイルを動的に生成して送ってくることが多い。
-しかし、<code class="docutils literal"><span class="pre">Acrab</span></code>は<strong>静的なHTMLファイルを準備し、クライアント(ブラウザ)側で書き換える</strong>
-方式を採っている。
+しかし、<code class="docutils literal"><span class="pre">Acrab</span></code>は<strong>静的なHTMLファイルを準備し、クライアント(ブラウザ)側で書き換える</strong>方式を採っている。
 単に開発が楽であること、サーバ側で作業する必要がないこと、多数のユーザに後悔するような規模でないことがその理由である。</p>
-<p><code class="docutils literal"><span class="pre">Acrab</span></code>の<strong>ページ構成</strong>
-を変えたければ<code class="docutils literal"><span class="pre">index.html</span></code>を、<strong>色やサイズ</strong>
-なら<code class="docutils literal"><span class="pre">style.css</span></code>を編集すれば良い。
+<p><code class="docutils literal"><span class="pre">Acrab</span></code>の<strong>ページ構成</strong>を変えたければ<code class="docutils literal"><span class="pre">index.html</span></code>を、<strong>色やサイズ</strong>なら<code class="docutils literal"><span class="pre">style.css</span></code>を編集すれば良い。
 どちらもググれば分かる程度の機能しか使っていないつもりなので、Webの経験がなくても対応できるだろう。
 それぞれの内容についてはここでは触れないが、JS部分と連動する箇所は都度解説する。</p>
 </div>
@@ -427,7 +433,7 @@ JSONならばJavaScriptの<code class="docutils literal"><span class="pre">Acrab
 </tr>
 </tbody>
 </table>
-<p><strong>工程1</strong> で、JSONに自動変換できる状態にまで指示書を編集する。
+<p><strong>工程1</strong>で、JSONに自動変換できる状態にまで指示書を編集する。
 この段階は、エクセルで作業した方が余計な列の削除・列移動等が楽だろう。</p>
 <p>実装解説でも触れるが、<code class="docutils literal"><span class="pre">Acrab</span></code>では星座絵や投影機を<strong>半角三文字のコード</strong>で管理している。
 投影機の指示もこれに準じたものに変える。
@@ -437,11 +443,10 @@ JSONならばJavaScriptの<code class="docutils literal"><span class="pre">Acrab
 「いい感じのタイミングでつけてください」のような記述があったり、点灯したまま消灯しない投影機が出たりという事態はよくある。
 疑問を感じたら<strong>ソフトあるいはライブ解説者に確認</strong>しよう。
 面倒な作業ではあるが、本番直前に気づくよりは対処に余裕を持てる。</p>
-<p><strong>工程2</strong> はExcelからCSVを出力した場合に必要だ。
+<p><strong>工程2</strong>はExcelからCSVを出力した場合に必要だ。
 ExcelはCSVをShift-JISで保存するが、文字化けの元凶となるので<strong>Unicodeに変換しておく</strong>のが望ましい。
 コマンドで変換しても、テキストエディタで保存しなおしてもいい。</p>
-<p><strong>工程3</strong>
-でJSONに自動変換となる訳だが、CSV内にJSONを無理やり混ぜているので変換するだけではいけない。
+<p><strong>工程3</strong>でJSONに自動変換となる訳だが、CSV内にJSONを無理やり混ぜているので変換するだけではいけない。
 JSONの括弧(<code class="docutils literal"><span class="pre">{</span></code>,<code class="docutils literal"><span class="pre">}</span></code>)が<code class="docutils literal"><span class="pre">&quot;&quot;</span></code>で囲まれたり、<code class="docutils literal"><span class="pre">&quot;</span></code>がバックスラッシュで文字列にエスケープされたりしているので、置換などで修正する必要がある。
 27代では<code class="docutils literal"><span class="pre">scenario/csv/</span></code>に入っている<code class="docutils literal"><span class="pre">jsonify.py</span></code>というPythonスクリプトで変換と置換の処理をした。</p>
 </div>
@@ -459,7 +464,62 @@ JSONの括弧(<code class="docutils literal"><span class="pre">{</span></code>,<
 <h4>読み込んだ際、設定ファイル(acrab_conf.json)が読み込まれないことがある<a class="headerlink" href="#acrab-conf-json" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>開発時に<strong>即時関数</strong>と<strong>jQuery.readyイベント関数</strong>の違いを理解していなかったことが原因。
 即時関数を使うのをやめれば修正可能。</p>
-<p>(執筆中)</p>
+</div>
+<div class="section" id="id15">
+<h4>同時多数点灯対策でごちゃごちゃしている<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>27の本番近くになり、星座絵の突入電流で電源が不安定化するのを避けるため<code class="docutils literal"><span class="pre">each_slice()</span></code>や<code class="docutils literal"><span class="pre">sleep_ms()</span></code>を急遽追加した。
+これでも動作はするが、こういった処理はマイコン側でする方が簡単である(sleep関数も用意されている)。
+直前に追加したことでコードが読みにくくなっているので、<strong>無線受信機側で小分けにして点灯</strong>するような対策に切り替えるのが良いだろう。</p>
+</div>
+<div class="section" id="id16">
+<h4>指示書のデータがあるファイルの読み込み処理<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><code class="docutils literal"><span class="pre">Acrab</span></code>はブラウザがあれば動作することを目指していた(XMLHttpRequestができず断念)ので、<strong>設定ファイルの名称や数を取得できない</strong>。
+現在は、指示書のファイルを連番の数字にリネームし、コード中で最大数を指定する方法を採っているが拡張性に欠ける。</p>
+<p>元となる設定ファイル(<code class="docutils literal"><span class="pre">acrab_conf.json</span></code>など)に<strong>他の設定ファイルの情報を書けば</strong>、変に工夫せずとも問題は解決するだろう。
+設定ファイルに一覧を書き込むのが手間だが、後述する<strong>設定画面</strong>が動けば問題なさそうだ。</p>
+</div>
+<div class="section" id="id17">
+<h4>公演用画面で、指示をスキップできない<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>本番で<code class="docutils literal"><span class="pre">Acrab</span></code>を操作している際、うっかり操作を忘れてしまうことがある。
+現在の公演用画面の仕様では<strong>ボタンを押すと必ず指示が実行される</strong>ので、押し忘れ以降次に進めなくなる問題が起きた。</p>
+<p>ボタンの押し忘れやページを再読み込みした後など、<strong>投影機に影響を与えずに指示書の任意の時点に移動できる</strong>ように、「スキップ」のようなボタンがあると良さそうだ。
+「前へ」「次へ」ボタンと同じ処理でコマンド送信だけを省けばいいので、実装はすぐにできるだろう。</p>
+</div>
+<div class="section" id="piscium">
+<h4>Pisciumが再起動した後、ピン名称を再送する必要がある<a class="headerlink" href="#piscium" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><code class="docutils literal"><span class="pre">Acrab</span></code>側の問題ではないが、こちらにまとめて記載する。
+<code class="docutils literal"><span class="pre">Piscium</span></code>は、<code class="docutils literal"><span class="pre">setConstellationName/status.json</span></code>にコマンドを送信する事で、<strong>各投影機の名称を好きにつけることができる</strong>。
+URLが人間に読めるものになるので便利だが、この設定は<code class="docutils literal"><span class="pre">Piscium</span></code>起動後毎回送る必要がある。</p>
+<p>27主投の本番(と投影機調整)では頻繁に<code class="docutils literal"><span class="pre">Piscium</span></code>が再起動することになり、その度に<code class="docutils literal"><span class="pre">Acrab</span></code>のページを再読み込みするという非効率な事態となった。
+対策は複数考えられる。
+一つ目は、<code class="docutils literal"><span class="pre">Acrab</span></code>の<strong>「更新」ボタン</strong>を押した際に<code class="docutils literal"><span class="pre">setConstellationName</span></code>してしまうことだ。
+どのURLにアクセスしても<code class="docutils literal"><span class="pre">status.json</span></code>が返ってくる仕組みなので、これでも更新ボタンとして機能する。</p>
+<p>二つ目は、<code class="docutils literal"><span class="pre">Piscium</span></code>が<strong>直前の設定を記憶する</strong>ようにしてしまうことだ。
+使用している<code class="docutils literal"><span class="pre">ESP8266</span></code>には4MBのフラッシュメモリが積まれており、記憶域として利用できる(使えるのは3MBまで)。
+<code class="docutils literal"><span class="pre">EEPROM</span></code>というクラスを使えばデータを読み書きできる(<a class="reference external" href="http://qiita.com/exabugs/items/0220edd4c9bf93da981b">参考記事</a>)。
+ここに投影機の名称設定を保存しておけば、再送前でも投影機の操作ができるようになるだろう。</p>
+</div>
+</div>
+<div class="section" id="id18">
+<h3>追加機能案<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id19">
+<h4>設定画面の導入<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p><code class="docutils literal"><span class="pre">Acrab</span></code>は、メンテナンス性・拡張性を高めるために各種設定をプログラムとは別のファイルに保存している。
+しかし、設定ファイル自体の読み書きがプログラマにしかできないようでは、その変更は結局日電メンバの仕事となる。
+これを解消するために、<strong>GUIの設定画面を設ける</strong>ことを27日電も構想していたが、時間が足りず実施しなかった。</p>
+<p>ローカルにWebサーバを立てると、大体の場合<strong>PHPも動く</strong>ようになる。
+PHPならサーバのファイルに書き込めるので、設定用のJSONファイルを読み込んで画面に表示し、修正して書き込むということが可能だ。
+JSONの入出力については<a class="reference external" href="https://syncer.jp/how-to-use-json">PHPでJSONのデータを処理する方法</a>など詳しい記事を参照のこと。</p>
+<p>単にテキストボックスを並べてもいいし、受信機や投影機の数の増減にも対応できるよう、行の追加・削除ができる表のような仕掛けを用意してもいい。
+色々と工夫の余地がありそうな機能だ。</p>
+</div>
+<div class="section" id="id20">
+<h4>デスクトップアプリ化<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>最近Web界で流行っている<code class="docutils literal"><span class="pre">Electron</span></code>という技術を使うと、Webの作法を使ってクロスプラットフォーム(Win/Mac/Linux)のアプリが組める。
+<code class="docutils literal"><span class="pre">Acrab</span></code>は基本的にサーバサイドで処理をしないので、移植しようと思えばできるだろう。
+Web技術が大好きor勉強してみたいのであれば、やってみてはいかがだろうか。</p>
+<p>参考:
+<a class="reference external" href="https://www.slideshare.net/hiroyukianai/webelectron">WebアプリをElectronに乗せる</a></p>
 </div>
 </div>
 </div>
