@@ -6,8 +6,18 @@
 日電引き継ぎドキュメント
 ========================
 .. toctree::
+   :maxdepth: 1
+   :caption: 最近更新した記事
+
+   haisen-kagoshii
+   wireless/acrab
+   wireless/acrab-code
+   hojotou
+
+
+.. toctree::
    :maxdepth: 2
-   :caption: 目次:
+   :caption: 目次
 
    main
    management
@@ -23,7 +33,7 @@
    wireless/acrab-code
    twinkle
    haisen
-   haisen-kagoshii.md
+   haisen-kagoshii
    bihin
    syutou
    hojotou
