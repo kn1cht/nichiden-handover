@@ -9,6 +9,7 @@
    :maxdepth: 1
    :caption: 最近更新した記事
 
+   begginers/visualstudio
    haisen-kagoshii
    wireless/acrab
    wireless/acrab-code
@@ -40,3 +41,4 @@
    begginers/buy_parts
    begginers/microcontroller
    begginers/editor
+   begginers/visualstudio

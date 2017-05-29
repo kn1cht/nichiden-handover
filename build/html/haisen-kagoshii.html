@@ -40,7 +40,7 @@
         <link rel="search" title="検索" href="search.html"/>
     <link rel="top" title="Nichiden 0.9 RC ドキュメント" href="index.html"/>
         <link rel="next" title="無線制御(Acrab)" href="wireless/acrab.html"/>
-        <link rel="prev" title="日電引き継ぎドキュメント" href="index.html"/> 
+        <link rel="prev" title="Visual Studioをはじめよう" href="begginers/visualstudio.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -92,6 +92,7 @@
             
                 <p class="caption"><span class="caption-text">最近更新した記事</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="begginers/visualstudio.html">Visual Studioをはじめよう</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">配線(かごしい内)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id2">概要</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id3">用語解説</a><ul>
@@ -192,6 +193,7 @@
 <li class="toctree-l1"><a class="reference internal" href="begginers/buy_parts.html">部品の買い方</a></li>
 <li class="toctree-l1"><a class="reference internal" href="begginers/microcontroller.html">マイコンをはじめよう</a></li>
 <li class="toctree-l1"><a class="reference internal" href="begginers/editor.html">テキストエディタを使ってみよう</a></li>
+<li class="toctree-l1"><a class="reference internal" href="begginers/visualstudio.html">Visual Studioをはじめよう</a></li>
 </ul>
 
             
@@ -260,7 +262,7 @@
 <ul class="simple">
 <li>書いた人: Kenichi Ito(nichiden_27)</li>
 <li>更新日時: 2017/05/28</li>
-<li>実行に必要な知識・技能: 端子のはんだ付けや圧着</li>
+<li>実行に必要な知識・技能: 端子のはんだ付けや圧着</li>
 <li>タスクの重さ: 2/数日かかる</li>
 <li>タスクの必須度: 4/毎年やるべき</li>
 </ul>
@@ -329,11 +331,11 @@
 <h3>二股ソケット<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>配線を南北に分離するため、<strong>二股に分かれた電源ソケット(オス→メスx2)</strong>がかごしいの備品に用意されている。
 ケーブルはそれぞれ片側一本しかないので、正しい向きに刺さなければ通電しないことに注意。
-わかりやすいようにテープが貼ってある。</p>
+わかりやすいようにテープが貼ってある。</p>
 </div>
 <div class="section" id="id12">
 <h3>外輪ケーブル<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>延長コードに二股ソケットを繋げたら、もう一方をパンタグラフの<strong>外輪から伸びるケーブル</strong>と接続する。</p>
+<p>延長コードに二股ソケットを繋げたら、もう一方をパンタグラフの<strong>外輪から伸びるケーブル</strong>と接続する。</p>
 <div class="figure" id="id24">
 <img alt="パンタグラフの外観" src="_images/pantograph.jpg" />
 <p class="caption"><span class="caption-text">パンタグラフの外観</span></p>
@@ -350,10 +352,10 @@ AC電源のソケットと違い、切り欠きによって向きが分かるた
 <p>パンタグラフ内輪のケーブルには<strong>AC電源ソケット(メス)</strong>が繋がっている。
 地上側とは逆に、南北二本の内輪ケーブルを二股ソケット(オスx2→メス)で一つに束ねよう。</p>
 <p>ケーブルを合流させるには、南北どちらかの内輪ケーブルを反対側に持っていく必要がある。
-これには、内輪ケーブルを<strong>頸動脈</strong>に通せばよい。
+これには、内輪ケーブルを<strong>頸動脈</strong>に通せばよい。
 これで、しいたけと一緒に動くAC100Vのコンセントが完成する。</p>
 <p>あとは複数口のある延長コードをつなぐだけである。
-南北両方で電源が取れるようにするため、一方の<strong>延長コードを頸動脈に通す</strong>。
+南北両方で電源が取れるようにするため、一方の<strong>延長コードを頸動脈に通す</strong>。
 太い延長コードは頸動脈を通りづらいので、必要に応じ緯度変を回しながら作業すると楽だ。</p>
 </div>
 <div class="section" id="id14">
@@ -366,14 +368,14 @@ AC電源のソケットと違い、切り欠きによって向きが分かるた
 <p>直流を得るにはACアダプタを使うのが最も簡単である。
 ただし、主投影機の<strong>消費電力をまかなえるだけの個数を用意する</strong>こと。
 ACアダプタの定格を超えて使用すると、寿命を縮めてしまうことがあるので気をつけたい。</p>
-<p>26主投時点では、しいたけ内に5V4A(2個)/12V5A(2個)の4つのACアダプタを、結束バンドで固定して給電していた。</p>
+<p>26主投時点では、しいたけ内に5V4A(2個)/12V5A(2個)の4つのACアダプタを、結束バンドで固定して給電していた。</p>
 </div>
 <div class="section" id="atx">
 <h3>ATX電源<a class="headerlink" href="#atx" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>27主投では、ケーブルの多くなるACアダプタを廃止してPC用の<strong>ATX電源</strong>を使用した。
+<p>27主投では、ケーブルの多くなるACアダプタを廃止してPC用の<strong>ATX電源</strong>を使用した。
 しかし、ちょっとした電流サージで停止してしまうというATX電源の仕様により活用は困難だった。
-また、当初案ではしいたけに電源装置をねじ止めする予定だったものの、フレームのサイズが合わず断念した。</p>
-<p>ATX電源は使い方にかなり難があるので、配電管理にコストを割けないのであればACアダプタを使う方が楽かもしれない。
+また、当初案ではしいたけに電源装置をねじ止めする予定だったものの、フレームのサイズが合わず断念した。</p>
+<p>ATX電源は使い方にかなり難があるので、配電管理にコストを割けないのであればACアダプタを使う方が楽かもしれない。
 主投影機の仕様変更でいっとう以外は12V化しているので、12VACアダプタに統一して三端子レギュレータで電圧を下げる……という方針も考えられる。
 なんにせよ、</p>
 <ul class="simple">
@@ -385,28 +387,28 @@ ACアダプタの定格を超えて使用すると、寿命を縮めてしまう
 </div>
 <div class="section" id="box">
 <h2>投影機回路BOX<a class="headerlink" href="#box" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>しいたけ上でACアダプタと各投影機の間を繋ぐ回路が入った箱(実際はタッパー)。
+<p>しいたけ上でACアダプタと各投影機の間を繋ぐ回路が入った箱(実際はタッパー)。
 <strong>こうとうBOX・いっとうBOX・無線BOX</strong>(Piscium)が存在する。
 各投影機の備品を入れる箱も「**ボックス」と称するが別物である。
-正直ややこしいので呼び方を変えるべきかもしれない。</p>
+正直ややこしいので呼び方を変えるべきかもしれない。</p>
 <div class="section" id="id15">
 <h3>こうとうBOX<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>恒星投影機16個に電力を供給する回路。
 <strong>DCジャックが18個繋がっているだけ</strong>の簡単なものである。
-ただし、こうとうは一個あたり3Wを消費するので、過大な電流が流れないよう回路を<strong>半分の9個ずつに分けてある</strong>。</p>
+ただし、こうとうは一個あたり3Wを消費するので、過大な電流が流れないよう回路を<strong>半分の9個ずつに分けてある</strong>。</p>
 <div class="figure" id="id25">
 <img alt="こうとうBOX外観" src="_images/koutou-box-appearance.jpg" />
 <p class="caption"><span class="caption-text">こうとうBOX外観</span></p>
 </div>
-<p>一番端の二つのジャックに「入力」みたいなことが書いてあるが、実際は繋がった9個のうちどこに刺しても問題はない(ミスを防ぐ観点からは好ましくないが...)。
+<p>一番端の二つのジャックに「入力」みたいなことが書いてあるが、実際は繋がった9個のうちどこに刺しても問題はない(ミスを防ぐ観点からは好ましくないが...)。
 壊れる類のものではないので作り変えは例年行われないものの、27代では大電流を流せるよう基板の裏全体に銅箔を貼り付けた。</p>
 <p>取り付ける部分は、しいたけの下の四角い部分である(他の回路BOXも同様)。
-養生テープなどでは剥がれるリスクがあるので、<strong>結束バンドでフレームに固定する</strong>とよさそうだ。</p>
+養生テープなどでは剥がれるリスクがあるので、<strong>結束バンドでフレームに固定する</strong>とよさそうだ。</p>
 </div>
 <div class="section" id="id16">
 <h3>いっとうBOX<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h3>
-<p>中身は<a class="reference external" href="twinkle.html">またたき回路</a>。使い方や仕組みはあちらの記事を参照いただきたい。
-主投影機配線の要素の一つとして考えるときは、こちらの呼び方を使うことが多い。</p>
+<p>中身は<a class="reference external" href="twinkle.html">またたき回路</a>。使い方や仕組みはあちらの記事を参照いただきたい。
+主投影機配線の要素の一つとして考えるときは、こちらの呼び方を使うことが多い。</p>
 <div class="figure" id="id26">
 <img alt="またたき回路の外観" src="_images/twinkle-appearance.jpg" />
 <p class="caption"><span class="caption-text">またたき回路の外観</span></p>
@@ -420,12 +422,12 @@ ACアダプタの定格を超えて使用すると、寿命を縮めてしまう
 </div>
 <div class="section" id="id18">
 <h2>投影機ケーブル<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><strong>回路BOXと投影機を繋ぐケーブル</strong>は基本的に日電の管理下にある。
-例外として、星座絵投影機は慣例的に本体とケーブルが一体なので製作は任せよう。</p>
+<p><strong>回路BOXと投影機を繋ぐケーブル</strong>は基本的に日電の管理下にある。
+例外として、星座絵投影機は慣例的に本体とケーブルが一体なので製作は任せよう。</p>
 <div class="section" id="id19">
 <h3>二色ケーブル<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>毎年使うものであり、必要本数は大抵部室にある。
-とはいえ、もし足りなくなれば早めに増産しておこう。
+とはいえ、もし足りなくなれば早めに増産しておこう。
 適度な長さの二色ケーブルに、DCプラグを2個つけるだけで良い。</p>
 <div class="figure" id="id27">
 <img alt="投影機ケーブルの一部" src="_images/syutou-cable.jpg" />
@@ -435,27 +437,27 @@ ACアダプタの定格を超えて使用すると、寿命を縮めてしまう
 <div class="section" id="id20">
 <h3>二分岐ケーブル<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ぎんとうは片方の半球に二つしかないため、BOXの代わりに<strong>二つに分岐するケーブル</strong>を挟む。
-二分岐は自分で作ると耐久性に難があるので、既製品を使っている。</p>
-<p>二つのぎんとうは距離をかなり離して設置されるので、分岐の後さらに<strong>延長ケーブル</strong>を挟まなくてはならない。
-他のケーブルと違って一方がDCプラグ、他方がDCジャックとなるので混同しないように。</p>
+二分岐は自分で作ると耐久性に難があるので、既製品を使っている。</p>
+<p>二つのぎんとうは距離をかなり離して設置されるので、分岐の後さらに<strong>延長ケーブル</strong>を挟まなくてはならない。
+他のケーブルと違って一方がDCプラグ、他方がDCジャックとなるので混同しないように。</p>
 </div>
 <div class="section" id="id21">
 <h3>気をつけたいこと<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li>投影機の区別をつける<ul>
-<li>しいたけに取り付けると線が絡み合い、元を辿るのは困難を極める</li>
+<li>しいたけに取り付けると線が絡み合い、元を辿るのは困難を極める</li>
 <li><strong>色付きのテープを巻く</strong>など、どれがどの投影機かわかるようにする</li>
 </ul>
 </li>
 <li>長さを確保する<ul>
-<li>こうとうやいっとうのケーブルは長くないと上まで届かない</li>
+<li>こうとうやいっとうのケーブルは長くないと上まで届かない</li>
 <li>短くて届かないと言われたらすぐ<strong>長いものと交換できる</strong>ようにしておく</li>
 </ul>
 </li>
-<li>導通チェックをする<ul>
+<li>導通チェックをする<ul>
 <li>実際使う前に<strong>断線・ショート・+-逆転</strong>がないか確認する</li>
 <li>一本のショートでこうとうが半分つかなかったこともあり、甘く見てはいけない</li>
-<li>テスターでチェックするのは大変なので、23代では下図のような回路を使っていた<ul>
+<li>テスターでチェックするのは大変なので、23代では下図のような回路を使っていた<ul>
 <li>正常でなければ二つのLEDが同時に点灯しない仕組み</li>
 <li>非常に簡単なので、一つ作っておいてもいいかも(もしくはまだ部室にある??)</li>
 </ul>
@@ -516,7 +518,7 @@ ACアダプタの定格を超えて使用すると、寿命を縮めてしまう
         <a href="wireless/acrab.html" class="btn btn-neutral float-right" title="無線制御(Acrab)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="日電引き継ぎドキュメント" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="begginers/visualstudio.html" class="btn btn-neutral" title="Visual Studioをはじめよう" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
