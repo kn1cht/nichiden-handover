@@ -9,6 +9,7 @@
    :maxdepth: 1
    :caption: 最近更新した記事
 
+   begginers/windows
    begginers/visualstudio
    haisen-kagoshii
    wireless/acrab
@@ -42,3 +43,4 @@
    begginers/microcontroller
    begginers/editor
    begginers/visualstudio
+   begginers/windows
