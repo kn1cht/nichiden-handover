@@ -1,0 +1,498 @@
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="ROBOTS" content="NOINDEX,NOFOLLOW,NOARCHIVE">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>回路設計のためのソフトウェア &mdash; Nichiden 0.9 RC ドキュメント</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/my_theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="検索" href="../search.html"/>
+    <link rel="top" title="Nichiden 0.9 RC ドキュメント" href="../index.html"/>
+        <link rel="next" title="無料でWindowsを手に入れる" href="windows.html"/>
+        <link rel="prev" title="日電引き継ぎドキュメント" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+  <!-- Google Analytics -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-102450326-2', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Nichiden
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.9
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">最近更新した記事</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">回路設計のためのソフトウェア</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bsch3v">BSch3V</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tips">操作/Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#qt-bsch3v-modified">Qt-BSch3V Modified</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#eagle">Eagle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kicad">KiCad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">まとめ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="windows.html">無料でWindowsを手に入れる</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualstudio.html">Visual Studioをはじめよう</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../haisen-kagoshii.html">配線(かごしい内)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wireless/acrab.html">無線制御(Acrab)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wireless/acrab-code.html">無線制御(Acrabの実装解説)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">目次</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../main.html">東京大学地文研究会天文部 日電引き継ぎ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../management.html">プロジェクト マネジメント</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nissyu-idohen/kikou.html">日周緯度変(日周緯度変換機構)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nissyu-idohen/saitama.html">日周緯度変(さいたま)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nissyu-idohen/ikebukuro.html">日周緯度変(Ikebukuro)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nissyu-idohen/pc-software.html">日周緯度変(外部制御アプリ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nissyu-idohen/pc-software-history.html">日周緯度変(外部制御アプリの歴史)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nissyu-idohen/pc-software-code.html">日周緯度変(Ogoseの実装解説)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wireless/wireless.html">無線制御</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wireless/piscium.html">無線制御(PISCIUM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wireless/acrab.html">無線制御(Acrab)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wireless/acrab-code.html">無線制御(Acrabの実装解説)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../twinkle.html">またたき回路</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../haisen.html">配線</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../haisen-kagoshii.html">配線(かごしい内)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bihin.html">備品管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../syutou.html">主投影機との連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hojotou.html">補助投影機との連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="buy_parts.html">部品の買い方</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">回路設計のためのソフトウェア</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bsch3v">BSch3V</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tips">操作/Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#qt-bsch3v-modified">Qt-BSch3V Modified</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#eagle">Eagle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kicad">KiCad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">まとめ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="microcontroller.html">マイコンをはじめよう</a></li>
+<li class="toctree-l1"><a class="reference internal" href="editor.html">テキストエディタを使ってみよう</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualstudio.html">Visual Studioをはじめよう</a></li>
+<li class="toctree-l1"><a class="reference internal" href="windows.html">無料でWindowsを手に入れる</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Nichiden</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Nichiden</a> &raquo;</li>
+        
+      <li>回路設計のためのソフトウェア</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/begginers/electronic-design.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>回路設計のためのソフトウェア<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<ul class="simple">
+<li>書いた人: Kenichi Ito(nichiden_27)</li>
+<li>更新日時: 2017/08/02</li>
+<li>実行に必要な知識・技能: 基本的な電子部品の知識</li>
+<li>難易度: 3/練習・勉強が必要</li>
+<li>情報の必須度: 2/知ってると楽</li>
+</ul>
+<div class="section" id="id2">
+<h2>概要<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>電子回路の設計は手書きでもできますが、</p>
+<ul class="simple">
+<li>回路図をチームで共有する</li>
+<li>後から配線などを整理する</li>
+<li>基板の配置を考える</li>
+</ul>
+<p>といった場合は<strong>専用ソフトウェアで回路図を描く</strong>のが便利です。</p>
+<p>回路設計ソフトは多数存在し、それぞれに特色があります。
+本稿では、よく名前の挙がるものや最近注目されているものを独断で選んで解説します。</p>
+</div>
+<div class="section" id="bsch3v">
+<h2>BSch3V<a class="headerlink" href="#bsch3v" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">開発</th>
+<th class="head">価格</th>
+<th class="head">拡張子</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>水魚堂</td>
+<td>フリー</td>
+<td>.CE3</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><a class="reference external" href="http://www.suigyodo.com/online/schsoft.htm">公式</a></li>
+<li><a class="reference external" href="http://www.suigyodo.com/online/manual/">マニュアル</a></li>
+</ul>
+<p>Windows(7/8/10)専用の回路図エディタ(macOS向けには<a class="reference external" href="#qt-bsch3v">Qt-BSch3V</a>が存在する)。</p>
+<div class="figure" id="id4">
+<img alt="BSch3Vの画面" src="../_images/bsch3v.png" />
+<p class="caption"><span class="caption-text">BSch3Vの画面</span></p>
+</div>
+<p>構成は至ってシンプルだが、<strong>軽快な動作と簡単な操作</strong>に定評があり、小規模な回路であれば十分な機能を備えている。
+<strong>部品のライブラリをいくつでも導入できる</strong>ため自由に拡張ができるのもポイントだ。</p>
+<p>標準でも基本的な部品は用意されているが、マイコンなどのライブラリが多数のサイトで配布されているので、欲しい部品があればググってみよう。
+また、部品エディタ「<strong>LCoV</strong>」が同梱されているので、欲しい部品を自作したり(例:
+<a class="reference external" href="https://developer.mbed.org/users/makimyan/notebook/回路図エディタ-bsch3v用のmbed部品ライブラリ">回路図エディタ
+BSch3V用のmbed部品ライブラリ</a>/
+Ryo Aramaki氏)、BSch3V側から編集したりもできる。</p>
+<p>開発元の水魚堂では、プリント基板編集ソフト「<a class="reference external" href="http://www.suigyodo.com/online/mbe/mbe.htm">Minimal Board
+Editor</a>」も配布している。</p>
+<div class="section" id="tips">
+<h3>操作/Tips<a class="headerlink" href="#tips" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li><strong>ドラッグツール</strong>は、範囲選択により回路の一部を移動できる。<ul>
+<li>配線の片方だけを動かすと簡単に<strong>斜めの線</strong>が作れる。</li>
+<li>斜め線のアイコンは「エントリー」ツールで、配線の引き出しを表す。斜めの線として使わないこと。</li>
+</ul>
+</li>
+<li><strong>太い線と細い線のツール</strong>があるが、太い線は複数の線をまとめた「パス線」。<ul>
+<li>通常は細い方を使っていれば問題ない。</li>
+</ul>
+</li>
+<li>レイヤ機能が存在し、右のツールバーから操作できる。<ul>
+<li>編集するレイヤを選択したり、可視/不可視の切り替えが可能。</li>
+<li>選択レイヤ以外に配置したものは<strong>クリックしても反応しない</strong>。<ul>
+<li>不具合ではないので、慌てないこと！</li>
+</ul>
+</li>
+<li>多くの情報を書き込む場合に、コメント・ラベルを別レイヤにするなどの使い道が考えられる。</li>
+</ul>
+</li>
+<li>他のPCやモバイルからの閲覧用に、<strong>PDFファイルを用意しておく</strong>とよい。<ul>
+<li>BSch3V自体にPDF書き出し機能はないが、印刷メニューからPDFに変換できる。</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="qt-bsch3v-modified">
+<h2>Qt-BSch3V Modified<a class="headerlink" href="#qt-bsch3v-modified" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="47%" />
+<col width="26%" />
+<col width="26%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">開発</th>
+<th class="head">価格</th>
+<th class="head">拡張子</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>informationsea</td>
+<td>フリー</td>
+<td>.CE3</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><a class="reference external" href="https://informationsea.info/apps/qtbsch3v/">公式</a></li>
+</ul>
+<p>QtというGUIフレームワークで<a class="reference external" href="#bsch3v">BSch3V</a>をクロスプラットフォームに書き直したもの。</p>
+<div class="figure" id="id5">
+<img alt="Qt-BSch3Vの画面" src="../_images/qtbsch3v.png" />
+<p class="caption"><span class="caption-text">Qt-BSch3Vの画面</span></p>
+</div>
+<p>水魚堂のコードをinformationsea氏が最近のmacOS向けにさらに改造したのが「Qt-BSch3V
+Modified」である。
+これのお陰で、MacユーザでもCE3ファイルを開くことができる。</p>
+<p>BSch3V(及び同梱ソフト)の機能の多くが使用できるが、<strong>日本語が表示できない</strong>など問題もあるようだ。</p>
+</div>
+<div class="section" id="eagle">
+<h2>Eagle<a class="headerlink" href="#eagle" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="41%" />
+<col width="32%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">開発</th>
+<th class="head">価格</th>
+<th class="head">拡張子</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>AutoDesk</td>
+<td>フリー(学生版)</td>
+<td>.sch, .brd</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><a class="reference external" href="https://www.autodesk.com/products/eagle/overview">公式</a></li>
+<li><a class="reference external" href="https://knowledge.autodesk.com/ja/support/eagle?sort=score">サポートトップ</a></li>
+</ul>
+<p>元々ドイツのCadSoft社が開発していたものを、<a class="reference external" href="http://makezine.jp/blog/2016/08/the-autodesk-family-grows-with-new-eagle-acquisition.html">AutoDeskが2016年に買収した</a>。
+Windows / Mac / Linuxで使用可能。</p>
+<div class="figure" id="id6">
+<img alt="Eagleの画面" src="../_images/eagle.png" />
+<p class="caption"><span class="caption-text">Eagleの画面</span></p>
+</div>
+<p>商用のプリント基板CADであり本来は数万円だが、基板サイズなどに制限付きの無料版が存在する。
+さらに、AutoDeskの傘下に入ったことで<strong>AutoDeskの学生プログラムの対象となった</strong>。</p>
+<p><a class="reference external" href="https://knowledge.autodesk.com/ja/search-result/caas/sfdcarticles/sfdcarticles/JPN/Eagle-Education.html">教育機関限定版および学生版</a>を使用することで、Premiumバージョン同等の機能を3年間使用できる(商用利用は不可)。
+学生からすれば、<strong>事実上の利用制限解除</strong>である。</p>
+<p>商用ソフトウェアなので機能は豊富であるが、そのぶん操作を覚えるのが大変でもある。</p>
+</div>
+<div class="section" id="kicad">
+<h2>KiCad<a class="headerlink" href="#kicad" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="23%" />
+<col width="49%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">開発</th>
+<th class="head">価格</th>
+<th class="head">拡張子</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>AutoDesk</td>
+<td>フリー</td>
+<td>.sch, .kicad_pcb</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><a class="reference external" href="http://kicad-pcb.org/">公式</a></li>
+</ul>
+<p><strong>オープンソース</strong>の回路CADソフト。
+OSSなので当然全機能を無料で使用でき、商用利用に関する制限もない。
+Eagle同様各種OSに対応している。</p>
+<p>kicadについてツイートすると、国内コミュニティ<a class="reference external" href="https://twitter.com/kicad_jp">kicad_jp</a>の中の人がエゴサしてふぁぼってくれるらしい。
+らしい</p>
+<p>回路図やプリント基板の設計が可能で、非常に多機能。
+チュートリアルをこなしてから使うのがいいだろう。</p>
+<p>国内コミュニティの方々の努力により、現行バージョンでは<strong>日本語版のマニュアルとチュートリアル</strong>が同梱されるようになった。
+メニューの <code class="docutils literal"><span class="pre">ヘルプ</span></code> から選択できる。
+また、トラ技編集部から<a class="reference external" href="https://www.amazon.co.jp/dp/4789849279/">Kicad本</a>も出版されているので、紙のチュートリアルが欲しければ購入を検討してほしい。</p>
+</div>
+<div class="section" id="id3">
+<h2>まとめ<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>手軽さを取るならBSch3V、ある程度複雑な作業をするならKiCad、AutoDeskのファンならEagle……といったところだろうか。</p>
+<p>最近はプリント基板を安価で製作してくれる業者が増え、<strong>アマチュアの世界でもプリント基板の使用が拡大</strong>しつつある。
+プリント基板を使った製作を視野に入れるのであれば、KiCadやEagleを使えるようになることは決して損ではなさそうだ。</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="windows.html" class="btn btn-neutral float-right" title="無料でWindowsを手に入れる" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral" title="日電引き継ぎドキュメント" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Nichiden Project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.9 RC',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

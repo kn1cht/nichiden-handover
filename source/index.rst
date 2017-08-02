@@ -9,12 +9,12 @@
    :maxdepth: 1
    :caption: 最近更新した記事
 
+   begginers/electronic-design
    begginers/windows
    begginers/visualstudio
    haisen-kagoshii
    wireless/acrab
    wireless/acrab-code
-   hojotou
 
 
 .. toctree::
@@ -40,6 +40,7 @@
    syutou
    hojotou
    begginers/buy_parts
+   begginers/electronic-design
    begginers/microcontroller
    begginers/editor
    begginers/visualstudio
