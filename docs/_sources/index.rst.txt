@@ -10,13 +10,11 @@
    :maxdepth: 1
    :caption: 最近更新した記事
 
+   honban
    begginers/electronic-design
    begginers/windows
    begginers/visualstudio
    haisen-kagoshii
-   wireless/acrab
-   wireless/acrab-code
-
 
 .. toctree::
    :maxdepth: 2
