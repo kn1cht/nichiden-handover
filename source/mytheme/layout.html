@@ -161,13 +161,12 @@
         <div class="rst-content">
           {% include "breadcrumbs.html" %}
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-            <p><a style="font-size:32px;color:red" href="{{ pathto('honban') }}">【直前特集】本番で気をつけたい三箇条</a></p>
-           <div itemprop="articleBody">
-            {% block body %}{% endblock %}
-           </div>
-           <div class="articleComments">
-            {% block comments %}{% endblock %}
-           </div>
+            <div itemprop="articleBody">
+              {% block body %}{% endblock %}
+            </div>
+            <div class="articleComments">
+              {% block comments %}{% endblock %}
+            </div>
           </div>
           {% include "footer.html" %}
         </div>
