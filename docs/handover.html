@@ -109,6 +109,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#id4">導入</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#rest">reST記法について</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id5">出力</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">編集</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#pandoc">Pandoc</a></li>
@@ -156,6 +157,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#id4">導入</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#rest">reST記法について</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id5">出力</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">編集</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#pandoc">Pandoc</a></li>
@@ -232,8 +234,12 @@
 <ul class="simple">
 <li>書いた人: Kenichi Ito(nichiden_27)</li>
 <li>更新日時: 2018/01/31</li>
-<li>実行に必要な知識・技能:
-CUIを扱ったことがある、Gitを使ったことがある(推奨)、GitHubを使ったことがある(推奨)</li>
+<li>実行に必要な知識・技能<ul>
+<li>CUIを扱ったことがある</li>
+<li>Gitを使ったことがある(できれば)</li>
+<li>GitHubを使ったことがある(できれば)</li>
+</ul>
+</li>
 <li>難易度: 3/練習・勉強が必要</li>
 <li>情報の必須度: 3/必要な場合がある</li>
 </ul>
@@ -254,7 +260,7 @@ CUIを扱ったことがある、Gitを使ったことがある(推奨)、GitHub
 </ol>
 <p>日電は引き継ぎをWordやLaTeXなどで作っていましたが、27でSphinxを使用したWebサイト形式に変えました。
 各代でそれぞれPDFの資料を作成していては分量は増える一方で、<strong>読む側の負担</strong>が増してしまいます。
-今は要らない情報と必要な情報が混ざった古い資料が大量に残されています(これはこれで歴史を感じられて楽しいですが)。
+今は不要な情報と必要な情報が混ざった古い資料が沢山あるのです(これはこれで歴史を感じられて楽しいですが)。
 従って、多くの情報を閲覧しやすく、また追記修正しやすい形にまとめる必要がありました。</p>
 <p>結果的に、ソフトウェアエンジニア寄りの技術を多用しています。
 ただ、多くの事はツール任せで済むはずです。
@@ -270,14 +276,14 @@ WindowsでもMacでも、特定のソフトに依存せずに閲覧できます�
 チートシート</a>などを見てください。
 一つ注意が必要なのが、Markdownは<strong>環境によって微妙に仕様が違う</strong>ことです。
 例えば、太字にする際に <strong>空白を両側に入れる</strong>
-か<strong>空白を入れない</strong>かの違いなどです(今回使ったSphinxでは空白は不要)。
+か<strong>空白を入れない</strong>かの違いなどです(日電引き継ぎの環境では空白は不要)。
 変換した結果を確認して、表示が崩れていないか確認することを勧めます。</p>
 </div>
 <div class="section" id="sphinx">
 <h3>Sphinx<a class="headerlink" href="#sphinx" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Markdownだけでは単なる文法なので、それを綺麗に表示するツールが必要です。
 <strong>Sphinx</strong>はドキュメント作成に特化したツールで、本来はPythonのドキュメント作成用に作られました。
-WebページやPDFをはじめ、多数の形式で出力できます。</p>
+WebページやPDF(要LaTeX)をはじめ、多数の形式で出力できます。</p>
 <div class="section" id="id4">
 <h4>導入<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>Sphinx自体もPythonでできています。
@@ -287,7 +293,7 @@ Windowsの方は以下などを参考にしてください。</p>
 <li><a class="reference external" href="https://qiita.com/cosmos4701141/items/949b2c785a85a0cd5db9">python3.6にsphinxをインストール（Windows）</a></li>
 </ul>
 <p>基本的には好きな方法でPythonを導入して、SphinxをインストールすればOKです。
-<code class="docutils literal"><span class="pre">sphinx-quickstart</span></code>と入力してなにやら表示されれば導入に成功しています。</p>
+<code class="docutils literal"><span class="pre">sphinx-quickstart</span></code>と入力してなにやら表示されれば、導入に成功しています。</p>
 </div>
 <div class="section" id="rest">
 <h4>reST記法について<a class="headerlink" href="#rest" title="このヘッドラインへのパーマリンク">¶</a></h4>
@@ -296,20 +302,41 @@ Windowsの方は以下などを参考にしてください。</p>
 Markdownの仲間ですが、できることがより多くなっています。
 その分書き方が難しいので、日電では採用していません。</p>
 <p>唯一<code class="docutils literal"><span class="pre">index.rst</span></code>だけは目次作成のために書く必要があるので、ご注意ください。
-SphinxはMarkdownをそのまま処理することができますが、数式を入れたいなど諸々の理由から一旦reSTに変換する処理を入れています。</p>
+他の記事は、一旦reSTに変換してからSphinxに読ませています。
+SphinxはMarkdownをそのまま処理することもできますが、諸々の理由(数式を入れたいなど)から断念しました。</p>
 </div>
 <div class="section" id="id5">
 <h4>出力<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>日電引き継ぎの一番上のディレクトリにある<code class="docutils literal"><span class="pre">build.sh</span></code>を実行すると、変換作業を行って<code class="docutils literal"><span class="pre">doc/</span></code>以下に全ページを出力するようになってます。
-ただ、macOSで作っていたので、Windowsのコマンドプロンプトではおそらく動かないです……。
-もしWin環境で出力したいのであれば、Win10ではbashが使えるので導入するか、スクリプト自体を書き換える必要があると思います。</p>
+ただ、macOSで作っていたので、Windowsのコマンドプロンプトではおそらく動かないです……。</p>
+<p>もしWin環境で出力したいのであれば、Win10ではbashが使えるので導入するか、スクリプト自体を書き換える必要があると思います。</p>
+</div>
+<div class="section" id="id6">
+<h4>編集<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>既存の記事を編集する場合は、単に該当のファイルを書き換えて保存してからビルドを行うだけです。
+記事を追加するときは、<code class="docutils literal"><span class="pre">index.rst</span></code>に記事のファイル名を忘れずに追加しましょう。
+でないとせっかく書いた記事が目次に出てきません。</p>
 </div>
 </div>
 <div class="section" id="pandoc">
 <h3>Pandoc<a class="headerlink" href="#pandoc" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Pandocは、文書の形式を互いに変換してくれるツールです。
+その威力は、<a class="reference external" href="https://pandoc.org/try/">Try
+Pandoc!</a>で簡単に試せます。
+日電引き継ぎでは、MarkdownをreSTに自動変換するのに使っています。</p>
+<p>導入は、<a class="reference external" href="https://github.com/jgm/pandoc/releases">Pandocのリリースページ</a>から最新版のインストーラを落として実行するだけです。
+<code class="docutils literal"><span class="pre">pandoc</span> <span class="pre">-v</span></code>コマンドでバージョン情報が出てくれば導入完了です。</p>
 </div>
 <div class="section" id="gitgithub">
 <h3>GitとGithub<a class="headerlink" href="#gitgithub" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><a class="reference external" href="https://kn1cht.github.io/nichiden-handover/">27引き継ぎのサイト</a>は、GitHub
+Pagesという無料(!)サービスで公開しています。
+<code class="docutils literal"><span class="pre">docs/</span></code>フォルダにデータを入れておくと、Webサイトを公開してくれるありがたいものです(<a class="reference external" href="https://qiita.com/tonkotsuboy_com/items/f98667b89228b98bc096">解説</a>)。
+ただ、GitとGitHubの操作がわかっている必要があります。</p>
+<p>Gitはバージョン管理や差分・履歴の管理がとても簡単で、この先ソフトウェアを触るならぜひ習得しておくべきものです。
+ただ概念がとっつきにくいのも事実で、Gitの操作がわからず作業が止まることがもしあれば、それは本末転倒だと思います。</p>
+<p>引き継ぎのデータを自分のPCにコピーし、Sphinxで出力した<code class="docutils literal"><span class="pre">index.html</span></code>をブラウザで開くだけでも閲覧自体に全く問題はありません。
+皆さんの技術レベルに応じて適切な方法を洗濯して頂ければと思います。</p>
 </div>
 </div>
 </div>
