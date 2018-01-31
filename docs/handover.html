@@ -1,0 +1,391 @@
+
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="ROBOTS" content="NOINDEX,NOFOLLOW,NOARCHIVE">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>引き継ぎ資料の作成方法 &mdash; Nichiden 0.9 RC ドキュメント</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="genindex.html"/>
+        <link rel="search" title="検索" href="search.html"/>
+    <link rel="top" title="Nichiden 0.9 RC ドキュメント" href="index.html"/>
+        <link rel="next" title="【直前特集】本番で気をつけたい三箇条" href="honban.html"/>
+        <link rel="prev" title="日電引き継ぎドキュメント" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+  <!-- Google Analytics -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-102450326-2', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Nichiden
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.9
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">最近更新した記事</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">引き継ぎ資料の作成方法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">日電引き継ぎに使用している技術やツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#markdown">Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx">Sphinx</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">導入</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rest">reST記法について</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">出力</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pandoc">Pandoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gitgithub">GitとGithub</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="honban.html">【直前特集】本番で気をつけたい三箇条</a></li>
+<li class="toctree-l1"><a class="reference internal" href="begginers/electronic-design.html">回路設計のためのソフトウェア</a></li>
+<li class="toctree-l1"><a class="reference internal" href="begginers/windows.html">無料でWindowsを手に入れる</a></li>
+<li class="toctree-l1"><a class="reference internal" href="begginers/visualstudio.html">Visual Studioをはじめよう</a></li>
+</ul>
+<p class="caption"><span class="caption-text">目次</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="main.html">東京大学地文研究会天文部 日電引き継ぎ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="management.html">プロジェクト マネジメント</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nissyu-idohen/kikou.html">日周緯度変(日周緯度変換機構)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nissyu-idohen/saitama.html">日周緯度変(さいたま)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nissyu-idohen/ikebukuro.html">日周緯度変(Ikebukuro)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nissyu-idohen/pc-software.html">日周緯度変(外部制御アプリ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nissyu-idohen/pc-software-history.html">日周緯度変(外部制御アプリの歴史)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nissyu-idohen/pc-software-code.html">日周緯度変(Ogoseの実装解説)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wireless/wireless.html">無線制御</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wireless/piscium.html">無線制御(PISCIUM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wireless/acrab.html">無線制御(Acrab)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wireless/acrab-code.html">無線制御(Acrabの実装解説)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="twinkle.html">またたき回路</a></li>
+<li class="toctree-l1"><a class="reference internal" href="haisen.html">配線</a></li>
+<li class="toctree-l1"><a class="reference internal" href="haisen-kagoshii.html">配線(かごしい内)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bihin.html">備品管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="syutou.html">主投影機との連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hojotou.html">補助投影機との連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="begginers/buy_parts.html">部品の買い方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="begginers/electronic-design.html">回路設計のためのソフトウェア</a></li>
+<li class="toctree-l1"><a class="reference internal" href="begginers/microcontroller.html">マイコンをはじめよう</a></li>
+<li class="toctree-l1"><a class="reference internal" href="begginers/editor.html">テキストエディタを使ってみよう</a></li>
+<li class="toctree-l1"><a class="reference internal" href="begginers/visualstudio.html">Visual Studioをはじめよう</a></li>
+<li class="toctree-l1"><a class="reference internal" href="begginers/windows.html">無料でWindowsを手に入れる</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">引き継ぎ資料の作成方法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">日電引き継ぎに使用している技術やツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#markdown">Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinx">Sphinx</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">導入</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rest">reST記法について</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">出力</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pandoc">Pandoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gitgithub">GitとGithub</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Nichiden</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Nichiden</a> &raquo;</li>
+        
+      <li>引き継ぎ資料の作成方法</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/handover.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div itemprop="articleBody">
+              
+  <div class="section" id="id1">
+<h1>引き継ぎ資料の作成方法<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<ul class="simple">
+<li>書いた人: Kenichi Ito(nichiden_27)</li>
+<li>更新日時: 2018/01/31</li>
+<li>実行に必要な知識・技能:
+CUIを扱ったことがある、Gitを使ったことがある(推奨)、GitHubを使ったことがある(推奨)</li>
+<li>難易度: 3/練習・勉強が必要</li>
+<li>情報の必須度: 3/必要な場合がある</li>
+</ul>
+<div class="section" id="id2">
+<h2>概要<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>まず、本記事の執筆が遅れたことをお詫びいたします。
+学科の演習と試験に追われていたらいつの間にか年が明けてしまって今に至ります。</p>
+<p>編集ができる最低限の所から徐々に情報を増やしていく予定です。
+説明が足りない部分があれば、お問い合わせ頂ければ幸いです。</p>
+</div>
+<div class="section" id="id3">
+<h2>日電引き継ぎに使用している技術やツール<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ol class="arabic simple">
+<li>Markdown記法</li>
+<li>Sphinx</li>
+<li>Pandoc</li>
+<li>GitとGithub</li>
+</ol>
+<p>日電は引き継ぎをWordやLaTeXなどで作っていましたが、27でSphinxを使用したWebサイト形式に変えました。
+各代でそれぞれPDFの資料を作成していては分量は増える一方で、<strong>読む側の負担</strong>が増してしまいます。
+今は要らない情報と必要な情報が混ざった古い資料が大量に残されています(これはこれで歴史を感じられて楽しいですが)。
+従って、多くの情報を閲覧しやすく、また追記修正しやすい形にまとめる必要がありました。</p>
+<p>結果的に、ソフトウェアエンジニア寄りの技術を多用しています。
+ただ、多くの事はツール任せで済むはずです。
+GitとGithubを使う事は必須ではないので、皆さんの都合に応じて決めてください。</p>
+<div class="section" id="markdown">
+<h3>Markdown<a class="headerlink" href="#markdown" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>フォーマット付きの文書を作成できる「軽量マークアップ言語」の一種です。
+見出しや太字、画像などが入った文書を作成することができます。</p>
+<p>Wordとの一番の違いは、<strong>テキストデータ</strong>であることです。
+WindowsでもMacでも、特定のソフトに依存せずに閲覧できます。
+誰がどんなPCで開いても問題なく表示・編集できるので、次世代への引き継ぎが簡単です。</p>
+<p>文法については<a class="reference external" href="https://gist.github.com/mignonstyle/083c9e1651d7734f84c99b8cf49d57fa">Markdown記法
+チートシート</a>などを見てください。
+一つ注意が必要なのが、Markdownは<strong>環境によって微妙に仕様が違う</strong>ことです。
+例えば、太字にする際に <strong>空白を両側に入れる</strong>
+か<strong>空白を入れない</strong>かの違いなどです(今回使ったSphinxでは空白は不要)。
+変換した結果を確認して、表示が崩れていないか確認することを勧めます。</p>
+</div>
+<div class="section" id="sphinx">
+<h3>Sphinx<a class="headerlink" href="#sphinx" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Markdownだけでは単なる文法なので、それを綺麗に表示するツールが必要です。
+<strong>Sphinx</strong>はドキュメント作成に特化したツールで、本来はPythonのドキュメント作成用に作られました。
+WebページやPDFをはじめ、多数の形式で出力できます。</p>
+<div class="section" id="id4">
+<h4>導入<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>Sphinx自体もPythonでできています。
+pipがある環境なら、導入は<code class="docutils literal"><span class="pre">sudo</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">Sphinx</span></code>で大丈夫です。
+Windowsの方は以下などを参考にしてください。</p>
+<ul class="simple">
+<li><a class="reference external" href="https://qiita.com/cosmos4701141/items/949b2c785a85a0cd5db9">python3.6にsphinxをインストール（Windows）</a></li>
+</ul>
+<p>基本的には好きな方法でPythonを導入して、SphinxをインストールすればOKです。
+<code class="docutils literal"><span class="pre">sphinx-quickstart</span></code>と入力してなにやら表示されれば導入に成功しています。</p>
+</div>
+<div class="section" id="rest">
+<h4>reST記法について<a class="headerlink" href="#rest" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>Sphinxについてググっていると、「reStructuredText」とか「.rst」のような単語をよく見ると思います。
+<strong>reStructuredText</strong>は、Sphinxが標準で使う軽量マークアップ言語です。
+Markdownの仲間ですが、できることがより多くなっています。
+その分書き方が難しいので、日電では採用していません。</p>
+<p>唯一<code class="docutils literal"><span class="pre">index.rst</span></code>だけは目次作成のために書く必要があるので、ご注意ください。
+SphinxはMarkdownをそのまま処理することができますが、数式を入れたいなど諸々の理由から一旦reSTに変換する処理を入れています。</p>
+</div>
+<div class="section" id="id5">
+<h4>出力<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>日電引き継ぎの一番上のディレクトリにある<code class="docutils literal"><span class="pre">build.sh</span></code>を実行すると、変換作業を行って<code class="docutils literal"><span class="pre">doc/</span></code>以下に全ページを出力するようになってます。
+ただ、macOSで作っていたので、Windowsのコマンドプロンプトではおそらく動かないです……。
+もしWin環境で出力したいのであれば、Win10ではbashが使えるので導入するか、スクリプト自体を書き換える必要があると思います。</p>
+</div>
+</div>
+<div class="section" id="pandoc">
+<h3>Pandoc<a class="headerlink" href="#pandoc" title="このヘッドラインへのパーマリンク">¶</a></h3>
+</div>
+<div class="section" id="gitgithub">
+<h3>GitとGithub<a class="headerlink" href="#gitgithub" title="このヘッドラインへのパーマリンク">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+            </div>
+            <div class="articleComments">
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="honban.html" class="btn btn-neutral float-right" title="【直前特集】本番で気をつけたい三箇条" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="日電引き継ぎドキュメント" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Nichiden Project.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.9 RC',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

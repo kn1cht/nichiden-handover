@@ -10,11 +10,11 @@
    :maxdepth: 1
    :caption: 最近更新した記事
 
+   handover
    honban
    begginers/electronic-design
    begginers/windows
    begginers/visualstudio
-   haisen-kagoshii
 
 .. toctree::
    :maxdepth: 2
@@ -44,3 +44,4 @@
    begginers/editor
    begginers/visualstudio
    begginers/windows
+   handover
