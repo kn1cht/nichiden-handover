@@ -122,9 +122,11 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#build-sh">ビルド用スクリプト<code class="docutils literal"><span class="pre">build.sh</span></code>でやっていることの解説</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id9">呪文</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id10">第一段階</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id11">第二段階</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">呪文</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id10">第一段階</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">第二段階</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#sed">1回目のsed</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id12">2回目のsed</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id13">第3段階</a></li>
@@ -186,9 +188,11 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#build-sh">ビルド用スクリプト<code class="docutils literal"><span class="pre">build.sh</span></code>でやっていることの解説</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id9">呪文</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id10">第一段階</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id11">第二段階</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">呪文</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id10">第一段階</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">第二段階</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#sed">1回目のsed</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id12">2回目のsed</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id13">第3段階</a></li>
@@ -526,9 +530,8 @@ Docsを<strong>&#8220;mytheme&#8221;で一部上書き</strong>して、自分�
 </ul>
 </li>
 </ul>
-</div>
 <div class="section" id="id10">
-<h3>第一段階<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h4>第一段階<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>find ./* -name <span class="s1">&#39;*.md&#39;</span> -print0 <span class="p">|</span> <span class="k">while</span> <span class="nb">read</span> -r -d <span class="s1">&#39;&#39;</span> file
 <span class="k">do</span>
   <span class="nb">echo</span> <span class="s2">&quot;[1] Converting Markdown to reST : </span><span class="nv">$file</span><span class="s2">&quot;</span>
@@ -543,7 +546,7 @@ Markdownの文法にミスがあるとPandocがエラーを出します。</p>
 <p><code class="docutils literal"><span class="pre">&quot;${file%%.md}.rst&quot;</span></code>の部分は、「拡張子.mdを削除して代わりに.rstを付ける」という意味です。これが終わると<code class="docutils literal"><span class="pre">.rst</span></code>のファイルが一杯できます。</p>
 </div>
 <div class="section" id="id11">
-<h3>第二段階<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h4>第二段階<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>find ./* -name <span class="s1">&#39;*.rst&#39;</span> -print0 <span class="p">|</span> <span class="k">while</span> <span class="nb">read</span> -r -d <span class="s1">&#39;&#39;</span> file
 <span class="k">do</span>
   <span class="nb">echo</span> <span class="s2">&quot;[2] Processing reST code : </span><span class="nv">$file</span><span class="s2">&quot;</span>
@@ -554,6 +557,7 @@ Markdownの文法にミスがあるとPandocがエラーを出します。</p>
 </div>
 <p>今度は<code class="docutils literal"><span class="pre">.rst</span></code>のファイルを加工します。<code class="docutils literal"><span class="pre">sed</span></code>というコマンドで、全てのreST形式のファイルに一括で検索・置換をかけています。</p>
 <p><code class="docutils literal"><span class="pre">sed</span></code>の書き方に慣れてないとよく分からないかもしれませんが、それぞれ次のようなことを行なっています。</p>
+</div>
 </div>
 <div class="section" id="sed">
 <h3>1回目のsed<a class="headerlink" href="#sed" title="このヘッドラインへのパーマリンク">¶</a></h3>

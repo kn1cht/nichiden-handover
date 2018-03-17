@@ -214,7 +214,7 @@ build.shを実行すると、こんな感じの出力がずらずらと表示さ
     * `build.sh`が置いてあるディレクトリに移動します。
     * これがないと、別の場所から`build.sh`を読んだ時にうまく動きません。
 
-### 第一段階
+#### 第一段階
 
 ```bash
 find ./* -name '*.md' -print0 | while read -r -d '' file
@@ -232,7 +232,7 @@ Markdownの文法にミスがあるとPandocがエラーを出します。
 
 `"${file%%.md}.rst"`の部分は、「拡張子.mdを削除して代わりに.rstを付ける」という意味です。これが終わると`.rst`のファイルが一杯できます。
 
-### 第二段階
+#### 第二段階
 
 ```bash
 find ./* -name '*.rst' -print0 | while read -r -d '' file
