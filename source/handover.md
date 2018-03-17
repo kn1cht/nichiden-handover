@@ -12,25 +12,21 @@
 まず、本記事の執筆が遅れたことをお詫びいたします。
 学科の演習と試験に追われていたらいつの間にか年が明けてしまって今に至ります。
 
-**まだ執筆途中です。**
-編集ができる最低限の所から徐々に情報を増やしていく予定です。
-説明が足りない部分があれば、お問い合わせ頂ければ幸いです。
-
 ## 日電引き継ぎに使用している技術やツール
 
 1. Markdown記法
 1. Sphinx
 1. Pandoc
-1. GitとGithub
+1. GitとGitHub
 
-日電は引き継ぎをWordやLaTeXなどで作っていましたが、27でSphinxを使用したWebサイト形式に変えました。
+日電は引き継ぎをWordや$\rm{\LaTeX}$などで作っていましたが、27でSphinxを使用したWebサイト形式に変えました。
 各代でそれぞれPDFの資料を作成していては分量は増える一方で、**読む側の負担**が増してしまいます。
 今は不要な情報と必要な情報が混ざった古い資料が沢山あるのです(これはこれで歴史を感じられて楽しいですが)。
 従って、多くの情報を閲覧しやすく、また追記修正しやすい形にまとめる必要がありました。
 
 結果的に、ソフトウェアエンジニア寄りの技術を多用しています。
 ただ、多くの事はツール任せで済むはずです。
-GitとGithubを使う事は必須ではないので、皆さんの都合に応じて決めてください。
+GitとGitHubを使う事は必須ではないので、皆さんの都合に応じて決めてください。
 
 ### Markdown
 フォーマット付きの文書を作成できる「軽量マークアップ言語」の一種です。
@@ -40,6 +36,8 @@ Wordとの一番の違いは、**テキストデータ**であることです。
 WindowsでもMacでも、特定のソフトに依存せずに閲覧できます。
 誰がどんなPCで開いても問題なく表示・編集できるので、次世代への引き継ぎが簡単です。
 
+また、**デザインは後から好きなように適用できる**(HTMLとCSSのような関係になる)ので、執筆するときはデザインを一切気にしなくていいのもありがたいです。
+
 文法については[Markdown記法 チートシート](https://gist.github.com/mignonstyle/083c9e1651d7734f84c99b8cf49d57fa)などを見てください。
 一つ注意が必要なのが、Markdownは**環境によって微妙に仕様が違う**ことです。
 例えば、太字にする際に **空白を両側に入れる** か**空白を入れない**かの違いなどです(日電引き継ぎの環境では空白は不要)。
@@ -48,7 +46,7 @@ WindowsでもMacでも、特定のソフトに依存せずに閲覧できます�
 ### Sphinx
 Markdownだけでは単なる文法なので、それを綺麗に表示するツールが必要です。
 **Sphinx**はドキュメント作成に特化したツールで、本来はPythonのドキュメント作成用に作られました。
-WebページやPDF(要LaTeX)をはじめ、多数の形式で出力できます。
+WebページやPDF(要$\rm{\LaTeX}$)をはじめ、多数の形式で出力できます。
 
 #### 導入
 Sphinx自体もPythonでできています。
@@ -59,6 +57,15 @@ Windowsの方は以下などを参考にしてください。
 
 基本的には好きな方法でPythonを導入して、SphinxをインストールすればOKです。
 `sphinx-quickstart`と入力してなにやら表示されれば、導入に成功しています。
+
+**(追記)** `easy_install`だと失敗する場合、`pip`を使ってみてください。
+
+```bash
+sudo easy_install pip
+sudo pip install Sphinx
+```
+
+とか。それでもダメなら、pipを入れ直すとか……
 
 #### reST記法について
 Sphinxについてググっていると、「reStructuredText」とか「.rst」のような単語をよく見ると思います。
@@ -89,7 +96,7 @@ Pandocは、文書の形式を互いに変換してくれるツールです。
 導入は、[Pandocのリリースページ](https://github.com/jgm/pandoc/releases)から最新版のインストーラを落として実行するだけです。
 `pandoc -v`コマンドでバージョン情報が出てくれば導入完了です。
 
-### GitとGithub
+### GitとGitHub
 [27引き継ぎのサイト](https://kn1cht.github.io/nichiden-handover/)は、GitHub Pagesという無料(!)サービスで公開しています。
 `docs/`フォルダにデータを入れておくと、Webサイトを公開してくれるありがたいものです([解説](https://qiita.com/tonkotsuboy_com/items/f98667b89228b98bc096))。
 ただ、GitとGitHubの操作がわかっている必要があります。
@@ -99,3 +106,196 @@ Gitはバージョン管理や差分・履歴の管理がとても簡単で、�
 
 引き継ぎのデータを自分のPCにコピーし、Sphinxで出力した`index.html`をブラウザで開くだけでも閲覧自体に全く問題はありません。
 皆さんの技術レベルに応じて適切な方法を選択して頂ければと思います。
+
+## 引き継ぎ資料のディレクトリ構造
+
+引き継ぎは記事数がかなり多いので、**ディレクトリ分け**を少し工夫してます。
+Sphinxの動作に絶対必要なものや、必須ではないが見栄えのために分けたものなど、重要度が違うのでここで解説します。
+
+### 最上部
+
+```
+nichiden-handover
+├── Makefile
+├── build
+│   ├── doctrees
+│   ├── html
+│   └── ...
+├── build.sh
+├── docs
+│   ├── _images
+│   ├── _sources
+│   ├── _static
+│   └── ...
+└── source
+```
+
+- Makefile
+    * Sphinxのビルドに必要なファイル。**編集不要です**。
+- [ディレクトリ]build
+    * GitHubからクローンしてきた直後は空になっていると思います。
+    * Sphinxでビルドを実行すると、ここに結果が出力されます。
+    * 中身は基本的に**見なくていいです**。
+- build.sh
+    * 日電引き継ぎのビルドのために書いたスクリプト。**あとで解説します**。
+- [ディレクトリ]docs
+    * GitHub Pagesで公開するには、ここにHTMLなどを入れておく必要があります。
+    * `build.sh`がファイルをコピーするので、**手動でいじる必要はありません**。
+    * ただし、更新の都度ビルドを実行しないと`docs`の内容が古いままになってしまうので要注意。
+- [ディレクトリ]source
+    * 記事のソースファイルなどが入ってます。**編集したいときに見るのはここ**。
+
+### source以下
+
+```
+source
+├── _media
+├── _static
+│   └── css
+│       └── my_theme.css
+├── _templates
+├── begginers
+├── bihin.md
+├── conf.py
+├── haisen-kagoshii.md
+├── ...
+├── honban.md
+├── index.rst
+├── main.md
+├── management.md
+├── mytheme
+│   ├── breadcrumbs.html
+│   ├── layout.html
+│   └── theme.conf
+├── ...
+```
+- *.md
+    * 各記事のソースファイル。Markdownで書いてある。
+- [ディレクトリ]_media
+    * 記事に入れる画像などを入れておく所です。
+    * **本当は画像はどこに置いてもいい**のですが、増えてくると目障りなので分けています。
+    * 記事に画像を入れたいときは、`![画像の説明](_media/gazou.png)`みたいに書きましょう。
+- [ディレクトリ]_static
+    * 静的ファイルの置き場。現状CSSだけ入ってる。
+    * この下にある`my_theme.css`を編集するとサイトの色を変えたりできるので、暇ならどうぞ。
+- [ディレクトリ]_templates
+    * 多分最初から用意されてたものだけど中に何もない。なんだこれ。
+- conf.py
+    * Sphinxの設定ファイルです。日電用に編集済みなのでそのままでもいいです。
+    * 著者名とかバージョンとかはここから変更できます。
+- index.rst
+    * 引き継ぎを開いたら横に出てくる**目次を定義**している部分。
+    * 記事を増やしたら忘れずにここに書き加えましょう！
+- [ディレクトリ]mytheme
+    * Sphinxはサイトのデザインを「テーマ」という形で自由にいじれます。
+    * 今は[Read the Docs](https://github.com/rtfd/sphinx_rtd_theme)というテーマになってます。
+    * さらに、Read the Docsを**"mytheme"で一部上書き**して、自分好みのデザインにしました。
+    * 「[Sphinx: 既存のテーマをカスタマイズする](http://blog.amedama.jp/entry/2016/01/06/122931)」を参考にしたので興味があれば読んでください。
+- ここに出てこなかったディレクトリ
+    * 同一カテゴリの記事を分類するためのものです。
+    * **一々ディレクトリに分けなくても別にいい**んですが、`.md`のファイルが多すぎると見づらいので……
+
+## ビルド用スクリプト`build.sh`でやっていることの解説
+
+- build.shがうまく動かない
+- build.shの動作を変更したい
+
+方はここを読むと分かった気になれるかもしれません。
+
+![build.shの動作](_media/running-build-script.gif)
+
+build.shを実行すると、こんな感じの出力がずらずらと表示されるはずです。
+今どの段階の作業をしているのか、数字付きで表示するようになってます。
+
+### 呪文
+- #/bin/bash
+    * shebangって言います。ググれ。
+- cd `dirname $0`
+    * `build.sh`が置いてあるディレクトリに移動します。
+    * これがないと、別の場所から`build.sh`を読んだ時にうまく動きません。
+
+### 第一段階
+
+```bash
+find ./* -name '*.md' -print0 | while read -r -d '' file
+do
+  echo "[1] Converting Markdown to reST : $file"
+  pandoc -f markdown -t rst "$file" -o "${file%%.md}.rst" # translate Markdown to reST
+done
+```
+
+`.md`の付いたMarkdown形式のファイルをreST形式に変換します。
+Pandocが必要なので入れておきましょう。
+Markdownの文法にミスがあるとPandocがエラーを出します。
+
+これ以降`find`コマンドの結果でループを回す場面が多々ありますが、これはググると解説が山ほど出てくる基本技なので調べてみてください。
+
+`"${file%%.md}.rst"`の部分は、「拡張子.mdを削除して代わりに.rstを付ける」という意味です。これが終わると`.rst`のファイルが一杯できます。
+
+### 第二段階
+
+```bash
+find ./* -name '*.rst' -print0 | while read -r -d '' file
+do
+  echo "[2] Processing reST code : $file"
+  sed -i .bak -e 's/\.\.\ code:: math/.. math::/g' "${file}" # substitution for code hilighting
+  sed -i .bak -e 's/\.\.\ code::/.. code-block::/g' "${file}" # substitution for code hilighting
+done
+```
+
+今度は`.rst`のファイルを加工します。`sed`というコマンドで、全てのreST形式のファイルに一括で検索・置換をかけています。
+
+`sed`の書き方に慣れてないとよく分からないかもしれませんが、それぞれ次のようなことを行なっています。
+
+### 1回目のsed
+`.. code:: math`という記述を`.. math::`に置き換えます(reSTではディレクティブと呼ばれる宣言)。
+Sphinxの仕様の問題で、こうしないと$\rm{\LaTeX}$の**数式が正常に変換されません**。
+
+### 2回目のsed
+`.. code::`を`.. code-block::`に置き換えます。
+
+理由を忘れましたが、Pandocはコードブロック用の`code-block`ディレクティブをなぜか`code`に変換してしまいます。
+コードを書いた部分の表示が崩壊するので、対策しました。
+
+### 第3段階
+
+```bash
+find ./* -name '*.bak' -type f | xargs rm
+
+echo "[3] Building Documantation"
+make html
+```
+
+いよいよSphinxのビルド本番ですが、コマンドは`make html`だけです。数秒待つと、`build/`の下にHTMLのファイルが作られます。
+
+### 第4段階
+
+```bash
+echo "[4] Removing backup & reST files"
+find ./* -name '*.bak' -type f | xargs rm
+find ./* -name '*.md' -print0 | while read -r -d '' file
+do
+  rm ${file%%.md}.rst
+done
+```
+
+`sed`の上書き時に発生したバックアップファイルを削除します。`find`コマンドの結果を`xargs`に渡して、`rm`を実行します。
+
+Sphinx用に生成したreSTのファイルを削除します。
+しかし、単純に`.rst`で検索して削除すると`index.rst`が**巻き添えで消えてしまいます**。
+`.md`で検索してから拡張子を付け替えることで、自動生成されたものだけが消えるようにしました。
+
+### 第5段階
+
+```bash
+echo "[5] Copying all files to docs/"
+rm -r docs/*
+cp -r build/html/* docs/
+touch docs/.nojekyll
+```
+
+GitHub Pagesで公開するために、`build/html/`にできたファイルを全部`docs/`にコピーします。
+
+最後に` .nojekyll`を作成する理由ですが、これはGitHub Pagesで動いているJekyllによって**CSSが無効化されてしまうのを防ぐ**ためのものです。
+
+(参考) [GitHub Pagesで普通の静的ホスティングをしたいときは .nojekyll ファイルを置く](https://qiita.com/sky_y/items/b96ae52c90457bcd7846)
